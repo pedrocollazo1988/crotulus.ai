@@ -26,7 +26,11 @@ El detalle largo de cada sesion esta en los ficheros `2026-*.md` de esta carpeta
   `crotulusai-git-devplcaai-pedrocollazo1988.vercel.app`.
 - **`$allhands` NO sirve para escribir** (403 en `POST /git/refs`); para
   empujar hace falta el PAT fine-grained del propietario, que **no se guarda**.
-  Commit `beef841` (menu, tarjeta 01, equipo, formulario) quedo **sin subir**.
+- **Comprobar si Vercel desplego**: `GET /repos/{o}/{r}/commits/{sha}/status`;
+  debe salir `Vercel -> success`. `pending` con **0 estados** = el webhook no
+  llego (paso con `32ca3f8`: el preview de `dev_plca_ai` si desplego, `main`
+  no). No hay credenciales de Vercel en el entorno, asi que no se puede forzar
+  el despliegue; hay que reintentar con otro push o desde el panel de Vercel.
 
 ## Requisitos del propietario (los 4 que pidio)
 1. Pagina de **Equipo**.
