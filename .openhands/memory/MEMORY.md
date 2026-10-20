@@ -309,5 +309,19 @@ tecnología desplegable en **Vercel** con dominio de **Namecheap**.
 - **NO empujar directo a `main`**: se hizo mal con el widget (subido directo a
   `main`, commit `48a6eed`, saltandose `dev_plca_ai`). Antes de empujar, mirar la
   rama actual (`git branch --show-current`) y usar `dev_plca_ai`.
-- Estado actual (2026-10-20): `dev_plca_ai` = `67f7a29` (fusion de `main` en
-  `dev_plca_ai`) -> ya **incluye el widget y todo lo de `main`**.
+- Estado actual (2026-10-20): `dev_plca_ai` = `a34f6fd` (**subida a GitHub**),
+  incluye ya todo lo de `main` (widget incluido). `main` = `cc8ee6e`.
+- **Tokens: los del entorno son de SOLO LECTURA.** Las variables del entorno
+  dan `x-accepted-github-permissions: contents=read` -> el `push` falla con
+  **403** (`Permission ... denied`). Hay una variable `GH_PUSH_TOKEN` pero da
+  **401** (caducada/invalida). El unico que escribe es el PAT del propietario
+  (token *fine-grained*) -> **pedirlo y recordar revocarlo**.
+- **GitHub PUSH PROTECTION bloquea el push** (`GH013: Repository rule
+  violations / Push cannot contain secrets`) si un commit incluye el valor de
+  un token o su **prefijo literal**. **NUNCA escribir el valor ni el prefijo
+  de un PAT en ficheros versionados** (ni con `$VAR` dentro de comillas dobles
+  en un comando: el shell lo expande). Describirlo con palabras.
+- **Trampa de codificacion REAL**: el `MEMORY.md` de `dev_plca_ai` estaba en
+  **latin-1** (bytes `0xe1`); al fusionar con `main` (UTF-8) da conflicto en todo
+  el fichero. Resolver tomando la version UTF-8 de `main`
+  (`git checkout --theirs`). Escribir SIEMPRE en UTF-8.
