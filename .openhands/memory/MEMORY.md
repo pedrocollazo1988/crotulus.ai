@@ -17,10 +17,10 @@ histórico (misma empresa, mismo dominio).
 
 
 ## Logotipo de marca (2026-10-20)
-- **La marca real** (recuperada del sitio viejo, que NO est� en este repo) es un
+- **La marca real** (recuperada del sitio viejo, que NO está en este repo) es un
   cuadrado azul redondeado con una **"C" blanca abierta a la derecha** y un
   **punto turquesa** dentro. Colores oficiales: azul `#136493`, turquesa
-  `#5FA8C9`, blanco. Antes el sitio Next usaba un icono de chispa gen�rico
+  `#5FA8C9`, blanco. Antes el sitio Next usaba un icono de chispa genérico
   (`IconSpark`, estrella de 4 puntas con degradado `#1689ed`->`#004f92`): era
   provisional y **no** era la marca.
 - **Fuente de verdad vectorial**: `.agent_tmp/old-favicon.svg` del sitio viejo
@@ -40,13 +40,30 @@ histórico (misma empresa, mismo dominio).
   punto turquesa sobre azul da 2.42:1, pero es un adorno grafico (no texto), asi
   que no aplica el minimo AA.
 - **Defecto extra corregido**: el nombre y el subtitulo del logotipo estaban
-  **fijos en espa�ol** en cabecera y pie. Ahora salen del diccionario con la
+  **fijos en español** en cabecera y pie. Ahora salen del diccionario con la
   clave nueva `brand: { name, sub }` (`es.ts` fuente de verdad; `en.ts` y `pt.ts`
   obligadas por el tipo `Dict`). Verificado: es / en / pt.
 - **Trampa al verificar**: `next start` viejo se queda escuchando en el puerto y
   `curl` sigue sirviendo el build antiguo. Matar SIEMPRE el proceso anterior
   (`ss -ltnp | grep :3111`) antes de reiniciar; si no, se ven cambios "que no
   aparecen".
+- **Estado del logo**: commits locales `79d24e2` (logo) y `373d302` (memoria) en la
+  rama **`logo-marca-real`**, rebasada sobre `main`. **NO subidos** (ver abajo).
+- **La PR #1 YA ESTA FUSIONADA en `main`** (`9a2aa47`, merge de `dev_plca_ai`).
+  Ojo: `dev_plca_ai` local quedo desfasada; no volver a trabajar sobre ella.
+- **Bloqueo de push CONFIRMADO**: ningun token disponible puede escribir.
+  `GITHUB_TOKEN` (y `allhands`) dan 403; la cabecera
+  `x-accepted-github-permissions: contents=read` al leer un fichero revela que el
+  token es de **solo lectura** (el campo `permissions.push: true` de la API del
+  repo es el rol del USUARIO, no del token: enganna). `gh` tambien falla
+  (`Resource not accessible by integration`). El token pegado por el propietario
+  (`github_pat_11ASO7MNI0pI...`) da **401 Bad credentials**: no es valido.
+  **El repo es publico**, asi que `git ls-remote` funciona SIN token: no sirve
+  como prueba de credencial.
+  -> Hace falta un token con **`Contents: read and write`** sobre este repo.
+- **Ojo con la codificacion**: al editar `MEMORY.md`, escribir SIEMPRE en UTF-8.
+  El editor de ficheros puede guardar latin-1 y romper el fichero (bytes `0xe1`);
+  comprobar con `python3 -c "open(p,encoding='utf-8').read()"`.
 
 ## Requisitos del propietario (los 4 que pidió)
 1. Página de **Equipo** (datos en BD, no en el HTML).
