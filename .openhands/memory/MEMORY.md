@@ -284,4 +284,20 @@ tecnología desplegable en **Vercel** con dominio de **Namecheap**.
   `check-panel.mjs`, `contrast-toTop.mjs`, `shot-widget.mjs`) usando Chromium
   headless + CDP (no hay playwright/puppeteer; se usa `/usr/bin/chromium` con
   `--remote-debugging-port`).
-- **Commit local `fc94fa4`** (rama `main`, **sin subir**: pendiente de permiso).
+- **Subido a `main`** el 2026-10-20 (commit `48a6eed`) y **desplegado en produccion**:
+  verificado en `crotulusai.vercel.app` (widget + boton, 12px, contraste AA).
+
+## Trampas del clon y del push (2026-10-20)
+- **El clon es SUPERFICIAL** (`git rev-parse --is-shallow-repository` -> true) y su
+  `remote.origin.fetch` es NO estandar: solo mapea
+  `+refs/heads/dev_plca_ai:refs/remotes/origin/dev_plca_ai`. Por eso
+  `git fetch origin` **no refresca `origin/main`** (la ref se queda vieja y
+  parece que el push no subio). Refrescar a mano:
+  `git fetch origin main:refs/remotes/origin/main --force`. Para comprobar de
+  verdad el remoto, la API: `GET /repos/OWNER/REPO/branches/main`.
+- **Push sin guardar credenciales**: `git push https://$TOKEN@github.com/OWNER/REPO.git main:main`
+  (no toca `.git/config`; el `origin` sigue limpio). El token caduca: si da
+  `Bad credentials`, pedir uno nuevo. **Recordar al propietario revocarlo** en
+  https://github.com/settings/personal-access-tokens
+- **Vercel despliega solo en ~20 s** al hacer push a `main` (produccion
+  `crotulusai.vercel.app`). Verificar con `grep creatuagente.io/widget`.
