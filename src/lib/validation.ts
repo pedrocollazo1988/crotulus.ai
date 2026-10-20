@@ -35,9 +35,8 @@ export const contactSchema = z.object({
   phone: z
     .string()
     .trim()
-    .max(40, "El teléfono es demasiado largo.")
-    .optional()
-    .or(z.literal("")),
+    .min(6, "Escribe un teléfono de contacto.")
+    .max(40, "El teléfono es demasiado largo."),
   company: z
     .string()
     .trim()

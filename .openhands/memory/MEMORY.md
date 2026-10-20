@@ -14,19 +14,9 @@ El detalle largo de cada sesion esta en los ficheros `2026-*.md` de esta carpeta
 - **Antes de tocar codigo de Next, leer `node_modules/next/dist/docs/`** (lo pide
   el propio `AGENTS.md`): esta version difiere de lo habitual.
 
-## Estado actual (2026-10-20, tarde)
-- `dev_plca_ai` = `87dcde8`, **subida a GitHub**; preview OK. Va 6 commits por
-  delante de `main` (`461e809`): **falta unirla** (preguntar antes).
-- **Alias del preview**: `crotulusai-git-devplcaai-pedrocollazo1988.vercel.app`
-  (sin guiones en "devplcaai"). Las variantes con guiones dan 404.
-- **Trampa de trabajo**: el remoto puede ir por delante sin que se note. Un
-  `git push` de un commit local que reimplementa algo ya subido da
-  "Updates were rejected". Antes de empujar: `git fetch origin dev_plca_ai
-  --force` y comparar. (Me paso: rehice la seccion Servicios entera y resulto
-  ser un subconjunto exacto de `d1b5fda`; se descarto mi commit.)
-- **Hueco conocido**: `openGraph` en `layout.tsx` no lleva `images`, y en
-  `public/` no hay ninguna imagen de previsualizacion social. Al compartir el
-  enlace no se ve tarjeta. Pendiente de decidir con el propietario.
+## Estado actual (2026-10-20)
+- `dev_plca_ai` = `21be2d5`, **subida a GitHub**; preview Vercel OK. Va 13 commits
+  por delante de `main` (`cc8ee6e`): **falta unirla**.
 - Produccion = `crotulusai.vercel.app` (despliega sola al empujar a `main`).
 - Verificado: `next build` OK, 0 desbordes en 1440/1080/860/390, contraste AA en
   claro y noche, formulario end-to-end (BD + correo + HubSpot con servidores
@@ -73,6 +63,21 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   `z-index: 45`, 12px por encima del boton del chat. Contraste AA.
 
 ## Trampas costosas (repetirlas cuesta tiempo)
+- **Los iconos son SVG inline SIN `width`/`height`** y **faltaba la regla CSS
+  general que los limitara**. Un `<svg>` sin `width`/`height` y sin regla CSS NO
+  usa el tamano intrinseco 300x150: **toma el 100% del contenedor**. Eso hizo
+  que el icono del boton de enviar midiera **296px** (el ancho del boton) y el
+  de la linea `.event` del panel, **341px**; el boton quedo en **494x324**.
+  Otros 15 iconos sin contenedor que los midiera colapsaban a **0x0**
+  (invisibles: flechas de los botones del hero, iconos de las pestanas, etc.).
+  **Arreglado de raiz** en `globals.css`: `svg { width: 1em; height: 1em }`
+  (commit en `dev_plca_ai`). Las reglas mas especificas (`.brand-logo--header`,
+  `.icon-btn svg`, `.service__icon svg`...) siguen ganando, asi que no rompe
+  nada. **Antes de tocar un icono, medir su `getBoundingClientRect`**: 0x0 o un
+  valor igual al del contenedor = falta de tamano explicito.
+- **`.bubble` y `.event` son `<p>`**: sin `margin: 0` el margen por defecto
+  descentra lo que se superpone encima.
+- **Boton de tema**: es `.icon-btn[aria-pressed]` (el de busqueda NO lo lleva).
 - **Token y permisos de GitHub**: el campo `permissions.push` de
   `GET /repos/{o}/{r}` es el rol del **USUARIO**, no del token. Prueba buena:
   `POST /git/refs` (403 = no escribe) o la cabecera `x-accepted-github-permissions`.
@@ -130,10 +135,9 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   `npx prisma db push` + `npm run db:seed`.
 - **HubSpot**: crear antes las 4 propiedades personalizadas (ver arriba).
 - **`dev_plca_ai` va por delante de `main`**: hay que unirla (con permiso del
-  propietario). Sin fusionar ahora: `36e93f5` (redes sociales y WhatsApp),
-  `d1b5fda` (seccion Servicios), `0018a4a` (WhatsApp del pie en texto) + sus
-  commits de memoria. Ya en `main`: `48a6eed` (widget), `c4aa47d` (equipo +
-  fotos) y `bbee958` (contraste), via PR #3.
+  propietario). Commits clave sin fusionar: `36e93f5` (redes sociales y
+  WhatsApp), `d1b5fda` (seccion Servicios), `c4aa47d` (equipo + fotos),
+  `bbee958` (contraste); `48a6eed` (widget) ya esta en `main`.
 - **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
   del propietario **+5359888821** (10 digitos, Cuba) y redes
   Instagram/Facebook; se muestran en pie, banda CTA y dialogo de contacto

@@ -157,7 +157,15 @@ export function ContactProvider({
               <div className="field--row">
                 <div className="field">
                   <label htmlFor="c-phone">{dict.phone}</label>
-                  <input id="c-phone" name="phone" type="tel" placeholder={dict.phonePh} />
+                  <input
+                    id="c-phone"
+                    name="phone"
+                    type="tel"
+                    inputMode="tel"
+                    required
+                    maxLength={40}
+                    placeholder={dict.phonePh}
+                  />
                 </div>
                 <div className="field">
                   <label htmlFor="c-company">{dict.company}</label>

@@ -70,6 +70,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; }
 img { max-width: 100%; height: auto; }
+/* Los iconos son SVG inline sin width/height. Sin esta regla el navegador los
+   dimensiona contra el contenedor (o a 0): el icono del boton de enviar medía
+   296px y el de la linea de evento del chat, 341px. Las reglas mas especificas
+   (.brand-logo--header, .icon-btn svg, etc.) siguen mandando sobre esta. */
+svg { width: 1em; height: 1em; }
 :focus-visible { outline: 3px solid #77bcf3; outline-offset: 3px; border-radius: 4px; }
 
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
