@@ -65,6 +65,7 @@ export const pt: Dict = {
     chipAttention: "Atendimento",
     chipSales: "Vendas",
     chipOps: "Operações",
+    coreValue: "IA",
     coreLabel: "NA SUA EQUIPA",
     float1Title: "Uma consulta. Resolvida.",
     float1Sub: "Atendimento que acompanha o ritmo.",
@@ -156,6 +157,12 @@ export const pt: Dict = {
         num: "01",
         title: "Agentes de IA para apoio ao cliente",
         text: "Assistentes que respondem a dúvidas e resolvem pedidos dos seus clientes.",
+        channels: [
+          { key: "whatsapp", label: "WhatsApp" },
+          { key: "instagram", label: "Instagram" },
+          { key: "facebook", label: "Facebook" },
+          { key: "web", label: "na Web" },
+        ],
       },
       {
         num: "02",
@@ -294,8 +301,8 @@ export const pt: Dict = {
   },
   team: {
     eyebrow: "As pessoas por trás",
-    title: "Uma equipa pequena,<br>envolvida e direta.",
-    lead: "Na C-ROTULUS trabalhamos perto do negócio: poucas camadas, decisões rápidas e alguém que conhece o seu caso do início ao fim.",
+    title: "Uma equipa profissional,<br>envolvida e comprometida.",
+    lead: "Na C-ROTULUS IA trabalhamos perto do negócio: poucas camadas, decisões rápidas e alguém que conhece o seu caso do início ao fim.",
     empty: "Estamos a preparar as fichas da equipa. Volte em breve.",
     valuesEyebrow: "Como trabalhamos",
     valuesTitle: "Os nossos princípios",

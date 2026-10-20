@@ -29,12 +29,14 @@ export function SiteHeader({
     };
   }, [menuOpen]);
 
+  // El orden sigue el de las secciones de la portada (page.tsx): soluciones,
+  // servicios, como trabajamos, equipo y preguntas.
   const links = [
-    { href: "/#servicios", label: dict.nav.services },
     { href: "/#soluciones", label: dict.nav.solutions },
+    { href: "/#servicios", label: dict.nav.services },
     { href: "/#como", label: dict.nav.process },
-    { href: "/#preguntas", label: dict.nav.faq },
     { href: "/#equipo", label: dict.nav.team },
+    { href: "/#preguntas", label: dict.nav.faq },
   ];
 
   return (

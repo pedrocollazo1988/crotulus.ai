@@ -519,6 +519,19 @@ svg { width: 1em; height: 1em; }
 .service:hover .service__num, .service:focus-within .service__num { color: var(--electric); }
 .service h3 { font-size: 18.5px; font-weight: 600; line-height: 1.35; letter-spacing: -.3px; margin: 0 0 10px; }
 .service p { font-size: 14px; color: var(--muted); margin: 0 0 18px; line-height: 1.7; }
+/* Canales por los que atiende el agente (solo tarjeta 01). Van antes del CTA
+   y no lo empujan: `.service__cta` sigue anclado abajo con `margin-top: auto`. */
+.service__channels {
+  list-style: none; display: flex; flex-wrap: wrap; gap: 6px;
+  margin: 0 0 16px; padding: 0;
+}
+.service__channels li {
+  display: inline-flex; align-items: center; gap: 5px;
+  border: 1px solid var(--line); background: var(--pale); border-radius: 30px;
+  padding: 4px 10px; font-size: 11.5px; color: var(--muted);
+}
+.service__channels svg { width: 13px; height: 13px; flex-shrink: 0; color: var(--blue); }
+.theme-dark .service__channels svg { color: var(--electric); }
 .service__cta {
   margin-top: auto; align-self: flex-start;
   display: inline-flex; align-items: center; gap: 7px;
@@ -547,8 +560,7 @@ svg { width: 1em; height: 1em; }
 .member__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .member__body { padding: 20px 22px 22px; }
 .member__name { font-size: 18px; font-weight: 650; letter-spacing: -.3px; margin: 0; }
-.member__role { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--blue); margin: 5px 0 12px; }
-.member__bio { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.7; }
+.member__role { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--blue); margin: 5px 0 0; }
 .member__links { display: flex; gap: 10px; margin-top: 16px; }
 .member__links a { font-size: 12px; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 5px; }
 .member__links a:hover { text-decoration: underline; }
@@ -606,8 +618,15 @@ svg { width: 1em; height: 1em; }
 /* ------------------------------------------------------- dialogo contacto */
 dialog.modal {
   border: 1px solid var(--line); border-radius: 18px; width: 560px;
-  max-width: calc(100% - 24px); padding: 32px; color: var(--ink);
+  max-width: calc(100% - 24px); padding: 28px; color: var(--ink);
   background: var(--card); box-shadow: 0 30px 100px #003c7e30;
+  /* El formulario mide mas alto que una ventana de portatil (768px): se limita
+     a la ventana y se deja desplazar dentro, para que el boton de enviar no
+     quede cortado por abajo. `dvh` sigue a la barra del navegador en movil;
+     la linea `vh` es el respaldo para navegadores que no lo entienden. */
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto; overscroll-behavior: contain;
 }
 dialog.modal::backdrop { background: #073b7066; backdrop-filter: blur(5px); }
 .modal__close {
@@ -631,6 +650,12 @@ dialog.modal::backdrop { background: #073b7066; backdrop-filter: blur(5px); }
 .field__error { color: #c0392b; font-size: 12px; margin: 6px 0 0; }
 .theme-dark .field__error { color: #ff9b8a; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Boton de envio del formulario: el icono de la flecha se alinea con el texto
+   y se queda quieto (no es un enlace, no debe insinuar salida). */
+.modal .button--block { margin-top: 18px; }
+.modal .button--block svg { width: 15px; height: 15px; flex-shrink: 0; }
+.modal .button--block:disabled { opacity: .7; cursor: progress; transform: none; }
 
 .form-status { border-radius: 12px; padding: 14px 16px; font-size: 13.5px; margin-top: 16px; }
 .form-status--error { background: #fdecea; color: #a3271a; }

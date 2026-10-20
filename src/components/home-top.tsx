@@ -64,7 +64,7 @@ export function Hero({ dict }: { dict: Dict }) {
         <span className="data-particle particle-b" aria-hidden="true" />
 
         <div className="core">
-          <strong>24/7</strong>
+          <strong>{h.coreValue}</strong>
           <span>{h.coreLabel}</span>
         </div>
 
