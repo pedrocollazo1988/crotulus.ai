@@ -103,11 +103,11 @@ img { max-width: 100%; height: auto; }
 .brand { display: flex; align-items: center; gap: 11px; min-width: 0; }
 .brand__mark {
   width: 42px; height: 42px; border-radius: 12px; flex-shrink: 0;
-  background: linear-gradient(140deg, var(--electric), var(--blue-dark));
+  background: #136493;
   display: grid; place-items: center; color: #fff;
-  box-shadow: 0 8px 20px #0068ba33;
+  box-shadow: 0 8px 20px #13649333;
 }
-.brand__mark svg { width: 24px; height: 24px; }
+.brand__mark svg { width: 26px; height: 26px; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.12; }
 .brand__name { font-size: 17px; font-weight: 800; letter-spacing: -.4px; }
 .brand__sub {

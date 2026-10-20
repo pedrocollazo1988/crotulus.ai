@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Dict, Locale } from "@/i18n";
 import type { SearchEntry } from "@/lib/search";
+import { BrandMark } from "./brand-mark";
 import { ContactButton } from "./contact-provider";
-import { IconClose, IconMenu, IconSpark } from "./icons";
+import { IconClose, IconMenu } from "./icons";
 import { LocaleSwitcher } from "./locale-switcher";
 import { SiteSearch } from "./site-search";
 import { ThemeToggle } from "./theme-toggle";
@@ -40,11 +41,11 @@ export function SiteHeader({
       <nav className="wrap nav" aria-label={dict.a11y.mainNav}>
         <Link className="brand" href="/" aria-label={dict.a11y.logoAlt}>
           <span className="brand__mark">
-            <IconSpark />
+            <BrandMark />
           </span>
           <span className="brand__text">
-            <span className="brand__name">C-ROTULUS IA</span>
-            <span className="brand__sub">Agencia de Inteligencia Artificial</span>
+            <span className="brand__name">{dict.brand.name}</span>
+            <span className="brand__sub">{dict.brand.sub}</span>
           </span>
         </Link>
 

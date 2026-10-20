@@ -25,6 +25,10 @@ export const en: Dict = {
     toTop: "Back to top",
     heroVisual: "An AI agent connects customer service, follow-up and business tasks",
   },
+  brand: {
+    name: "C-ROTULUS AI",
+    sub: "Artificial Intelligence Agency",
+  },
   nav: {
     solutions: "Solutions",
     process: "How we work",
