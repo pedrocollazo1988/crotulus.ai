@@ -275,6 +275,7 @@ export const es = {
     joinText:
       "Siempre buscamos personas curiosas que disfruten resolviendo problemas reales de negocio.",
     joinCta: "Escríbenos",
+    more: "Conoce al equipo",
     ctaEyebrow: "Tu próximo paso es sencillo",
     ctaTitle: "Hablemos de tu proyecto.",
     ctaButton: "Contactar",

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Dict } from "@/i18n";
 import { SITE } from "@/lib/site";
-import { BrandMark } from "./brand-mark";
+import { BrandLogo } from "./brand-logo";
 import { ContactButton } from "./contact-provider";
 import { IconMail, IconPhone, IconPin } from "./icons";
 
@@ -13,14 +13,8 @@ export function SiteFooter({ dict }: { dict: Dict }) {
       <div className="wrap">
         <div className="footer__top">
           <div className="footer__brand">
-            <Link className="brand" href="/">
-              <span className="brand__mark">
-                <BrandMark />
-              </span>
-              <span className="brand__text">
-                <span className="brand__name">{dict.brand.name}</span>
-                <span className="brand__sub">{dict.brand.sub}</span>
-              </span>
+            <Link className="brand" href="/" aria-label={dict.a11y.logoAlt}>
+              <BrandLogo withTagline className="brand-logo brand-logo--footer" />
             </Link>
             <p>{dict.footer.tagline}</p>
           </div>
@@ -31,7 +25,7 @@ export function SiteFooter({ dict }: { dict: Dict }) {
               <Link href="/#soluciones">{dict.nav.solutions}</Link>
               <Link href="/#como">{dict.nav.process}</Link>
               <Link href="/#preguntas">{dict.nav.faq}</Link>
-              <Link href="/equipo">{dict.nav.team}</Link>
+              <Link href="/#equipo">{dict.nav.team}</Link>
             </div>
 
             <div className="footer__col">
