@@ -11,6 +11,7 @@ import {
 } from "react";
 import type { Dict, Locale } from "@/i18n";
 import { CONTACT_SERVICES } from "@/lib/validation";
+import { SITE, whatsappHref } from "@/lib/site";
 import { IconArrowUpRight, IconCheck, IconClose, IconMail } from "./icons";
 
 type ContactContextValue = {
@@ -46,6 +47,7 @@ export function ContactProvider({
   // Servicio elegido: se controla desde React para poder preseleccionarlo al
   // abrir el dialogo desde una tarjeta de "Servicios".
   const [service, setService] = useState<string>(CONTACT_SERVICES[0]);
+  const wa = whatsappHref();
 
   const open = useCallback((preset?: string) => {
     setStatus("idle");
@@ -224,6 +226,19 @@ export function ContactProvider({
                 <a href={`mailto:${email}`} style={{ color: "var(--blue)", fontWeight: 600 }}>
                   {email}
                 </a>
+                {wa && (
+                  <>
+                    {" · "}
+                    <a
+                      href={wa}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "var(--blue)", fontWeight: 600 }}
+                    >
+                      WhatsApp
+                    </a>
+                  </>
+                )}
               </p>
             </form>
           </>

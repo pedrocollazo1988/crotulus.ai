@@ -187,6 +187,29 @@ export const IconDocument = (p: IconProps) => (
   </svg>
 );
 
+/* --- iconos de redes sociales (trazo, mismo estilo) --- */
+
+export const IconInstagram = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <rect x="3" y="3" width="18" height="18" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.2" cy="6.8" r="0.9" />
+  </svg>
+);
+
+export const IconFacebook = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M14.5 8.5H16V5.5h-2A3.5 3.5 0 0 0 10.5 9v2H8.5v3h2v7h3v-7h2.2l.6-3H13.5V9.5a1 1 0 0 1 1-1Z" />
+  </svg>
+);
+
+export const IconWhatsApp = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3a8.5 8.5 0 1 1 15.5-4.6Z" />
+    <path d="M8.9 8.3c-.3.6-.3 1.6.5 2.7a7 7 0 0 0 3.3 2.7c1.2.5 2 .3 2.5-.1l.5-.5-1.5-1.2-1 .7a5 5 0 0 1-1.8-1.9l.7-1-1.2-1.6Z" />
+  </svg>
+);
+
 /* --- iconos de la seccion "Servicios" (trazo, mismo estilo) --- */
 
 /** 01 · Agentes de IA para atencion al cliente: bocadillo con respuesta. */

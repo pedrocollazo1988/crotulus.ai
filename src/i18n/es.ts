@@ -256,6 +256,13 @@ export const es = {
     legal: "C-ROTULUS S.U.R.L.",
     linksTitle: "Enlaces",
   },
+  social: {
+    title: "Síguenos",
+    whatsapp: "WhatsApp",
+    instagram: "Instagram",
+    facebook: "Facebook",
+    message: "Hola, quiero información sobre los servicios de C-ROTULUS IA.",
+  },
   contact: {
     eyebrow: "Empecemos por tu reto",
     title: "Tu negocio tiene un siguiente paso.",

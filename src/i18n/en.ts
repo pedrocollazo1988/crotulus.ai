@@ -250,6 +250,13 @@ export const en: Dict = {
     legal: "C-ROTULUS S.U.R.L.",
     linksTitle: "Links",
   },
+  social: {
+    title: "Follow us",
+    whatsapp: "WhatsApp",
+    instagram: "Instagram",
+    facebook: "Facebook",
+    message: "Hi, I'd like information about C-ROTULUS AI services.",
+  },
   contact: {
     eyebrow: "Let's start with your challenge",
     title: "Your business has a next step.",

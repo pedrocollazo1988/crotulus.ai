@@ -1,6 +1,7 @@
 import type { Dict } from "@/i18n";
 import { SITE } from "@/lib/site";
 import { ContactButton } from "./contact-provider";
+import { SocialLinks } from "./social-links";
 import { IconArrowUpRight, IconBuild, IconFlow, IconLaunch, IconMail, IconScan } from "./icons";
 
 const STEP_ICONS = [IconScan, IconBuild, IconLaunch];
@@ -122,6 +123,15 @@ export function CtaBand({ dict }: { dict: Dict }) {
           <p>
             {dict.cta.text} <strong>{SITE.email}</strong>
           </p>
+          <SocialLinks
+            variant="cta"
+            labels={{
+              whatsapp: dict.social.whatsapp,
+              instagram: dict.social.instagram,
+              facebook: dict.social.facebook,
+              whatsappMessage: dict.social.message,
+            }}
+          />
         </div>
         <ContactButton>
           {dict.cta.button} <IconArrowUpRight />
