@@ -322,15 +322,13 @@ tecnología desplegable en **Vercel** con dominio de **Namecheap**.
 - **NO empujar directo a `main`**: se hizo mal con el widget (subido directo a
   `main`, commit `48a6eed`, saltandose `dev_plca_ai`). Antes de empujar, mirar la
   rama actual (`git branch --show-current`) y usar `dev_plca_ai`.
-- Estado actual (2026-10-20): `dev_plca_ai` = `c7c1cb3` (**NO subida**: el PAT de
-  escritura ya no vale). Remoto `dev_plca_ai` = `6ca28f0`; `main` = `cc8ee6e`.
-  `c7c1cb3` = logotipo completo (con "Agencia de Inteligencia Artificial") en la
-  cabecera, igual que en el pie.
-- **Tokens: los del entorno son de SOLO LECTURA.** `GITHUB_TOKEN` y `allhands`
-  dan `x-accepted-github-permissions: contents=read/write` pero el `push` y la
-  creacion de blobs fallan con **403** (`Resource not accessible by personal
-  access token`). `GH_PUSH_TOKEN` **ya no existe** en el entorno. Hace falta un
-  PAT nuevo con `contents=write` -> **pedirlo y recordar revocarlo** en
+- Estado actual (2026-10-20): `dev_plca_ai` = `b6e81aa` (**subida a GitHub**;
+  preview Vercel OK). `main` = `cc8ee6e`. `b6e81aa` = notas de memoria; el cambio
+  real de UI es `c7c1cb3` (logotipo completo, con "Agencia de Inteligencia
+  Artificial", en la cabecera igual que en el pie).
+- **Tokens**: `GITHUB_TOKEN` del entorno = solo lectura. El PAT del propietario
+  que funciona ahora es `github_pat_11ASO7MNI0VKz...` (expira en 7 dias, dio
+  blob `201`). -> **recordar revocarlo** en
   https://github.com/settings/personal-access-tokens
 - **Trampa de codificacion REAL**: el `MEMORY.md` de `dev_plca_ai` estaba en
   **latin-1** (bytes `0xe1`); al fusionar con `main` (UTF-8) da conflicto en todo
