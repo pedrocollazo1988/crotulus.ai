@@ -649,6 +649,24 @@ dialog.modal::backdrop { background: #073b7066; backdrop-filter: blur(5px); }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
+/* ------------------------------------------------- boton "volver arriba" */
+/* Comparte columna con el widget de chat (abajo a la derecha, 60px + 24px):
+   se apila justo encima para no taparlo. */
+.to-top {
+  position: fixed; right: 30px; bottom: 96px; z-index: 45;
+  width: 48px; height: 48px; display: grid; place-items: center;
+  background: var(--blue); color: #fff; border: 0; border-radius: 50%;
+  cursor: pointer; box-shadow: var(--shadow-md);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .25s, transform .25s, visibility .25s, background .2s;
+}
+.to-top[data-visible="true"] { opacity: 1; visibility: visible; transform: translateY(0); }
+.to-top:hover { background: var(--blue-dark); transform: translateY(-2px); }
+/* En modo noche --blue es claro: el icono va oscuro, como en .button. */
+.theme-dark .to-top { color: #06202f; }
+.to-top svg { width: 21px; height: 21px; }
+.to-top:focus-visible { outline: 3px solid var(--electric); outline-offset: 3px; }
+
 /* ---------------------------------------------------------------------------
    Panel privado de contactos (/admin/contactos)
    --------------------------------------------------------------------------- */
