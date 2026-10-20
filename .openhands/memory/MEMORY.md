@@ -64,9 +64,11 @@ histórico (misma empresa, mismo dominio).
 - **`create_pr` del entorno falla** (403): usa el `GITHUB_TOKEN` del entorno, que
   es de solo lectura. Crear la PR a mano con `POST /pulls` y el token bueno.
 - **Al terminar, borrar el token temporal** del disco (`rm /tmp/...`).
-- **El remoto `origin` lleva un token VIEJO incrustado en la URL** (revocado):
-  un `git push origin` normal falla con 403 y despista. Limpiarlo con
+- **`origin` llevaba incrustado el `GITHUB_TOKEN` del entorno** (el de solo
+  lectura) en la URL: era la causa real de los 403 y del despiste. **Ya limpiado**:
   `git remote set-url origin https://github.com/pedrocollazo1988/crotulus.ai.git`.
+  Como el repo es **publico**, `fetch`/`ls-remote` funcionan sin credencial; para
+  `push` hay que pasar el token explicito en la URL (no queda guardado).
 - **Fusion asincrona (API)**: `PUT /pulls/{n}/merge-async` con
   `{merge_method, sha}` -> 202 con `details.uuid`; luego sondear
   `GET /pulls/{n}/merge-async/{uuid}` hasta `merged`. Conviene fijar `sha`.
