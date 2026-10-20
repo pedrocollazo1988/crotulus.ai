@@ -3,45 +3,61 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 /**
- * Equipo inicial. El propietario puede editar estos datos en la base de datos
- * (o en Prisma Studio) sin tocar el codigo.
+ * Equipo inicial. Refleja las fichas que la web muestra en la portada y en
+ * /equipo. Las fotos viven en `public/team` (retrato 4:5, 800x1000).
  */
 const TEAM = [
   {
-    name: "Pedro Collazo",
-    role: "Fundador y dirección",
-    bio: "Define la estrategia de cada proyecto y mantiene la conversación con el negocio: qué problema resolvemos, para qué y cómo lo mediremos.",
-    roleEn: "Founder and direction",
+    name: "Pedro Luis Collazo Abreu",
+    role: "CEO",
+    bio: "Dirige la estrategia de cada proyecto y mantiene la conversación con el negocio: qué problema resolvemos, para qué y cómo lo mediremos.",
+    roleEn: "CEO",
     bioEn:
       "Sets the strategy for every project and keeps the conversation with the business: which problem we solve, what for and how we will measure it.",
-    rolePt: "Fundador e direção",
+    rolePt: "CEO",
     bioPt:
       "Define a estratégia de cada projeto e mantém a conversa com o negócio: que problema resolvemos, para quê e como o vamos medir.",
+    photo: "/team/pedro-luis-collazo-abreu.jpg",
     order: 1,
   },
   {
-    name: "Equipo de agentes",
-    role: "Diseño e ingeniería de IA",
-    bio: "Diseñamos, construimos y probamos los agentes: qué hacen, con qué herramientas se conectan y cuándo deben pedir ayuda a una persona.",
-    roleEn: "AI design and engineering",
+    name: "Olga Lidia Romero Fernández",
+    role: "Especialista en IA",
+    bio: "Diseña y prueba los agentes de IA: qué hacen, con qué datos trabajan y cuándo deben pedir ayuda a una persona.",
+    roleEn: "AI specialist",
     bioEn:
-      "We design, build and test the agents: what they do, which tools they connect to and when they must ask a person for help.",
-    rolePt: "Desenho e engenharia de IA",
+      "Designs and tests the AI agents: what they do, which data they work with and when they must ask a person for help.",
+    rolePt: "Especialista em IA",
     bioPt:
-      "Desenhamos, construímos e testamos os agentes: o que fazem, com que ferramentas se ligam e quando devem pedir ajuda a uma pessoa.",
+      "Desenha e testa os agentes de IA: o que fazem, com que dados trabalham e quando devem pedir ajuda a uma pessoa.",
+    photo: "/team/olga-lidia-romero-fernandez.jpg",
     order: 2,
   },
   {
-    name: "Acompañamiento",
-    role: "Puesta en marcha y soporte",
-    bio: "Acompañamos la implantación, formamos a tu equipo y revisamos los resultados para que la solución siga encajando con tu día a día.",
-    roleEn: "Rollout and support",
+    name: "Rogelio Alejandro Crespo Romero",
+    role: "Especialista en IA",
+    bio: "Conecta los agentes con las herramientas del negocio y cuida de que la información circule de forma segura.",
+    roleEn: "AI specialist",
     bioEn:
-      "We support the rollout, train your team and review the results so the solution keeps fitting your day-to-day work.",
-    rolePt: "Implementação e suporte",
+      "Connects the agents to the business tools and makes sure information flows safely.",
+    rolePt: "Especialista em IA",
     bioPt:
-      "Acompanhamos a implementação, formamos a tua equipa e revemos os resultados para que a solução continue a encaixar no teu dia a dia.",
+      "Liga os agentes às ferramentas do negócio e garante que a informação circula de forma segura.",
+    photo: "/team/rogelio-alejandro-crespo-romero.jpg",
     order: 3,
+  },
+  {
+    name: "Manuel Alejandro Porteiro Fernández",
+    role: "Especialista en IA",
+    bio: "Pone las soluciones en marcha y ajusta los detalles para que encajen en el día a día del equipo.",
+    roleEn: "AI specialist",
+    bioEn:
+      "Puts the solutions live and fine-tunes the details so they fit the team's day-to-day work.",
+    rolePt: "Especialista em IA",
+    bioPt:
+      "Põe as soluções em funcionamento e ajusta os detalhes para que encaixem no dia a dia da equipa.",
+    photo: "/team/manuel-alejandro-porteiro-fernandez.jpg",
+    order: 4,
   },
 ];
 

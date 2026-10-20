@@ -4,10 +4,13 @@ import { SITE } from "@/lib/site";
 import { CtaBand, Faq, Process } from "@/components/home-bottom";
 import { Hero, Problems, Strip } from "@/components/home-top";
 import { SolutionsDemo } from "@/components/solutions-demo";
+import { TeamSection } from "@/components/team-section";
+import { getTeamMembers } from "@/lib/team";
 
 export default async function HomePage() {
   const locale = await readLocale();
   const dict = getDict(locale);
+  const team = await getTeamMembers(locale);
 
   // JSON-LD: ayuda a Google a entender la organizacion y las preguntas.
   const jsonLd = {
@@ -42,6 +45,7 @@ export default async function HomePage() {
       <Problems dict={dict} />
       <SolutionsDemo dict={dict} />
       <Process dict={dict} />
+      <TeamSection dict={dict} team={team} />
       <Faq dict={dict} />
       <CtaBand dict={dict} />
     </>

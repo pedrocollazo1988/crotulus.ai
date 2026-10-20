@@ -33,7 +33,7 @@ export function SiteHeader({
     { href: "/#soluciones", label: dict.nav.solutions },
     { href: "/#como", label: dict.nav.process },
     { href: "/#preguntas", label: dict.nav.faq },
-    { href: "/equipo", label: dict.nav.team },
+    { href: "/#equipo", label: dict.nav.team },
   ];
 
   return (

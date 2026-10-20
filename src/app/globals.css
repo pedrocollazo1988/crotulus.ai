@@ -463,18 +463,18 @@ img { max-width: 100%; height: auto; }
 .theme-dark .cta .button { color: #0b5a93; }
 
 /* -------------------------------------------------------------- equipo */
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 40px; }
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 40px; }
 .member {
   background: var(--card); border: 1px solid var(--line); border-radius: 16px;
   overflow: hidden; box-shadow: var(--shadow-sm); transition: transform .22s, box-shadow .22s;
 }
 .member:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .member__photo {
-  aspect-ratio: 4 / 3; background: linear-gradient(140deg, var(--pale), var(--bg-soft));
+  aspect-ratio: 4 / 5; background: linear-gradient(140deg, var(--pale), var(--bg-soft));
   display: grid; place-items: center; color: var(--blue); font-size: 40px; font-weight: 700;
   overflow: hidden;
 }
-.member__photo img { width: 100%; height: 100%; object-fit: cover; }
+.member__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .member__body { padding: 20px 22px 22px; }
 .member__name { font-size: 18px; font-weight: 650; letter-spacing: -.3px; margin: 0; }
 .member__role { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--blue); margin: 5px 0 12px; }
@@ -482,6 +482,11 @@ img { max-width: 100%; height: auto; }
 .member__links { display: flex; gap: 10px; margin-top: 16px; }
 .member__links a { font-size: 12px; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 5px; }
 .member__links a:hover { text-decoration: underline; }
+/* En noche `--blue` (#4aa8e8) sobre la tarjeta (#1a4262) solo llega a 4.03:1.
+   `--electric` (#62b8f5) sube a 4.85:1 y mantiene la familia azul. */
+.theme-dark .member__role, .theme-dark .member__links a { color: var(--electric); }
+.team__empty { display: flex; gap: 10px; align-items: center; }
+.team__more { margin: 34px 0 0; }
 
 .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 34px; }
 .value-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 26px; }

@@ -47,7 +47,7 @@ export function buildSearchIndex(
     type: "page",
     title: dict.nav.team,
     subtitle: strip(dict.team.lead).slice(0, 90),
-    href: "/equipo",
+    href: "/#equipo",
     keywords: `${dict.team.title} ${dict.team.valuesTitle}`,
   });
 
@@ -100,7 +100,7 @@ export function buildSearchIndex(
       type: "team",
       title: person.name,
       subtitle: person.role,
-      href: `/equipo#${person.slug}`,
+      href: `/#equipo`,
       keywords: `${person.name} ${person.role}`,
     });
   });

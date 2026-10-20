@@ -268,6 +268,7 @@ export const en: Dict = {
     joinText:
       "We're always looking for curious people who enjoy solving real business problems.",
     joinCta: "Email us",
+    more: "Meet the team",
     ctaEyebrow: "Your next step is simple",
     ctaTitle: "Let's talk about your project.",
     ctaButton: "Get in touch",

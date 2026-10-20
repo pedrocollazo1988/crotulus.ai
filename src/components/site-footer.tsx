@@ -25,7 +25,7 @@ export function SiteFooter({ dict }: { dict: Dict }) {
               <Link href="/#soluciones">{dict.nav.solutions}</Link>
               <Link href="/#como">{dict.nav.process}</Link>
               <Link href="/#preguntas">{dict.nav.faq}</Link>
-              <Link href="/equipo">{dict.nav.team}</Link>
+              <Link href="/#equipo">{dict.nav.team}</Link>
             </div>
 
             <div className="footer__col">
