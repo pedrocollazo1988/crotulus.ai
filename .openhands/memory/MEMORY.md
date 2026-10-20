@@ -137,7 +137,7 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
 - **`dev_plca_ai` va por delante de `main`**: hay que unirla (con permiso del
   propietario). Commits clave sin fusionar: `36e93f5` (redes sociales y
   WhatsApp), `d1b5fda` (seccion Servicios), `c4aa47d` (equipo + fotos),
-  `bbee958` (contraste); `48a6eed` (widget) ya esta en `main`.
+  `6a4a061` (contraste); `48a6eed` (widget) ya esta en `main`.
 - **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
   del propietario **+5359888821** (10 digitos, Cuba) y redes
   Instagram/Facebook; se muestran en pie, banda CTA y dialogo de contacto
