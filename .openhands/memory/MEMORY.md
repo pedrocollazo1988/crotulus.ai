@@ -119,8 +119,10 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   (`MAIL_SMTP_PASS`), `HUBSPOT_TOKEN` y `ADMIN_PASSWORD`. Despues, una vez:
   `npx prisma db push` + `npm run db:seed`.
 - **HubSpot**: crear antes las 4 propiedades personalizadas (ver arriba).
-- **`dev_plca_ai` esta 13 commits por delante de `main`**: hay que unirla (con
-  permiso del propietario). Los commits clave: `c4aa47d` (equipo + fotos),
-  `bbee958` (contraste), `48a6eed` (widget, ya en main).
+- **`dev_plca_ai` va por delante de `main`**: hay que unirla (con permiso del
+  propietario). Commits clave sin fusionar: `d1b5fda` (seccion Servicios),
+  `c4aa47d` (equipo + fotos), `bbee958` (contraste); `48a6eed` (widget) ya esta
+  en `main`. Anadida la seccion **Servicios** (`#servicios`, commit `d1b5fda`,
+  subida a `dev_plca_ai` y visible en el preview). Detalle en `2026-10-20.md`.
 - El dominio de la maqueta que dio el propietario
   (`c-rotulus-ia.qvafunded.chatgpt.site`) es solo referencia de diseno.
