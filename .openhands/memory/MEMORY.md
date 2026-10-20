@@ -63,6 +63,21 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   `z-index: 45`, 12px por encima del boton del chat. Contraste AA.
 
 ## Trampas costosas (repetirlas cuesta tiempo)
+- **Los iconos son SVG inline SIN `width`/`height`** y **faltaba la regla CSS
+  general que los limitara**. Un `<svg>` sin `width`/`height` y sin regla CSS NO
+  usa el tamano intrinseco 300x150: **toma el 100% del contenedor**. Eso hizo
+  que el icono del boton de enviar midiera **296px** (el ancho del boton) y el
+  de la linea `.event` del panel, **341px**; el boton quedo en **494x324**.
+  Otros 15 iconos sin contenedor que los midiera colapsaban a **0x0**
+  (invisibles: flechas de los botones del hero, iconos de las pestanas, etc.).
+  **Arreglado de raiz** en `globals.css`: `svg { width: 1em; height: 1em }`
+  (commit en `dev_plca_ai`). Las reglas mas especificas (`.brand-logo--header`,
+  `.icon-btn svg`, `.service__icon svg`...) siguen ganando, asi que no rompe
+  nada. **Antes de tocar un icono, medir su `getBoundingClientRect`**: 0x0 o un
+  valor igual al del contenedor = falta de tamano explicito.
+- **`.bubble` y `.event` son `<p>`**: sin `margin: 0` el margen por defecto
+  descentra lo que se superpone encima.
+- **Boton de tema**: es `.icon-btn[aria-pressed]` (el de busqueda NO lo lleva).
 - **Token y permisos de GitHub**: el campo `permissions.push` de
   `GET /repos/{o}/{r}` es el rol del **USUARIO**, no del token. Prueba buena:
   `POST /git/refs` (403 = no escribe) o la cabecera `x-accepted-github-permissions`.
@@ -119,8 +134,14 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   (`MAIL_SMTP_PASS`), `HUBSPOT_TOKEN` y `ADMIN_PASSWORD`. Despues, una vez:
   `npx prisma db push` + `npm run db:seed`.
 - **HubSpot**: crear antes las 4 propiedades personalizadas (ver arriba).
-- **`dev_plca_ai` esta 13 commits por delante de `main`**: hay que unirla (con
-  permiso del propietario). Los commits clave: `c4aa47d` (equipo + fotos),
-  `bbee958` (contraste), `48a6eed` (widget, ya en main).
+- **`dev_plca_ai` va por delante de `main`**: hay que unirla (con permiso del
+  propietario). Commits clave sin fusionar: `36e93f5` (redes sociales y
+  WhatsApp), `d1b5fda` (seccion Servicios), `c4aa47d` (equipo + fotos),
+  `6a4a061` (contraste); `48a6eed` (widget) ya esta en `main`.
+- **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
+  del propietario **+5359888821** (10 digitos, Cuba) y redes
+  Instagram/Facebook; se muestran en pie, banda CTA y dialogo de contacto
+  (componente `social-links.tsx`). En el pie el numero va como **texto**
+  (`<p>`), no como enlace; solo el icono enlaza. Detalle en `2026-10-20.md`.
 - El dominio de la maqueta que dio el propietario
   (`c-rotulus-ia.qvafunded.chatgpt.site`) es solo referencia de diseno.

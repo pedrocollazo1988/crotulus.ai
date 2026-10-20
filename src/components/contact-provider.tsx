@@ -11,9 +11,13 @@ import {
 } from "react";
 import type { Dict, Locale } from "@/i18n";
 import { CONTACT_SERVICES } from "@/lib/validation";
+import { SITE, whatsappHref } from "@/lib/site";
 import { IconArrowUpRight, IconCheck, IconClose, IconMail } from "./icons";
 
-type ContactContextValue = { open: () => void; close: () => void };
+type ContactContextValue = {
+  open: (service?: string) => void;
+  close: () => void;
+};
 const ContactContext = createContext<ContactContextValue>({
   open: () => {},
   close: () => {},
@@ -40,10 +44,15 @@ export function ContactProvider({
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [fieldError, setFieldError] = useState("");
+  // Servicio elegido: se controla desde React para poder preseleccionarlo al
+  // abrir el dialogo desde una tarjeta de "Servicios".
+  const [service, setService] = useState<string>(CONTACT_SERVICES[0]);
+  const wa = whatsappHref();
 
-  const open = useCallback(() => {
+  const open = useCallback((preset?: string) => {
     setStatus("idle");
     setFieldError("");
+    setService(preset ?? CONTACT_SERVICES[0]);
     dialogRef.current?.showModal();
   }, []);
 
@@ -148,7 +157,15 @@ export function ContactProvider({
               <div className="field--row">
                 <div className="field">
                   <label htmlFor="c-phone">{dict.phone}</label>
-                  <input id="c-phone" name="phone" type="tel" placeholder={dict.phonePh} />
+                  <input
+                    id="c-phone"
+                    name="phone"
+                    type="tel"
+                    inputMode="tel"
+                    required
+                    maxLength={40}
+                    placeholder={dict.phonePh}
+                  />
                 </div>
                 <div className="field">
                   <label htmlFor="c-company">{dict.company}</label>
@@ -158,10 +175,15 @@ export function ContactProvider({
 
               <div className="field">
                 <label htmlFor="c-service">{dict.service}</label>
-                <select id="c-service" name="service" defaultValue={CONTACT_SERVICES[0]}>
-                  {CONTACT_SERVICES.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
+                <select
+                  id="c-service"
+                  name="service"
+                  value={service}
+                  onChange={(e) => setService(e.target.value)}
+                >
+                  {CONTACT_SERVICES.map((value, i) => (
+                    <option key={value} value={value}>
+                      {dict.serviceOptions[i] ?? value}
                     </option>
                   ))}
                 </select>
@@ -212,6 +234,19 @@ export function ContactProvider({
                 <a href={`mailto:${email}`} style={{ color: "var(--blue)", fontWeight: 600 }}>
                   {email}
                 </a>
+                {wa && (
+                  <>
+                    {" · "}
+                    <a
+                      href={wa}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "var(--blue)", fontWeight: 600 }}
+                    >
+                      WhatsApp
+                    </a>
+                  </>
+                )}
               </p>
             </form>
           </>
@@ -221,17 +256,19 @@ export function ContactProvider({
   );
 }
 
-/** Boton que abre el dialogo de contacto. */
+/** Boton que abre el dialogo de contacto, opcionalmente con un servicio ya elegido. */
 export function ContactButton({
   children,
   className = "button",
+  service,
 }: {
   children: React.ReactNode;
   className?: string;
+  service?: string;
 }) {
   const { open } = useContact();
   return (
-    <button type="button" className={className} onClick={open}>
+    <button type="button" className={className} onClick={() => open(service)}>
       {children}
     </button>
   );

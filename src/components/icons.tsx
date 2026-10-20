@@ -186,3 +186,71 @@ export const IconDocument = (p: IconProps) => (
     <path d="M14 3v4h4M9 12h6M9 16h6" />
   </svg>
 );
+
+/* --- iconos de redes sociales (trazo, mismo estilo) --- */
+
+export const IconInstagram = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <rect x="3" y="3" width="18" height="18" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.2" cy="6.8" r="0.9" />
+  </svg>
+);
+
+export const IconFacebook = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M14.5 8.5H16V5.5h-2A3.5 3.5 0 0 0 10.5 9v2H8.5v3h2v7h3v-7h2.2l.6-3H13.5V9.5a1 1 0 0 1 1-1Z" />
+  </svg>
+);
+
+export const IconWhatsApp = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3a8.5 8.5 0 1 1 15.5-4.6Z" />
+    <path d="M8.9 8.3c-.3.6-.3 1.6.5 2.7a7 7 0 0 0 3.3 2.7c1.2.5 2 .3 2.5-.1l.5-.5-1.5-1.2-1 .7a5 5 0 0 1-1.8-1.9l.7-1-1.2-1.6Z" />
+  </svg>
+);
+
+/* --- iconos de la seccion "Servicios" (trazo, mismo estilo) --- */
+
+/** 01 · Agentes de IA para atencion al cliente: bocadillo con respuesta. */
+export const IconServiceAttention = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M20 14.5a3.5 3.5 0 0 1-3.5 3.5H9.5L4.5 21v-4.2A3.5 3.5 0 0 1 3 13.8V7.5A3.5 3.5 0 0 1 6.5 4h10A3.5 3.5 0 0 1 20 7.5Z" />
+    <path d="M8.5 9.5h7M8.5 13h4.5" />
+  </svg>
+);
+
+/** 02 · Captar clientes y citas: calendario con marca de cita. */
+export const IconServiceAppointments = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <rect x="3.5" y="5" width="17" height="15.5" rx="3" />
+    <path d="M3.5 10h17M8 3v4M16 3v4" />
+    <path d="m9.5 15 2 2 3.5-3.5" />
+  </svg>
+);
+
+/** 03 · Automatizacion de tareas administrativas: engranaje con flecha. */
+export const IconServiceAdmin = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <circle cx="11" cy="12" r="3.2" />
+    <path d="M11 3.5v2.2M11 18.3v2.2M4.6 7.8l1.9 1.1M15.5 15.1l1.9 1.1M4.6 16.2l1.9-1.1M15.5 8.9l1.9-1.1" />
+    <path d="M17.5 12.5h4M19.7 10.3l2.2 2.2-2.2 2.2" />
+  </svg>
+);
+
+/** 04 · Seguimiento comercial: embudo con pasos. */
+export const IconServiceFollowUp = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M4 5h16l-6 7.2V19l-4 2v-8.8Z" />
+    <path d="M8.5 9h7" />
+  </svg>
+);
+
+/** 05 · Integracion con hojas de calculo y CRM: rejilla conectada. */
+export const IconServiceIntegration = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <rect x="3" y="4" width="10" height="10" rx="2" />
+    <path d="M3 9h10M8 4v10" />
+    <path d="M16.5 13.5v3.2a2 2 0 0 1-2 2H13M20 13.5a1.75 1.75 0 1 0-3.5 0 1.75 1.75 0 0 0 3.5 0Z" />
+  </svg>
+);

@@ -30,6 +30,7 @@ export function SiteHeader({
   }, [menuOpen]);
 
   const links = [
+    { href: "/#servicios", label: dict.nav.services },
     { href: "/#soluciones", label: dict.nav.solutions },
     { href: "/#como", label: dict.nav.process },
     { href: "/#preguntas", label: dict.nav.faq },
@@ -67,6 +68,7 @@ export function SiteHeader({
               search: dict.a11y.search,
               close: dict.a11y.searchClose,
               groupPages: dict.search.groupPages,
+              groupServices: dict.search.groupServices,
               groupSections: dict.search.groupSections,
               groupTeam: dict.search.groupTeam,
               groupFaq: dict.search.groupFaq,

@@ -3,6 +3,7 @@ import type { Dict } from "@/i18n";
 import { SITE } from "@/lib/site";
 import { BrandLogo } from "./brand-logo";
 import { ContactButton } from "./contact-provider";
+import { SocialLinks } from "./social-links";
 import { IconMail, IconPhone, IconPin } from "./icons";
 
 export function SiteFooter({ dict }: { dict: Dict }) {
@@ -17,11 +18,24 @@ export function SiteFooter({ dict }: { dict: Dict }) {
               <BrandLogo withTagline className="brand-logo brand-logo--footer" />
             </Link>
             <p>{dict.footer.tagline}</p>
+            <div className="footer__social">
+              <h3>{dict.social.title}</h3>
+              <SocialLinks
+                variant="footer"
+                labels={{
+                  whatsapp: dict.social.whatsapp,
+                  instagram: dict.social.instagram,
+                  facebook: dict.social.facebook,
+                  whatsappMessage: dict.social.message,
+                }}
+              />
+            </div>
           </div>
 
           <div className="footer__nav">
             <div className="footer__col">
               <h3>{dict.footer.linksTitle}</h3>
+              <Link href="/#servicios">{dict.nav.services}</Link>
               <Link href="/#soluciones">{dict.nav.solutions}</Link>
               <Link href="/#como">{dict.nav.process}</Link>
               <Link href="/#preguntas">{dict.nav.faq}</Link>

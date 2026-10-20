@@ -33,6 +33,7 @@ export const es = {
     sub: "Agencia de Inteligencia Artificial",
   },
   nav: {
+    services: "Servicios",
     solutions: "Soluciones",
     process: "Cómo trabajamos",
     faq: "Preguntas",
@@ -50,6 +51,7 @@ export const es = {
     typeFaq: "Pregunta",
     typePage: "Página",
     groupPages: "Páginas",
+    groupServices: "Servicios",
     groupSections: "Secciones",
     groupTeam: "Equipo",
     groupFaq: "Preguntas",
@@ -146,6 +148,40 @@ export const es = {
     demoBadge: "Demo",
     note: "Simulación. Las funciones finales dependen de tus procesos y de las herramientas que conectemos.",
   },
+  services: {
+    eyebrow: "Servicios",
+    title: "Servicios de agentes de IA y automatización para tu negocio",
+    lead: "Cinco formas concretas de quitar trabajo repetitivo a tu equipo. Elige la que más se parezca a tu día a día.",
+    numSr: "Servicio ",
+    cardCta: "Consultar este servicio",
+    items: [
+      {
+        num: "01",
+        title: "Agentes de IA para atención al cliente",
+        text: "Asistentes que responden dudas y resuelven consultas de tus clientes.",
+      },
+      {
+        num: "02",
+        title: "Agentes de IA para captar clientes y solicitudes de citas",
+        text: "Atienden a los interesados, recogen sus datos y agendan citas.",
+      },
+      {
+        num: "03",
+        title: "Automatización de tareas administrativas",
+        text: "Procesos internos repetitivos que se hacen solos.",
+      },
+      {
+        num: "04",
+        title: "Automatización del seguimiento comercial",
+        text: "Seguimiento automático de leads y clientes potenciales.",
+      },
+      {
+        num: "05",
+        title: "Integración de agentes de IA con hojas de cálculo y CRM",
+        text: "Conectamos tus agentes con las herramientas donde gestionas tus datos.",
+      },
+    ],
+  },
   process: {
     eyebrow: "De la idea a tu día a día",
     title:
@@ -220,19 +256,35 @@ export const es = {
     legal: "C-ROTULUS S.U.R.L.",
     linksTitle: "Enlaces",
   },
+  social: {
+    title: "Síguenos",
+    whatsapp: "WhatsApp",
+    instagram: "Instagram",
+    facebook: "Facebook",
+    message: "Hola, quiero información sobre los servicios de C-ROTULUS IA.",
+  },
   contact: {
     eyebrow: "Empecemos por tu reto",
     title: "Tu negocio tiene un siguiente paso.",
-    lead: "Cuéntanos qué necesitas y te responderemos en menos de 24 horas laborables.",
+    lead: "Prepara un resumen para tu consulta. Solo necesitas un minuto.",
     name: "Tu nombre",
     namePh: "¿Cómo te llamas?",
     email: "Tu correo electrónico",
     emailPh: "nombre@correo.com",
-    phone: "Teléfono (opcional)",
+    phone: "Teléfono",
     phonePh: "600 000 000",
     company: "Tu negocio o sector",
     companyPh: "Ej. tienda, restaurante, servicios…",
     service: "¿Dónde necesitas ayuda?",
+    // Traducciones del desplegable: el VALOR enviado es el canonico de
+    // `CONTACT_SERVICES` (mismo orden), para no traducir los datos guardados.
+    serviceOptions: [
+      "Agentes de IA para atención al cliente",
+      "Agentes de IA para captar clientes y solicitudes de citas",
+      "Automatización de tareas administrativas",
+      "Automatización del seguimiento comercial",
+      "Integración de agentes de IA con hojas de cálculo y CRM",
+    ],
     message: "¿Qué tarea o problema quieres resolver?",
     messagePh: "Cuéntanos qué te quita tiempo o frena tu negocio.",
     consent:
