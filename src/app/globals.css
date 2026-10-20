@@ -587,13 +587,11 @@ img { max-width: 100%; height: auto; }
 .social__btn:hover { background: var(--blue); border-color: var(--blue); color: #fff; transform: translateY(-2px); }
 .theme-dark .social__btn:hover { color: #06202f; }
 .social__btn:focus-visible { outline: 3px solid var(--electric); outline-offset: 3px; }
-.footer__wa {
-  display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;
-  font-size: 13px; font-weight: 600; color: var(--blue);
-}
-.theme-dark .footer__wa { color: var(--electric); }
-.footer__wa svg { width: 16px; height: 16px; flex-shrink: 0; }
-.footer__wa:hover { text-decoration: underline; }
+/* Numero de WhatsApp del pie: texto informativo, no un enlace. Hereda el
+   color y el tamano del lema (`.footer__brand p`) para ir en la misma linea
+   visual; aqui solo se ajusta el hueco del icono. */
+.footer__wa { display: inline-flex; align-items: center; gap: 8px; }
+.footer__wa svg { width: 15px; height: 15px; flex-shrink: 0; }
 .footer__bottom {
   display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
   border-top: 1px solid var(--line); margin-top: 30px; padding-top: 20px;

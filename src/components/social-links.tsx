@@ -69,10 +69,10 @@ export function SocialLinks({
         ))}
       </div>
       {wa && number && (
-        <a className="footer__wa" href={wa} target="_blank" rel="noopener noreferrer">
+        <p className="footer__wa">
           <IconWhatsApp />
           {number}
-        </a>
+        </p>
       )}
     </>
   );
