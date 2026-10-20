@@ -322,7 +322,7 @@ tecnología desplegable en **Vercel** con dominio de **Namecheap**.
 - **NO empujar directo a `main`**: se hizo mal con el widget (subido directo a
   `main`, commit `48a6eed`, saltandose `dev_plca_ai`). Antes de empujar, mirar la
   rama actual (`git branch --show-current`) y usar `dev_plca_ai`.
-- Estado actual (2026-10-20): `dev_plca_ai` = `6a4a061` (logotipo + paleta; **sin subir**),
+- Estado actual (2026-10-20): `dev_plca_ai` = `1ce980c` (**subida a GitHub**; preview Vercel OK),
   incluye ya todo lo de `main` (widget incluido). `main` = `cc8ee6e`.
 - **Tokens: los del entorno son de SOLO LECTURA.** `GITHUB_TOKEN` y `allhands`
   (`<secret-hidden>`) dan `x-accepted-github-permissions: contents=read` -> el `push`
