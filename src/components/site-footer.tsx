@@ -1,8 +1,9 @@
 import Link from "next/link";
 import type { Dict } from "@/i18n";
 import { SITE } from "@/lib/site";
+import { BrandMark } from "./brand-mark";
 import { ContactButton } from "./contact-provider";
-import { IconMail, IconPhone, IconPin, IconSpark } from "./icons";
+import { IconMail, IconPhone, IconPin } from "./icons";
 
 export function SiteFooter({ dict }: { dict: Dict }) {
   const year = new Date().getFullYear();
@@ -14,11 +15,11 @@ export function SiteFooter({ dict }: { dict: Dict }) {
           <div className="footer__brand">
             <Link className="brand" href="/">
               <span className="brand__mark">
-                <IconSpark />
+                <BrandMark />
               </span>
               <span className="brand__text">
-                <span className="brand__name">C-ROTULUS IA</span>
-                <span className="brand__sub">Agencia de Inteligencia Artificial</span>
+                <span className="brand__name">{dict.brand.name}</span>
+                <span className="brand__sub">{dict.brand.sub}</span>
               </span>
             </Link>
             <p>{dict.footer.tagline}</p>

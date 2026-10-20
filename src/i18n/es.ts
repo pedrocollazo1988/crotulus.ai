@@ -28,6 +28,10 @@ export const es = {
     heroVisual:
       "Un agente de IA conecta atención, seguimiento y tareas del negocio",
   },
+  brand: {
+    name: "C-ROTULUS IA",
+    sub: "Agencia de Inteligencia Artificial",
+  },
   nav: {
     solutions: "Soluciones",
     process: "Cómo trabajamos",

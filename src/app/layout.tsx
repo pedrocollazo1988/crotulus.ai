@@ -16,7 +16,13 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(SITE.url),
     title: dict.meta.title,
     description: dict.meta.description,
-    icons: { icon: "/favicon.svg" },
+    icons: {
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon.png", type: "image/png", sizes: "64x64" },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
     alternates: { canonical: SITE.url },
     openGraph: {
       title: dict.meta.title,
