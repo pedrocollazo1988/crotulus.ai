@@ -47,13 +47,14 @@ histórico (misma empresa, mismo dominio).
   `curl` sigue sirviendo el build antiguo. Matar SIEMPRE el proceso anterior
   (`ss -ltnp | grep :3111`) antes de reiniciar; si no, se ven cambios "que no
   aparecen".
-- **Estado del logo: SUBIDO**. Rama **`logo-marca-real`** (rebasada sobre `main`),
-  commits `79d24e2` (logo) y `49f2d95` (memoria) -> **PR #2**:
-  https://github.com/pedrocollazo1988/crotulus.ai/pull/2 (base `main`, abierta,
-  fusionable, 12 ficheros, +220/-20). El token del propietario ya funciona
-  (uno anterior daba 401: caducado/mal copiado).
+- **Estado del logo: FUSIONADO Y TERMINADO**. **PR #2** (rama `logo-marca-real`,
+  rebasada sobre `main`) fusionada con metodo *merge*; merge commit `a86f8cc`.
+  `main` ya tiene el logo en cabecera, pie y favicon. Ramas `logo-marca-real` y
+  `dev_plca_ai` **borradas** (locales y remotas): en GitHub solo queda `main`.
 - **La PR #1 YA ESTA FUSIONADA en `main`** (`9a2aa47`, merge de `dev_plca_ai`).
   Ojo: `dev_plca_ai` local quedo desfasada; no volver a trabajar sobre ella.
+- **La rama local `main` NO existia** (solo `dev_plca_ai`): hubo que crearla con
+  `git branch -f main <sha>` tras traer `origin/main`.
 - **Permisos de token: ojo con el enganno**. El campo `permissions.push: true` de
   `GET /repos/{o}/{r}` es el rol del **USUARIO**, NO del token: no prueba nada.
   La prueba buena es la cabecera `x-accepted-github-permissions: contents=read`
@@ -62,7 +63,13 @@ histórico (misma empresa, mismo dominio).
   **El repo es publico**: `git ls-remote` funciona SIN token, no sirve de prueba.
 - **`create_pr` del entorno falla** (403): usa el `GITHUB_TOKEN` del entorno, que
   es de solo lectura. Crear la PR a mano con `POST /pulls` y el token bueno.
-- **Al terminar, borrar el token temporal** del disco (`rm /tmp/t.txt`).
+- **Al terminar, borrar el token temporal** del disco (`rm /tmp/...`).
+- **El remoto `origin` lleva un token VIEJO incrustado en la URL** (revocado):
+  un `git push origin` normal falla con 403 y despista. Limpiarlo con
+  `git remote set-url origin https://github.com/pedrocollazo1988/crotulus.ai.git`.
+- **Fusion asincrona (API)**: `PUT /pulls/{n}/merge-async` con
+  `{merge_method, sha}` -> 202 con `details.uuid`; luego sondear
+  `GET /pulls/{n}/merge-async/{uuid}` hasta `merged`. Conviene fijar `sha`.
 - **Ojo con la codificacion**: al editar `MEMORY.md`, escribir SIEMPRE en UTF-8.
   El editor de ficheros puede guardar latin-1 y romper el fichero (bytes `0xe1`);
   comprobar con `python3 -c "open(p,encoding='utf-8').read()"`.
