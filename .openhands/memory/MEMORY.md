@@ -301,3 +301,13 @@ tecnología desplegable en **Vercel** con dominio de **Namecheap**.
   https://github.com/settings/personal-access-tokens
 - **Vercel despliega solo en ~20 s** al hacer push a `main` (produccion
   `crotulusai.vercel.app`). Verificar con `grep creatuagente.io/widget`.
+
+## Flujo de ramas (REGLA, 2026-10-20)
+- **La rama de trabajo es `dev_plca_ai`, NO `main`.** Flujo correcto:
+  1) commitear en **`dev_plca_ai`**; 2) push de esa rama; 3) **y solo despues**
+  llevar el trabajo a `main`.
+- **NO empujar directo a `main`**: se hizo mal con el widget (subido directo a
+  `main`, commit `48a6eed`, saltandose `dev_plca_ai`). Antes de empujar, mirar la
+  rama actual (`git branch --show-current`) y usar `dev_plca_ai`.
+- Estado actual (2026-10-20): `dev_plca_ai` = `67f7a29` (fusion de `main` en
+  `dev_plca_ai`) -> ya **incluye el widget y todo lo de `main`**.
