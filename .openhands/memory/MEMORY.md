@@ -261,3 +261,27 @@ tecnología desplegable en **Vercel** con dominio de **Namecheap**.
   dos que importan de verdad son `21b1461` (vercel.json) y `bbee958` (contraste).
 - El dominio de la maqueta que dio el propietario
   (`c-rotulus-ia.qvafunded.chatgpt.site`) es solo referencia de diseño.
+
+## Widget de chat (CreatuAgente) + boton "volver arriba" (2026-10-20)
+- **Widget de chat** pedido por el propietario: script externo
+  `https://api.creatuagente.io/widget/.../widget-profile.js` (deploy id
+  `cmv8ia68j0f3j0bs6190merf8`). Se carga con `next/script`
+  (`strategy="afterInteractive"`) desde `src/components/chat-widget.tsx`,
+  montado en `layout.tsx`. El script **se inyecta solo** el boton flotante
+  (`#ab-widget-btn`, `position: fixed; bottom: 24px; right: 24px; 60px`,
+  `z-index: 2147483647`) y el panel (`#ab-widget-panel`, `bottom: 96px`,
+  `z-index: 2147483646`). URL en `SITE.chatWidget`
+  (`NEXT_PUBLIC_CHAT_WIDGET_URL`, vacio = no se carga).
+- **Ojo**: el widget es de terceros y trae su propio azul `#3b82f6` (no el de la
+  marca); no hay opcion de override en el script.
+- **Boton "volver arriba"** (`src/components/to-top.tsx` + `.to-top` en
+  `globals.css`): aparece al bajar >600px, `bottom: 96px; right: 30px`,
+  `z-index: 45` (por debajo del widget). Se apila **12px por encima** del boton
+  del chat, sin solape, en escritorio (1440) y movil (390/360). Contraste AA:
+  5.69 en claro y 6.42 en noche (`.theme-dark .to-top` usa texto oscuro
+  `#06202f`, igual que `.theme-dark .button`).
+- **Verificacion**: scripts en `.agent_tmp/` (`probe-widget.mjs`,
+  `check-panel.mjs`, `contrast-toTop.mjs`, `shot-widget.mjs`) usando Chromium
+  headless + CDP (no hay playwright/puppeteer; se usa `/usr/bin/chromium` con
+  `--remote-debugging-port`).
+- **Commit local `fc94fa4`** (rama `main`, **sin subir**: pendiente de permiso).
