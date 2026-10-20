@@ -61,6 +61,22 @@ tecnología desplegable en **Vercel** con dominio de **Namecheap**.
 - `AGENTS.md` lo regenera `next dev` (bloque `BEGIN:nextjs-agent-rules`); se
   commitea con el trabajo para no dejar el árbol sucio.
 
+## Credenciales de GitHub: SOLO LECTURA (2026-10-20)
+- **El push NO es posible desde este entorno.** Los tres tokens disponibles
+  (`GITHUB_TOKEN`, `allhands` y el guardado en la URL de `origin`) pertenecen a
+  `pedrocollazo1988` pero **solo tienen lectura**: la API responde
+  `403 Resource not accessible by integration` / `... by personal access token`
+  al crear una ref, y el push HTTPS da `Permission to ... denied`. `create_pr`
+  tambien da 403.
+- `x-oauth-scopes` viene **vacio** en `GITHUB_TOKEN` (no es un PAT clasico con
+  `repo`), y el fine-grained (`allhands`, 93 caracteres) no incluye Contents:write.
+- No hay `~/.ssh` (ni binario `ssh`), ni `~/.netrc`, ni `gh auth` utilizable.
+- La lectura si funciona: `git ls-remote` devuelve `main` y `dev_plca_ai`, ambas
+  en `529f175` (Initial commit).
+- El commit `02b5975` esta **listo en local** (50 ficheros, +7019 lineas). Para
+  subirlo hace falta que el propietario aporte un token con `Contents: write`
+  (o ejecute el push/PR el mismo).
+
 ## Pendiente / seguimiento
 - **Nada commiteado todavía** en `dev_plca_ai` (solo `529f175 Initial commit` con
   el README). Falta commit + push/PR.
