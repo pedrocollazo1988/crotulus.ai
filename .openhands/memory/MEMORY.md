@@ -126,6 +126,7 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
 - **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
   del propietario **+5359888821** (10 digitos, Cuba) y redes
   Instagram/Facebook; se muestran en pie, banda CTA y dialogo de contacto
-  (componente `social-links.tsx`). Detalle en `2026-10-20.md`.
+  (componente `social-links.tsx`). En el pie el numero va como **texto**
+  (`<p>`), no como enlace; solo el icono enlaza. Detalle en `2026-10-20.md`.
 - El dominio de la maqueta que dio el propietario
   (`c-rotulus-ia.qvafunded.chatgpt.site`) es solo referencia de diseno.
