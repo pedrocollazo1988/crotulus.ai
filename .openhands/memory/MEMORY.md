@@ -14,13 +14,16 @@ El detalle largo de cada sesion esta en los ficheros `2026-*.md` de esta carpeta
 - **Antes de tocar codigo de Next, leer `node_modules/next/dist/docs/`** (lo pide
   el propio `AGENTS.md`): esta version difiere de lo habitual.
 
-## Estado actual (2026-10-20)
-- `dev_plca_ai` = `21be2d5`, **subida a GitHub**; preview Vercel OK. Va 13 commits
-  por delante de `main` (`cc8ee6e`): **falta unirla**.
-- Produccion = `crotulusai.vercel.app` (despliega sola al empujar a `main`).
-- Verificado: `next build` OK, 0 desbordes en 1440/1080/860/390, contraste AA en
-  claro y noche, formulario end-to-end (BD + correo + HubSpot con servidores
-  falsos locales).
+## Estado actual (2026-10-20, noche)
+- **`main` y `dev_plca_ai` estan al dia** y desplegados: `main` = `1e51394`
+  (merge `--no-ff` de `dev_plca_ai`), `dev_plca_ai` = `0f66995`. Produccion
+  (`crotulusai.vercel.app`) sirve el build nuevo: verificado `svg` arreglado,
+  boton 494x50, texto del formulario nuevo y telefono obligatorio.
+- **El propietario dio permiso explicito para llevar todo a `main`** (2026-10-20).
+  Para empujar hizo falta un PAT fine-grained con **Contents: Read and write**:
+  los tres tokens del entorno eran de solo lectura.
+- Produccion despliega sola al empujar a `main`. Alias del preview:
+  `crotulusai-git-devplcaai-pedrocollazo1988.vercel.app`.
 
 ## Requisitos del propietario (los 4 que pidio)
 1. Pagina de **Equipo**.
@@ -134,10 +137,10 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   (`MAIL_SMTP_PASS`), `HUBSPOT_TOKEN` y `ADMIN_PASSWORD`. Despues, una vez:
   `npx prisma db push` + `npm run db:seed`.
 - **HubSpot**: crear antes las 4 propiedades personalizadas (ver arriba).
-- **`dev_plca_ai` va por delante de `main`**: hay que unirla (con permiso del
-  propietario). Commits clave sin fusionar: `36e93f5` (redes sociales y
-  WhatsApp), `d1b5fda` (seccion Servicios), `c4aa47d` (equipo + fotos),
-  `6a4a061` (contraste); `48a6eed` (widget) ya esta en `main`.
+- **Ramas**: `main` y `dev_plca_ai` estan al dia (2026-10-20). Ya estan en `main`
+  `36e93f5` (redes y WhatsApp), `d1b5fda` (Servicios), `0018a4a` (WhatsApp del pie
+  en texto), `c4aa47d` (equipo + fotos), `6a4a061` (contraste), `48a6eed` (widget)
+  y `a6f2e27` (formulario + arreglo del `svg`).
 - **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
   del propietario **+5359888821** (10 digitos, Cuba) y redes
   Instagram/Facebook; se muestran en pie, banda CTA y dialogo de contacto
