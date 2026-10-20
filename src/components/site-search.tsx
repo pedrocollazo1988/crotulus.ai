@@ -17,12 +17,13 @@ type Labels = {
   search: string;
   close: string;
   groupPages: string;
+  groupServices: string;
   groupSections: string;
   groupTeam: string;
   groupFaq: string;
 };
 
-const GROUP_ORDER: SearchEntryType[] = ["page", "section", "team", "faq"];
+const GROUP_ORDER: SearchEntryType[] = ["page", "section", "service", "team", "faq"];
 
 export function SiteSearch({ entries, labels }: { entries: SearchEntry[]; labels: Labels }) {
   const [open, setOpen] = useState(false);
@@ -129,6 +130,7 @@ export function SiteSearch({ entries, labels }: { entries: SearchEntry[]; labels
   const groupLabel: Record<SearchEntryType, string> = {
     page: labels.groupPages,
     section: labels.groupSections,
+    service: labels.groupServices,
     team: labels.groupTeam,
     faq: labels.groupFaq,
   };

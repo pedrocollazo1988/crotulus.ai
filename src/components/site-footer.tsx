@@ -22,6 +22,7 @@ export function SiteFooter({ dict }: { dict: Dict }) {
           <div className="footer__nav">
             <div className="footer__col">
               <h3>{dict.footer.linksTitle}</h3>
+              <Link href="/#servicios">{dict.nav.services}</Link>
               <Link href="/#soluciones">{dict.nav.solutions}</Link>
               <Link href="/#como">{dict.nav.process}</Link>
               <Link href="/#preguntas">{dict.nav.faq}</Link>

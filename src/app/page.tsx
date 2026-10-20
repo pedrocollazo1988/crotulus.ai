@@ -3,6 +3,7 @@ import { readLocale } from "@/lib/locale";
 import { SITE } from "@/lib/site";
 import { CtaBand, Faq, Process } from "@/components/home-bottom";
 import { Hero, Problems, Strip } from "@/components/home-top";
+import { Services } from "@/components/services";
 import { SolutionsDemo } from "@/components/solutions-demo";
 import { TeamSection } from "@/components/team-section";
 import { getTeamMembers } from "@/lib/team";
@@ -44,6 +45,7 @@ export default async function HomePage() {
       <Strip dict={dict} />
       <Problems dict={dict} />
       <SolutionsDemo dict={dict} />
+      <Services dict={dict} />
       <Process dict={dict} />
       <TeamSection dict={dict} team={team} />
       <Faq dict={dict} />

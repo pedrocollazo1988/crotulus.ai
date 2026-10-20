@@ -30,6 +30,7 @@ export const pt: Dict = {
     sub: "Agência de Inteligência Artificial",
   },
   nav: {
+    services: "Serviços",
     solutions: "Soluções",
     process: "Como trabalhamos",
     faq: "Perguntas",
@@ -47,6 +48,7 @@ export const pt: Dict = {
     typeFaq: "Pergunta",
     typePage: "Página",
     groupPages: "Páginas",
+    groupServices: "Serviços",
     groupSections: "Secções",
     groupTeam: "Equipa",
     groupFaq: "Perguntas",
@@ -143,6 +145,40 @@ export const pt: Dict = {
     demoBadge: "Demo",
     note: "Simulação. As funções finais dependem dos seus processos e das ferramentas que ligarmos.",
   },
+  services: {
+    eyebrow: "Serviços",
+    title: "Serviços de agentes de IA e automatização para o seu negócio",
+    lead: "Cinco formas concretas de tirar trabalho repetitivo à sua equipa. Escolha a que mais se parece com o seu dia a dia.",
+    numSr: "Serviço ",
+    cardCta: "Consultar este serviço",
+    items: [
+      {
+        num: "01",
+        title: "Agentes de IA para apoio ao cliente",
+        text: "Assistentes que respondem a dúvidas e resolvem pedidos dos seus clientes.",
+      },
+      {
+        num: "02",
+        title: "Agentes de IA para captar clientes e pedidos de marcação",
+        text: "Atendem os interessados, recolhem os seus dados e marcam consultas.",
+      },
+      {
+        num: "03",
+        title: "Automatização de tarefas administrativas",
+        text: "Processos internos repetitivos que se fazem sozinhos.",
+      },
+      {
+        num: "04",
+        title: "Automatização do acompanhamento comercial",
+        text: "Acompanhamento automático de leads e clientes potenciais.",
+      },
+      {
+        num: "05",
+        title: "Integração de agentes de IA com folhas de cálculo e CRM",
+        text: "Ligamos os seus agentes às ferramentas onde gere os seus dados.",
+      },
+    ],
+  },
   process: {
     eyebrow: "Da ideia ao seu dia a dia",
     title: "Primeiro entendemos o seu negócio.<br>Depois, construímos a solução.",
@@ -227,6 +263,13 @@ export const pt: Dict = {
     company: "O seu negócio ou setor",
     companyPh: "Ex. loja, restaurante, serviços…",
     service: "Onde precisa de ajuda?",
+    serviceOptions: [
+      "Agentes de IA para apoio ao cliente",
+      "Agentes de IA para captar clientes e pedidos de marcação",
+      "Automatização de tarefas administrativas",
+      "Automatização do acompanhamento comercial",
+      "Integração de agentes de IA com folhas de cálculo e CRM",
+    ],
     message: "Que tarefa ou problema gostaria de resolver?",
     messagePh: "Conte-nos o que lhe consome tempo ou trava o seu negócio.",
     consent:

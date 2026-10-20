@@ -462,6 +462,62 @@ img { max-width: 100%; height: auto; }
 .cta .button:hover { background: #eaf5ff; }
 .theme-dark .cta .button { color: #0b5a93; }
 
+/* ------------------------------------------------------------ servicios */
+/* Cinco tarjetas: 3 arriba y 2 abajo. La quinta ocupa el hueco de la
+   segunda fila y se queda mas ancha, asi no deja un boquete a la derecha. */
+.services { display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; margin-top: 40px; }
+.service {
+  grid-column: span 2;
+  position: relative; overflow: hidden;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  padding: 26px 24px 22px; display: flex; flex-direction: column;
+  box-shadow: var(--shadow-sm); animation: appear .55s backwards;
+  transition: transform .24s, box-shadow .24s, border-color .24s;
+}
+.service:nth-child(4), .service:nth-child(5) { grid-column: span 3; }
+/* Barra azul que se dibuja al pasar el raton o al enfocar la tarjeta. */
+.service::before {
+  content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--electric));
+  transform: scaleX(0); transform-origin: left; transition: transform .32s ease;
+}
+.service:hover, .service:focus-within {
+  transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--electric);
+}
+.service:hover::before, .service:focus-within::before { transform: scaleX(1); }
+.service__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.service__icon {
+  width: 50px; height: 50px; flex-shrink: 0; border-radius: 13px;
+  background: var(--pale); border: 1px solid var(--line);
+  display: grid; place-items: center; color: var(--blue);
+  transition: background .24s, color .24s, border-color .24s;
+}
+.service__icon svg { width: 26px; height: 26px; }
+.service:hover .service__icon, .service:focus-within .service__icon {
+  background: var(--blue); border-color: var(--blue); color: #fff;
+}
+.theme-dark .service:hover .service__icon,
+.theme-dark .service:focus-within .service__icon { color: #06202f; }
+.service__num {
+  font-size: 30px; font-weight: 700; letter-spacing: -1px; line-height: 1;
+  color: var(--muted); transition: color .24s;
+}
+.service:hover .service__num, .service:focus-within .service__num { color: var(--electric); }
+.service h3 { font-size: 18.5px; font-weight: 600; line-height: 1.35; letter-spacing: -.3px; margin: 0 0 10px; }
+.service p { font-size: 14px; color: var(--muted); margin: 0 0 18px; line-height: 1.7; }
+.service__cta {
+  margin-top: auto; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: none; border: 0; padding: 4px 0; cursor: pointer;
+  font: inherit; font-size: 13px; font-weight: 600; color: var(--blue);
+}
+.service__cta svg { width: 15px; height: 15px; transition: transform .24s; }
+.service__cta:hover span:first-child { text-decoration: underline; }
+.service:hover .service__cta svg, .service__cta:hover svg { transform: translate(2px, -2px); }
+.service__cta:focus-visible { outline: 3px solid var(--electric); outline-offset: 3px; border-radius: 4px; }
+/* En noche `--blue` sobre la tarjeta no llega a AA (mismo caso que el equipo). */
+.theme-dark .service__cta { color: var(--electric); }
+
 /* -------------------------------------------------------------- equipo */
 .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 40px; }
 .member {
@@ -571,10 +627,19 @@ dialog.modal::backdrop { background: #073b7066; backdrop-filter: blur(5px); }
 @media (max-width: 1080px) {
   .hero { grid-template-columns: 1fr; gap: 10px; padding-top: 44px; }
   .visual { height: 420px; }
+  /* Con cinco enlaces la cabecera se sale por debajo de ~950px: se recorta el
+     espaciado para que quepan antes de pasar al menu movil. */
+  .nav__links { gap: 14px; }
+  .brand-logo--header { width: 195px; height: 52px; }
   .heading { flex-direction: column; align-items: flex-start; gap: 16px; }
   .heading p { max-width: 100%; }
   .demo, .faq-layout { grid-template-columns: 1fr; gap: 34px; }
   .team-grid, .values, .problems, .process { grid-template-columns: 1fr 1fr; }
+  /* Cinco tarjetas en dos columnas: la ultima se queda sola, asi que ocupa
+     el ancho completo en vez de dejar media fila vacia. */
+  .services { grid-template-columns: 1fr 1fr; }
+  .service, .service:nth-child(4), .service:nth-child(5) { grid-column: span 1; }
+  .service:nth-child(5) { grid-column: 1 / -1; }
   .problem + .problem { padding-left: 0; border-left: 0; }
   .problem { border-bottom: 1px solid var(--line); }
 }
@@ -592,6 +657,8 @@ dialog.modal::backdrop { background: #073b7066; backdrop-filter: blur(5px); }
   .nav__links .button { margin-left: 0; margin-top: 10px; justify-content: center; }
   .menu-backdrop.open { display: block; position: fixed; inset: var(--header-h) 0 0; background: #073b7040; }
   .team-grid, .values, .problems, .process { grid-template-columns: 1fr; }
+  .services { grid-template-columns: 1fr; }
+  .service, .service:nth-child(4), .service:nth-child(5) { grid-column: span 1; }
   .section { padding-top: 68px; padding-bottom: 68px; }
   .workflow__track { flex-direction: column; align-items: stretch; gap: 14px; }
   .workflow__link { margin-left: 22px; width: 1px; height: 22px; }

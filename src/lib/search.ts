@@ -1,6 +1,6 @@
 import type { Dict, Locale } from "@/i18n";
 
-export type SearchEntryType = "page" | "section" | "team" | "faq";
+export type SearchEntryType = "page" | "section" | "service" | "team" | "faq";
 
 export type SearchEntry = {
   type: SearchEntryType;
@@ -49,6 +49,24 @@ export function buildSearchIndex(
     subtitle: strip(dict.team.lead).slice(0, 90),
     href: "/#equipo",
     keywords: `${dict.team.title} ${dict.team.valuesTitle}`,
+  });
+
+  entries.push({
+    type: "section",
+    title: dict.nav.services,
+    subtitle: strip(dict.services.title),
+    href: "/#servicios",
+    keywords: dict.services.items.map((s) => `${s.num} ${s.title} ${s.text}`).join(" "),
+  });
+
+  dict.services.items.forEach((item) => {
+    entries.push({
+      type: "service",
+      title: item.title,
+      subtitle: item.text,
+      href: "/#servicios",
+      keywords: `${item.num} ${item.title} ${item.text} servicio`,
+    });
   });
 
   entries.push({
