@@ -40,7 +40,7 @@ export function SiteHeader({
     <header className="site-header">
       <nav className="wrap nav" aria-label={dict.a11y.mainNav}>
         <Link className="brand" href="/" aria-label={dict.a11y.logoAlt}>
-          <BrandLogo className="brand-logo brand-logo--header" />
+          <BrandLogo withTagline className="brand-logo brand-logo--header" />
         </Link>
 
         <div className={`nav__links${menuOpen ? " open" : ""}`} id="nav-links">

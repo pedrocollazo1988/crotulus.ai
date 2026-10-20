@@ -107,11 +107,9 @@ img { max-width: 100%; height: auto; }
 .brand-logo { display: block; flex-shrink: 0; }
 .brand-logo__blue, .brand-logo__tag { fill: var(--blue); }
 .brand-logo__gray { fill: var(--muted); }
-/* En la cabecera el tagline del logotipo quedaria ilegible: se omite y el
-   logotipo se recorta a la marca (emblema + nombre). */
-.brand-logo--header { width: 150px; height: 40px; }
-.brand-logo--header .brand-logo__tag { display: none; }
-/* En el pie hay sitio: se muestra el logotipo completo, con su tagline. */
+/* El logotipo completo (marca + "Agencia de Inteligencia Artificial") se usa
+   igual en la cabecera y en el pie, con la misma proporcion 1373:363. */
+.brand-logo--header { width: 235px; height: 62px; }
 .brand-logo--footer { width: 235px; height: 62px; }
 
 .nav__links { display: flex; align-items: center; gap: 22px; font-size: 14px; font-weight: 600; }
@@ -624,10 +622,25 @@ dialog.modal::backdrop { background: #073b7066; backdrop-filter: blur(5px); }
   .particle-b { bottom: 78px; right: 60px; }
   /* La franja de beneficios es una fila flex: en movil tiene que envolver. */
   .strip .wrap { flex-wrap: wrap; gap: 10px 20px; }
-  .brand-logo--header { width: 132px; height: 35px; }
   .icon-btn { width: 37px; height: 37px; }
   .nav { gap: 8px; }
   .nav__tools { gap: 6px; }
+}
+
+@media (max-width: 480px) {
+  .brand-logo--header { width: 165px; height: 44px; }
+}
+
+@media (max-width: 380px) {
+  /* Por debajo de 380px el logotipo completo no cabe junto a los cuatro
+     controles: se encoge manteniendo la proporcion 1373:363. */
+  .brand-logo--header { width: 122px; height: 32px; }
+  .nav { gap: 6px; }
+  .nav__tools { gap: 4px; }
+}
+
+@media (max-width: 335px) {
+  .brand-logo--header { width: 110px; height: 29px; }
 }
 
 @media (max-width: 560px) {
