@@ -1,0 +1,69 @@
+// Esquema de datos de C-ROTULUS IA.
+// PostgreSQL (Neon en produccion, Postgres local en desarrollo).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// Persona del equipo que se muestra en /equipo.
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  /// Texto en espanol (idioma base). Las traducciones son opcionales: si
+  /// faltan, la web muestra este valor en cualquier idioma.
+  role      String
+  bio       String
+  roleEn    String?
+  bioEn     String?
+  rolePt    String?
+  bioPt     String?
+  photo     String?
+  email     String?
+  linkedin  String?
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, order])
+}
+
+/// Mensajes recibidos por el formulario de contacto.
+/// Se guardan en la base de datos, se replican en HubSpot y disparan un correo.
+model Contact {
+  id        String  @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  service   String?
+  message   String
+  locale    String  @default("es")
+  source    String  @default("web")
+  pageUrl   String?
+  ip        String?
+  userAgent String?
+  consent   Boolean @default(false)
+  /// new | contacted | qualified | closed | spam
+  status    String  @default("new")
+
+  hubspotId       String?
+  hubspotSyncedAt DateTime?
+  hubspotError    String?
+
+  emailSentAt DateTime?
+  emailError  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([email])
+  @@index([status])
+}
