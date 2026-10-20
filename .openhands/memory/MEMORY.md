@@ -120,9 +120,12 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   `npx prisma db push` + `npm run db:seed`.
 - **HubSpot**: crear antes las 4 propiedades personalizadas (ver arriba).
 - **`dev_plca_ai` va por delante de `main`**: hay que unirla (con permiso del
-  propietario). Commits clave sin fusionar: `d1b5fda` (seccion Servicios),
-  `c4aa47d` (equipo + fotos), `bbee958` (contraste); `48a6eed` (widget) ya esta
-  en `main`. Anadida la seccion **Servicios** (`#servicios`, commit `d1b5fda`,
-  subida a `dev_plca_ai` y visible en el preview). Detalle en `2026-10-20.md`.
+  propietario). Commits clave sin fusionar: `36e93f5` (redes sociales y
+  WhatsApp), `d1b5fda` (seccion Servicios), `c4aa47d` (equipo + fotos),
+  `bbee958` (contraste); `48a6eed` (widget) ya esta en `main`.
+- **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
+  del propietario **+5359888821** (10 digitos, Cuba) y redes
+  Instagram/Facebook; se muestran en pie, banda CTA y dialogo de contacto
+  (componente `social-links.tsx`). Detalle en `2026-10-20.md`.
 - El dominio de la maqueta que dio el propietario
   (`c-rotulus-ia.qvafunded.chatgpt.site`) es solo referencia de diseno.
