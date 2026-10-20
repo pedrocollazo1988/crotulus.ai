@@ -61,21 +61,25 @@ tecnología desplegable en **Vercel** con dominio de **Namecheap**.
 - `AGENTS.md` lo regenera `next dev` (bloque `BEGIN:nextjs-agent-rules`); se
   commitea con el trabajo para no dejar el árbol sucio.
 
-## Credenciales de GitHub: SOLO LECTURA (2026-10-20)
-- **El push NO es posible desde este entorno.** Los tres tokens disponibles
-  (`GITHUB_TOKEN`, `allhands` y el guardado en la URL de `origin`) pertenecen a
-  `pedrocollazo1988` pero **solo tienen lectura**: la API responde
-  `403 Resource not accessible by integration` / `... by personal access token`
-  al crear una ref, y el push HTTPS da `Permission to ... denied`. `create_pr`
-  tambien da 403.
-- `x-oauth-scopes` viene **vacio** en `GITHUB_TOKEN` (no es un PAT clasico con
-  `repo`), y el fine-grained (`allhands`, 93 caracteres) no incluye Contents:write.
-- No hay `~/.ssh` (ni binario `ssh`), ni `~/.netrc`, ni `gh auth` utilizable.
-- La lectura si funciona: `git ls-remote` devuelve `main` y `dev_plca_ai`, ambas
-  en `529f175` (Initial commit).
-- El commit `02b5975` esta **listo en local** (50 ficheros, +7019 lineas). Para
-  subirlo hace falta que el propietario aporte un token con `Contents: write`
-  (o ejecute el push/PR el mismo).
+## Push y PR (2026-10-20)
+- **Subido**: rama `dev_plca_ai` en `00aedeb` -> **PR #1** (borrador)
+  https://github.com/pedrocollazo1988/crotulus.ai/pull/1
+  (2 commits, 50 ficheros, +7035/-1). Base `main` (`529f175`).
+- **El token `GITHUB_TOKEN` del entorno y el de `origin` son de SOLO LECTURA**
+  (`403 Resource not accessible by integration`; `x-oauth-scopes` vacio; el
+  fine-grained `allhands` tampoco vale). **El push falla con esos dos.**
+- El **propietario aporto un fine-grained PAT** con `Contents: write` +
+  `Pull requests: write`; con ese token el push y la creacion de la PR funcionan.
+  **`create_pr` (herramienta) NO lo usa**: sigue leyendo `GITHUB_TOKEN` y da 403.
+  Hay que crear la PR por API con `urllib`/`curl` pasando el token nuevo.
+- `main` tiene proteccion de rama: `mergeable_state` sale `unstable`; **no
+  fusionar sin permiso del propietario**.
+- Vercel construye solo: check `Vercel Preview Comments` -> `success` en ~30 s.
+  El preview (`crotulusai-git-devplcaai-pedrocollazo1988.vercel.app`) sale **302 a
+  `vercel.com/sso-api`** por Vercel Authentication: hace falta un *Protection
+  Bypass* (`?x-vercel-protection-bypass=<secreto>`) para probarlo desde fuera.
+- Al terminar, recordar al propietario **revocar el token** en
+  https://github.com/settings/personal-access-tokens
 
 ## Pendiente / seguimiento
 - **Nada commiteado todavía** en `dev_plca_ai` (solo `529f175 Initial commit` con
