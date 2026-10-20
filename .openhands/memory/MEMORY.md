@@ -24,6 +24,9 @@ El detalle largo de cada sesion esta en los ficheros `2026-*.md` de esta carpeta
   los tres tokens del entorno eran de solo lectura.
 - Produccion despliega sola al empujar a `main`. Alias del preview:
   `crotulusai-git-devplcaai-pedrocollazo1988.vercel.app`.
+- **`$allhands` NO sirve para escribir** (403 en `POST /git/refs`); para
+  empujar hace falta el PAT fine-grained del propietario, que **no se guarda**.
+  Commit `beef841` (menu, tarjeta 01, equipo, formulario) quedo **sin subir**.
 
 ## Requisitos del propietario (los 4 que pidio)
 1. Pagina de **Equipo**.
