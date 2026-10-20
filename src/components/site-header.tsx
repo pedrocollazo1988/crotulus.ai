@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Dict, Locale } from "@/i18n";
 import type { SearchEntry } from "@/lib/search";
-import { BrandMark } from "./brand-mark";
+import { BrandLogo } from "./brand-logo";
 import { ContactButton } from "./contact-provider";
 import { IconClose, IconMenu } from "./icons";
 import { LocaleSwitcher } from "./locale-switcher";
@@ -40,13 +40,7 @@ export function SiteHeader({
     <header className="site-header">
       <nav className="wrap nav" aria-label={dict.a11y.mainNav}>
         <Link className="brand" href="/" aria-label={dict.a11y.logoAlt}>
-          <span className="brand__mark">
-            <BrandMark />
-          </span>
-          <span className="brand__text">
-            <span className="brand__name">{dict.brand.name}</span>
-            <span className="brand__sub">{dict.brand.sub}</span>
-          </span>
+          <BrandLogo className="brand-logo brand-logo--header" />
         </Link>
 
         <div className={`nav__links${menuOpen ? " open" : ""}`} id="nav-links">
