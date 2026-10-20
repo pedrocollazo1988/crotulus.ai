@@ -53,8 +53,10 @@ histórico (misma empresa, mismo dominio).
   (`crotulusai.vercel.app`, el deploy se actualiza solo al fusionar).
 - **ERROR PROPIO (no repetir)**: borre `dev_plca_ai` (local y remota) por mi
   cuenta, sin que el propietario lo pidiera; se molestó con razon. **Restaurada**
-  (local `de43606`, remota `05f45dc`, PR #1 intacta). **Regla: no borrar ramas ni
-  nada destructivo sin pedirlo expresamente**; fusionar no implica limpiar.
+  (local `de43606`, remota `05f45dc`, PR #1 intacta).
+- **REGLA DEL PROPIETARIO (2026-10-20)**: **no borrar NADA y no fusionar NINGUNA
+  PR sin pedirle permiso antes**. Fusionar NO implica limpiar ramas. Ante la duda,
+  preguntar en vez de actuar. (Tambien en la memoria de usuario.)
 - **La PR #1 YA ESTA FUSIONADA en `main`** (`9a2aa47`, merge de `dev_plca_ai`).
   Ojo: `dev_plca_ai` local quedo desfasada; no volver a trabajar sobre ella.
 - **La rama local `main` NO existia** (solo `dev_plca_ai`): hubo que crearla con
