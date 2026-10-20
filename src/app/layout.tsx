@@ -5,8 +5,10 @@ import { buildSearchIndex } from "@/lib/search";
 import { SITE } from "@/lib/site";
 import { getTeamMembers } from "@/lib/team";
 import { ContactProvider } from "@/components/contact-provider";
+import { ChatWidget } from "@/components/chat-widget";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { ToTop } from "@/components/to-top";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -61,6 +63,8 @@ export default async function RootLayout({
           <SiteHeader dict={dict} locale={locale} entries={entries} />
           <main id="main">{children}</main>
           <SiteFooter dict={dict} />
+          <ToTop label={dict.a11y.toTop} />
+          <ChatWidget />
         </ContactProvider>
       </body>
     </html>
