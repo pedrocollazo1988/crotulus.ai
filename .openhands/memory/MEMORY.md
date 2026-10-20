@@ -47,6 +47,10 @@ histórico (misma empresa, mismo dominio).
   `curl` sigue sirviendo el build antiguo. Matar SIEMPRE el proceso anterior
   (`ss -ltnp | grep :3111`) antes de reiniciar; si no, se ven cambios "que no
   aparecen".
+- **Estado del logo**: commit local `748352a` en `dev_plca_ai`. **NO subido**:
+  los dos tokens disponibles (`GITHUB_TOKEN` y `allhands`) dan **403 al escribir**
+  en `pedrocollazo1988/crotulus.ai` (solo lectura; `git ls-remote` funciona, el
+  `push` no). Hace falta un token nuevo con permiso `Contents: write`.
 
 ## Requisitos del propietario (los 4 que pidió)
 1. Página de **Equipo** (datos en BD, no en el HTML).
