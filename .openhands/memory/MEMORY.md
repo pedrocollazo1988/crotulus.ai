@@ -70,11 +70,24 @@ histórico (misma empresa, mismo dominio).
 - **`create_pr` del entorno falla** (403): usa el `GITHUB_TOKEN` del entorno, que
   es de solo lectura. Crear la PR a mano con `POST /pulls` y el token bueno.
 - **Al terminar, borrar el token temporal** del disco (`rm /tmp/...`).
+
 - **`origin` llevaba incrustado el `GITHUB_TOKEN` del entorno** (el de solo
   lectura) en la URL: era la causa real de los 403 y del despiste. **Ya limpiado**:
   `git remote set-url origin https://github.com/pedrocollazo1988/crotulus.ai.git`.
   Como el repo es **publico**, `fetch`/`ls-remote` funcionan sin credencial; para
   `push` hay que pasar el token explicito en la URL (no queda guardado).
+
+## Logotipo real + paleta azul/gris (2026-10-20)
+- Logotipo vectorizado en `src/components/brand-logo.tsx` (SVG con relleno por
+  variables CSS; cabecera = lockup, pie = con tagline). Regla: **nada de negro**;
+  usar azul y gris/blanco. Detalle y trampas en `2026-10-20.md`.
+- Tema noche: los azules casi negros subidos a azul-gris (contraste AA
+  conservado). Detalle en `2026-10-20.md`.
+
+## Verificacion con Chromium headless + CDP (2026-10-20)
+- `pip install websocket-client`; **pasar `--remote-allow-origins=*`** a Chromium
+  o el handshake WebSocket da **403**. Capturas fuera del viewport con
+  `captureBeyondViewport: true`. Detalle en `2026-10-20.md`.
 - **Fusion asincrona (API)**: `PUT /pulls/{n}/merge-async` con
   `{merge_method, sha}` -> 202 con `details.uuid`; luego sondear
   `GET /pulls/{n}/merge-async/{uuid}` hasta `merged`. Conviene fijar `sha`.
@@ -309,18 +322,14 @@ tecnología desplegable en **Vercel** con dominio de **Namecheap**.
 - **NO empujar directo a `main`**: se hizo mal con el widget (subido directo a
   `main`, commit `48a6eed`, saltandose `dev_plca_ai`). Antes de empujar, mirar la
   rama actual (`git branch --show-current`) y usar `dev_plca_ai`.
-- Estado actual (2026-10-20): `dev_plca_ai` = `a34f6fd` (**subida a GitHub**),
+- Estado actual (2026-10-20): `dev_plca_ai` = `6a4a061` (logotipo + paleta; **sin subir**),
   incluye ya todo lo de `main` (widget incluido). `main` = `cc8ee6e`.
-- **Tokens: los del entorno son de SOLO LECTURA.** Las variables del entorno
-  dan `x-accepted-github-permissions: contents=read` -> el `push` falla con
-  **403** (`Permission ... denied`). Hay una variable `GH_PUSH_TOKEN` pero da
-  **401** (caducada/invalida). El unico que escribe es el PAT del propietario
-  (token *fine-grained*) -> **pedirlo y recordar revocarlo**.
-- **GitHub PUSH PROTECTION bloquea el push** (`GH013: Repository rule
-  violations / Push cannot contain secrets`) si un commit incluye el valor de
-  un token o su **prefijo literal**. **NUNCA escribir el valor ni el prefijo
-  de un PAT en ficheros versionados** (ni con `$VAR` dentro de comillas dobles
-  en un comando: el shell lo expande). Describirlo con palabras.
+- **Tokens: los del entorno son de SOLO LECTURA.** `GITHUB_TOKEN` y `allhands`
+  (`<secret-hidden>`) dan `x-accepted-github-permissions: contents=read` -> el `push`
+  falla con **403** (`Permission ... denied`). `GH_PUSH_TOKEN` existe en el entorno
+  pero da **401** (caducado/invalido). El unico que escribe es el PAT del
+  propietario (empieza por `github_pat_` + 11 caracteres) -> **pedirlo y
+  recordar revocarlo**.
 - **Trampa de codificacion REAL**: el `MEMORY.md` de `dev_plca_ai` estaba en
   **latin-1** (bytes `0xe1`); al fusionar con `main` (UTF-8) da conflicto en todo
   el fichero. Resolver tomando la version UTF-8 de `main`
