@@ -65,6 +65,7 @@ export const en: Dict = {
     chipAttention: "Support",
     chipSales: "Sales",
     chipOps: "Operations",
+    coreValue: "AI",
     coreLabel: "ON YOUR TEAM",
     float1Title: "One query. Resolved.",
     float1Sub: "Support that keeps up.",
@@ -156,6 +157,12 @@ export const en: Dict = {
         num: "01",
         title: "AI agents for customer support",
         text: "Assistants that answer questions and resolve your customers' enquiries.",
+        channels: [
+          { key: "whatsapp", label: "WhatsApp" },
+          { key: "instagram", label: "Instagram" },
+          { key: "facebook", label: "Facebook" },
+          { key: "web", label: "on the Web" },
+        ],
       },
       {
         num: "02",
@@ -294,8 +301,8 @@ export const en: Dict = {
   },
   team: {
     eyebrow: "The people behind it",
-    title: "A small team,<br>hands-on and direct.",
-    lead: "At C-ROTULUS we work close to the business: few layers, quick decisions and someone who knows your case from start to finish.",
+    title: "A professional team,<br>committed and involved.",
+    lead: "At C-ROTULUS AI we work close to the business: few layers, quick decisions and someone who knows your case from start to finish.",
     empty: "We're preparing the team profiles. Come back soon.",
     valuesEyebrow: "How we work",
     valuesTitle: "Our principles",

@@ -56,7 +56,6 @@ function MemberCard({ person }: { person: TeamMember }) {
       <div className="member__body">
         <h3 className="member__name">{person.name}</h3>
         <p className="member__role">{person.role}</p>
-        <p className="member__bio">{person.bio}</p>
         {(person.linkedin || person.email) && (
           <div className="member__links">
             {person.linkedin && (

@@ -68,6 +68,7 @@ export const es = {
     chipAttention: "Atención",
     chipSales: "Ventas",
     chipOps: "Operaciones",
+    coreValue: "IA",
     coreLabel: "EN TU EQUIPO",
     float1Title: "Una consulta. Resuelta.",
     float1Sub: "Atención que sigue el ritmo.",
@@ -159,6 +160,12 @@ export const es = {
         num: "01",
         title: "Agentes de IA para atención al cliente",
         text: "Asistentes que responden dudas y resuelven consultas de tus clientes.",
+        channels: [
+          { key: "whatsapp", label: "WhatsApp" },
+          { key: "instagram", label: "Instagram" },
+          { key: "facebook", label: "Facebook" },
+          { key: "web", label: "en la Web" },
+        ],
       },
       {
         num: "02",
@@ -303,8 +310,8 @@ export const es = {
   },
   team: {
     eyebrow: "Las personas detrás",
-    title: "Un equipo pequeño,<br>implicado y directo.",
-    lead: "En C-ROTULUS trabajamos cerca del negocio: pocas capas, decisiones rápidas y alguien que conoce tu caso de principio a fin.",
+    title: "Un equipo profesional,<br>implicado y comprometido.",
+    lead: "En C-ROTULUS IA trabajamos cerca del negocio: pocas capas, decisiones rápidas y alguien que conoce tu caso de principio a fin.",
     empty: "Estamos preparando las fichas del equipo. Vuelve pronto.",
     valuesEyebrow: "Cómo trabajamos",
     valuesTitle: "Nuestros principios",

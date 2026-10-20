@@ -5,11 +5,15 @@ import { CONTACT_SERVICES } from "@/lib/validation";
 import { useContact } from "./contact-provider";
 import {
   IconArrowUpRight,
+  IconFacebook,
+  IconGlobe,
+  IconInstagram,
   IconServiceAdmin,
   IconServiceAppointments,
   IconServiceAttention,
   IconServiceFollowUp,
   IconServiceIntegration,
+  IconWhatsApp,
 } from "./icons";
 
 const CARD_ICONS = [
@@ -19,6 +23,13 @@ const CARD_ICONS = [
   IconServiceFollowUp,
   IconServiceIntegration,
 ];
+
+const CHANNEL_ICONS: Record<string, typeof IconWhatsApp> = {
+  whatsapp: IconWhatsApp,
+  instagram: IconInstagram,
+  facebook: IconFacebook,
+  web: IconGlobe,
+};
 
 /**
  * Seccion "Servicios" de la portada: cinco tarjetas numeradas con el catalogo.
@@ -62,6 +73,19 @@ export function Services({ dict }: { dict: Dict }) {
               </div>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
+              {"channels" in item && item.channels ? (
+                <ul className="service__channels">
+                  {item.channels.map((channel) => {
+                    const ChannelIcon = CHANNEL_ICONS[channel.key] ?? IconGlobe;
+                    return (
+                      <li key={channel.key}>
+                        <ChannelIcon />
+                        {channel.label}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : null}
               <button
                 type="button"
                 className="service__cta"
