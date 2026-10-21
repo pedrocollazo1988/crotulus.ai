@@ -179,6 +179,11 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   `src/app/layout.tsx` no declara `images` y no hay ninguna imagen social en
   `public/`. Al compartir el enlace no sale tarjeta. Pendiente de proponer al
   propietario (una imagen 1200x630, sin negro, con la marca).
+- **`/privacidad` ya existe** (commit `b9d82fd`): pagina INFORMATIVA en formato
+  de acordeon (`<details>`, mismo `.faq` que "Preguntas"), 7 bloques y 18
+  preguntas, en es/en/pt. Enlazada desde el pie, el consentimiento del
+  formulario, el sitemap y el buscador. Contenido en `dict.privacy`; el correo
+  se inyecta con el hueco `{email}` (funcion `fill()` en la pagina).
 - **Ramas**: `main` y `dev_plca_ai` estan al dia (2026-10-21), con el **mismo
   arbol**. En `main`: `028f131` (ultima fusion `--no-ff`), `32ca3f8`, `1e51394`,
   `a6f2e27` (formulario + arreglo del `svg`), `48a6eed` (widget), `6a4a061`
