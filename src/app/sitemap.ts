@@ -23,5 +23,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: Object.fromEntries(LOCALES.map((l) => [l, `${SITE.url}/equipo?lang=${l}`])),
       },
     },
+    {
+      url: `${SITE.url}/privacidad`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+      alternates: {
+        languages: Object.fromEntries(LOCALES.map((l) => [l, `${SITE.url}/privacidad?lang=${l}`])),
+      },
+    },
   ];
 }

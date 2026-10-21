@@ -9,6 +9,9 @@ export const pt: Dict = {
     teamTitle: "Equipa · C-ROTULUS IA",
     teamDescription:
       "Conheça a equipa da C-ROTULUS S.U.R.L.: as pessoas que concebem, constroem e acompanham os seus agentes de IA.",
+    privacyTitle: "Privacidade e proteção de dados · C-ROTULUS IA",
+    privacyDescription:
+      "Que dados pessoais tratamos na C-ROTULUS IA, para que os usamos, com quem os partilhamos e que direitos tem ao abrigo do quadro europeu, norte-americano e latino-americano.",
   },
   a11y: {
     skip: "Ir para o conteúdo",
@@ -36,6 +39,7 @@ export const pt: Dict = {
     faq: "Perguntas",
     team: "Equipa",
     contact: "Vamos falar do seu negócio",
+    privacy: "Privacidade",
   },
   search: {
     placeholder: "Pesquisar no site…",
@@ -287,7 +291,8 @@ export const pt: Dict = {
     message: "Que tarefa ou problema gostaria de resolver?",
     messagePh: "Conte-nos o que lhe consome tempo ou trava o seu negócio.",
     consent:
-      "Li e aceito a política de privacidade. Autorizo o tratamento dos meus dados para responder a esta consulta.",
+      "Li e aceito a {privacy}. Autorizo o tratamento dos meus dados para responder a esta consulta.",
+    privacyLink: "política de privacidade",
     consentRequired: "Deve aceitar a política de privacidade.",
     submit: "Enviar a minha consulta",
     sending: "A enviar…",
@@ -329,6 +334,134 @@ export const pt: Dict = {
     ctaEyebrow: "O seu próximo passo é simples",
     ctaTitle: "Vamos falar do seu projeto.",
     ctaButton: "Contactar",
+  },
+  /**
+   * Politica de privacidade: conteudo INFORMATIVO em formato de perguntas
+   * frequentes (acordeao). Cada entrada e uma pergunta e a sua resposta.
+   * `q` admite HTML em linha (ligacoes); `a` admite <strong>, <a> e <ul><li>.
+   */
+  privacy: {
+    eyebrow: "Os seus dados, claros",
+    title: "Privacidade e proteção<br>de dados pessoais",
+    lead: "Esta página explica, sem termos técnicos, que dados pessoais tratamos quando usa o nosso site ou nos escreve, para que os usamos e que direitos a lei lhe reconhece.",
+    updated: "Última atualização",
+    informativeNote:
+      "Este documento é informativo e não substitui o aviso de privacidade que, quando aplicável, lhe facultemos por escrito para um serviço concreto.",
+    tocTitle: "Nesta página",
+    groups: [
+      {
+        title: "Quem somos e que dados tratamos",
+        items: [
+          {
+            q: "Quem é o responsável pelo tratamento dos meus dados?",
+            a: 'O responsável é a <strong>C-ROTULUS S.U.R.L.</strong>, que opera sob a marca <strong>C-ROTULUS IA</strong> e decide para que efeito e como são tratados os dados que nos faculta. Para qualquer assunto relacionado com a privacidade pode escrever para <a href="mailto:{email}">{email}</a>.',
+          },
+          {
+            q: "Que dados pessoais recolhemos?",
+            a: "Apenas os que nos dá ou os que são gerados ao usar o site: (1) <strong>dados de contacto e consulta</strong> do formulário: nome, correio eletrónico, telefone, negócio ou setor, área de interesse e a mensagem que escreve; (2) <strong>dados técnicos</strong> do pedido: idioma, página de origem, endereço IP e navegador, usados para segurança e para evitar o envio automático de formulários (spam); (3) <strong>preferências</strong> guardadas no seu próprio navegador: idioma e modo dia/noite.",
+          },
+          {
+            q: "De onde vêm os dados e é obrigatório fornecê-los?",
+            a: "Os dados de contacto e consulta são fornecidos por si. São <strong>obrigatórios</strong> o nome, o correio, o telefone e a mensagem: sem eles não o podemos atender. O negócio ou setor e a área de interesse são <strong>opcionais</strong>. Os dados técnicos e as preferências são gerados automaticamente ao usar o site.",
+          },
+          {
+            q: "Tratamos dados de categorias especiais ou de menores?",
+            a: "Não. Não solicitamos nem tratamos intencionalmente dados sensíveis (saúde, ideologia, origem étnica, etc.) nem dados de menores. Se nos enviar informação deste tipo na sua mensagem, pediremos que a retire e eliminá-la-emos dos nossos sistemas.",
+          },
+        ],
+      },
+      {
+        title: "Para que usamos os dados e com que base legal",
+        items: [
+          {
+            q: "Para que usamos os seus dados e com que base legal?",
+            a: "Tratamo-los para: (1) <strong>atender a sua consulta e responder-lhe</strong> — base jurídica: o seu consentimento e as diligências pré-contratuais que solicita; (2) <strong>gerir a relação comercial</strong> e o seguimento da oportunidade — interesse legítimo e, havendo contrato, a sua execução; (3) <strong>segurança do site e prevenção de spam</strong> — interesse legítimo; (4) <strong>cumprir obrigações legais</strong> e atender responsabilidades — obrigação legal. Quando a base é o consentimento, pode retirá-lo em qualquer momento sem afetar a licitude do tratamento já realizado.",
+          },
+          {
+            q: "Usamos os seus dados para decisões automatizadas ou definição de perfis?",
+            a: "Não tomamos decisões com efeitos jurídicos sobre si nem elaboramos perfis baseados unicamente em tratamento automatizado. Os agentes de IA que concebemos para terceiros são configurados com limites, permissões e pontos de controlo revistos por pessoas.",
+          },
+        ],
+      },
+      {
+        title: "Com quem partilhamos os dados",
+        items: [
+          {
+            q: "Com quem partilhamos os seus dados?",
+            a: "Não vendemos nem alugamos os seus dados a ninguém. Partilhamo-los apenas com prestadores que nos fornecem um serviço e atuam por nossa conta: o <strong>prestador de alojamento e base de dados na nuvem</strong> onde se guardam as mensagens, o <strong>prestador de correio</strong> que nos avisa da sua consulta e o <strong>prestador de CRM</strong> onde registamos o contacto comercial. Poderemos também comunicá-los a autoridades quando a lei o exigir.",
+          },
+          {
+            q: "Os prestadores podem usar os meus dados para os seus próprios fins?",
+            a: "Não. Com cada prestador que trata dados por nossa conta mantemos um contrato de subcontratação que o obriga a: tratar os dados <strong>apenas seguindo as nossas instruções</strong>, manter a confidencialidade do seu pessoal, aplicar medidas de segurança, avisar-nos se houver uma violação, ajudar-nos a atender os seus direitos e <strong>suprimir ou devolver</strong> os dados quando terminar o serviço.",
+          },
+          {
+            q: "Há transferências internacionais de dados?",
+            a: 'Sim, pode haver, porque os nossos prestadores de nuvem, correio e CRM podem estar fora do seu país. Nesses casos aplicamos um mecanismo legal válido: uma <strong>decisão de adequação</strong> da autoridade, <strong>cláusulas contratuais-tipo</strong> aprovadas pela autoridade de proteção de dados ou, quando aplicável, o seu <strong>consentimento explícito</strong>. Pode pedir mais informação escrevendo para <a href="mailto:{email}">{email}</a>.',
+          },
+        ],
+      },
+      {
+        title: "Quanto tempo os guardamos",
+        items: [
+          {
+            q: "Quanto tempo conservamos os seus dados?",
+            a: "Conservamos os dados do formulário enquanto a sua consulta ou a relação comercial estiver viva e, depois, durante os prazos de prescrição legal que nos obrigam a poder comprová-los. Quando deixam de ser necessários, <strong>eliminamo-los ou anonimizamo-los</strong> de forma segura. As preferências de idioma e de modo dia/noite ficam no seu navegador até que as apague.",
+          },
+          {
+            q: "Que medidas de segurança aplicamos?",
+            a: "Aplicamos medidas técnicas e organizativas proporcionais ao risco: <strong>cifragem em trânsito</strong>, acesso restrito à base de dados, palavras-passe protegidas, registo das operações e cópias de segurança. Nenhuma medida é infalível a 100 %, mas se ocorresse uma violação que afetasse os seus direitos comunicar-lhe-íamos sem dilação indevida.",
+          },
+        ],
+      },
+      {
+        title: "Os seus direitos",
+        items: [
+          {
+            q: "Que direitos tem sobre os seus dados?",
+            a: 'Pode <strong>aceder</strong> aos seus dados, <strong>retificá-los</strong> se forem inexatos, <strong>suprimi-los</strong> quando já não sejam necessários, <strong>limitar</strong> ou <strong>opor-se</strong> ao seu tratamento, pedir a sua <strong>portabilidade</strong> e <strong>retirar o seu consentimento</strong> em qualquer momento. Tem também o direito de não ser discriminado por exercer estes direitos. Escreva para <a href="mailto:{email}">{email}</a> e responderemos no prazo legal aplicável (em regra, um mês).',
+          },
+          {
+            q: "Como pode exercê-los e perante quem pode reclamar?",
+            a: 'Basta escrever para <a href="mailto:{email}">{email}</a> indicando que direito quer exercer; podemos pedir-lhe que comprove a sua identidade para evitar acessos indevidos. Se não ficar satisfeito, pode <strong>reclamar perante a autoridade de proteção de dados</strong> do seu país. Na União Europeia tem ainda o direito de apresentar reclamação perante a autoridade de controlo do seu Estado-Membro.',
+          },
+        ],
+      },
+      {
+        title: "Cookies e tecnologias semelhantes",
+        items: [
+          {
+            q: "Usamos cookies ou ferramentas de seguimento?",
+            a: "Não usamos cookies de publicidade nem de análise com fins de definição de perfis. Guardamos no seu navegador apenas o <strong>estritamente necessário</strong> para recordar o seu idioma e o modo dia/noite, e carregamos o <strong>widget de chat</strong> de um terceiro quando está ativo, que pode instalar os seus próprios cookies para funcionar. Pode apagá-los ou bloqueá-los nas definições do seu navegador.",
+          },
+        ],
+      },
+      {
+        title: "Quadro europeu, Estados Unidos e América Latina",
+        items: [
+          {
+            q: "Se está na União Europeia, o que deve saber?",
+            a: "Tratamos os seus dados em conformidade com o <strong>Regulamento (UE) 2016/679 (RGPD)</strong>. Isto significa que o informamos da identidade do responsável, das finalidades e bases jurídicas, dos destinatários, das transferências internacionais e das suas garantias, do prazo de conservação e de todos os seus direitos, incluindo o de reclamar perante uma autoridade de controlo. As transferências fora do Espaço Económico Europeu baseiam-se numa decisão de adequação ou em cláusulas contratuais-tipo.",
+          },
+          {
+            q: "Se está nos Estados Unidos, o que deve saber?",
+            a: "Aplicamos a legislação de privacidade que corresponda, incluindo a da <strong>Califórnia (CCPA/CPRA)</strong> quando aplicável: informamos das categorias de dados que recolhemos, das finalidades, das categorias de terceiros e dos prazos de conservação. <strong>Não vendemos nem partilhamos os seus dados pessoais</strong> para publicidade, pelo que não há que exercer qualquer exclusão. Se o pedir, atenderemos os seus direitos de conhecer, eliminar e corrigir nos prazos legais (em regra, 45 dias, prorrogáveis uma vez).",
+          },
+          {
+            q: "Se está na América Latina, o que deve saber?",
+            a: 'Reconhecemos igualmente os direitos que lhe confere a legislação do seu país: no <strong>Brasil</strong>, a <strong>LGPD</strong> (confirmação, acesso, correção, anonimização, portabilidade e eliminação); no <strong>México</strong>, a <strong>LFPDPPP</strong> e os seus direitos <strong>ARCO</strong> (acesso, retificação, cancelamento e oposição); na <strong>Colômbia</strong>, a <strong>Lei 1581 de 2012</strong> (conhecer, atualizar, retificar, suprimir e revogar a autorização); na <strong>Argentina</strong>, a <strong>Lei 25.326</strong> (acesso, retificação e supressão); e em <strong>Cuba</strong>, a <strong>Lei 149 de 2022</strong> (acesso, retificação, cancelamento e oposição). Em todos os casos pode exercê-los escrevendo para <a href="mailto:{email}">{email}</a>.',
+          },
+          {
+            q: "O que acontece se alterarmos esta política?",
+            a: "Podemos atualizá-la para refletir alterações legais ou dos nossos serviços. Publicaremos sempre a versão em vigor nesta mesma página com a sua <strong>data de atualização</strong> e, se a alteração for substancial, comunicar-lhe-emos por um meio razoável.",
+          },
+        ],
+      },
+    ],
+    contact: {
+      title: "Falamos dos seus dados?",
+      text: "Se tiver qualquer dúvida sobre esta política ou quiser exercer os seus direitos, escreva-nos e respondemos.",
+      button: "Escreva-nos",
+    },
   },
   notFound: {
     title: "Página não encontrada",
