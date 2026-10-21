@@ -9,6 +9,9 @@ export const en: Dict = {
     teamTitle: "Team · C-ROTULUS AI",
     teamDescription:
       "Meet the team at C-ROTULUS S.U.R.L.: the people who design, build and support your AI agents.",
+    privacyTitle: "Privacy and data protection · C-ROTULUS AI",
+    privacyDescription:
+      "What personal data we process at C-ROTULUS IA, why we use it, who we share it with and the rights you have under European, United States and Latin American law.",
   },
   a11y: {
     skip: "Skip to content",
@@ -36,6 +39,7 @@ export const en: Dict = {
     faq: "Questions",
     team: "Team",
     contact: "Let's talk about your business",
+    privacy: "Privacy",
   },
   search: {
     placeholder: "Search the site…",
@@ -287,7 +291,8 @@ export const en: Dict = {
     message: "Which task or problem would you like to solve?",
     messagePh: "Tell us what takes up your time or slows your business down.",
     consent:
-      "I have read and accept the privacy policy. I authorise the processing of my data to answer this enquiry.",
+      "I have read and accept the {privacy}. I authorise the processing of my data to answer this enquiry.",
+    privacyLink: "privacy policy",
     consentRequired: "You must accept the privacy policy.",
     submit: "Send my enquiry",
     sending: "Sending…",
@@ -329,6 +334,134 @@ export const en: Dict = {
     ctaEyebrow: "Your next step is simple",
     ctaTitle: "Let's talk about your project.",
     ctaButton: "Get in touch",
+  },
+  /**
+   * Privacy policy: INFORMATIONAL content in a questions-and-answers
+   * (accordion) format. Each entry is a question and its answer.
+   * `q` allows inline HTML (links); `a` allows <strong>, <a> and <ul><li>.
+   */
+  privacy: {
+    eyebrow: "Your data, clearly",
+    title: "Privacy and personal<br>data protection",
+    lead: "This page explains, without jargon, what personal data we process when you use our website or write to us, what we use it for and what rights the law gives you.",
+    updated: "Last updated",
+    informativeNote:
+      "This document is informative and does not replace the privacy notice we may provide you in writing for a specific service.",
+    tocTitle: "On this page",
+    groups: [
+      {
+        title: "Who we are and what data we process",
+        items: [
+          {
+            q: "Who is responsible for processing my data?",
+            a: 'The controller is <strong>C-ROTULUS S.U.R.L.</strong>, which operates under the <strong>C-ROTULUS IA</strong> brand and decides why and how the data you give us is processed. For any privacy matter you can write to <a href="mailto:{email}">{email}</a>.',
+          },
+          {
+            q: "What personal data do we collect?",
+            a: "Only what you give us or what is generated when you use the site: (1) <strong>contact and enquiry data</strong> from the form: name, email, phone, company or sector, area of interest and your message; (2) <strong>technical data</strong> from the request: language, source page, IP address and browser, used for security and to prevent automated form submissions (spam); (3) <strong>preferences</strong> stored in your own browser: language and light/dark mode.",
+          },
+          {
+            q: "Where does the data come from and is it mandatory to provide it?",
+            a: "You provide the contact and enquiry data. Name, email, phone and message are <strong>mandatory</strong>: without them we cannot help you. Company or sector and area of interest are <strong>optional</strong>. Technical data and preferences are generated automatically when you use the site.",
+          },
+          {
+            q: "Do we process special-category data or children's data?",
+            a: "No. We do not ask for or intentionally process sensitive data (health, ideology, ethnic origin, etc.) or children's data. If you send this kind of information in your message, we will ask you to remove it and will delete it from our systems.",
+          },
+        ],
+      },
+      {
+        title: "Why we use the data and on what legal basis",
+        items: [
+          {
+            q: "Why do we use your data and on what legal basis?",
+            a: "We use it to: (1) <strong>handle your enquiry and reply to you</strong> — legal basis: your consent and the pre-contractual steps you request; (2) <strong>manage the business relationship</strong> and follow up the opportunity — legitimate interest and, where there is a contract, its performance; (3) <strong>website security and spam prevention</strong> — legitimate interest; (4) <strong>comply with legal obligations</strong> and handle liabilities — legal obligation. Where the basis is consent, you can withdraw it at any time without affecting the lawfulness of processing already carried out.",
+          },
+          {
+            q: "Do we use your data for automated decisions or profiling?",
+            a: "We do not make decisions with legal effects on you or build profiles based solely on automated processing. The AI agents we design for third parties are configured with limits, permissions and checkpoints reviewed by people.",
+          },
+        ],
+      },
+      {
+        title: "Who we share the data with",
+        items: [
+          {
+            q: "Who do we share your data with?",
+            a: "We do not sell or rent your data to anyone. We share it only with providers that supply us a service and act on our behalf: the <strong>cloud hosting and database provider</strong> where messages are stored, the <strong>email provider</strong> that alerts us to your enquiry and the <strong>CRM provider</strong> where we log the business contact. We may also disclose it to authorities where the law requires it.",
+          },
+          {
+            q: "Can providers use my data for their own purposes?",
+            a: "No. With every provider that processes data on our behalf we keep a data processing agreement requiring it to: process the data <strong>only on our instructions</strong>, keep its staff bound by confidentiality, apply security measures, notify us of a breach, help us handle your rights and <strong>delete or return</strong> the data when the service ends.",
+          },
+          {
+            q: "Are there international data transfers?",
+            a: 'Yes, there may be, because our cloud, email and CRM providers may be outside your country. In those cases we rely on a valid legal mechanism: an adequacy decision by the authority, <strong>standard contractual clauses</strong> approved by the data protection authority or, where applicable, your <strong>explicit consent</strong>. You can request more information by writing to <a href="mailto:{email}">{email}</a>.',
+          },
+        ],
+      },
+      {
+        title: "How long we keep it",
+        items: [
+          {
+            q: "How long do we keep your data?",
+            a: "We keep the form data while your enquiry or the business relationship is alive and, afterwards, for the legal limitation periods that require us to be able to prove it. When it is no longer needed, we <strong>delete or anonymise</strong> it securely. Language and light/dark preferences stay in your browser until you delete them.",
+          },
+          {
+            q: "What security measures do we apply?",
+            a: "We apply technical and organisational measures proportionate to the risk: <strong>encryption in transit</strong>, restricted database access, protected passwords, activity logging and backups. No measure is 100% infallible, but if a breach affecting your rights occurred we would tell you without undue delay.",
+          },
+        ],
+      },
+      {
+        title: "Your rights",
+        items: [
+          {
+            q: "What rights do you have over your data?",
+            a: 'You can <strong>access</strong> your data, <strong>rectify</strong> it if inaccurate, <strong>erase</strong> it when no longer needed, <strong>restrict</strong> or <strong>object</strong> to its processing, request its <strong>portability</strong> and <strong>withdraw your consent</strong> at any time. You also have the right not to be discriminated against for exercising these rights. Write to <a href="mailto:{email}">{email}</a> and we will reply within the applicable legal deadline (generally one month).',
+          },
+          {
+            q: "How can you exercise them and who can you complain to?",
+            a: 'Just write to <a href="mailto:{email}">{email}</a> stating which right you want to exercise; we may ask you to prove your identity to prevent unauthorised access. If you are not satisfied, you can <strong>complain to the data protection authority</strong> in your country. In the European Union you also have the right to lodge a complaint with the supervisory authority of your member state.',
+          },
+        ],
+      },
+      {
+        title: "Cookies and similar technologies",
+        items: [
+          {
+            q: "Do we use cookies or tracking tools?",
+            a: "We do not use advertising or analytics cookies for profiling. We only store in your browser what is <strong>strictly necessary</strong> to remember your language and light/dark mode, and we load a third party's <strong>chat widget</strong> when active, which may set its own cookies to work. You can delete or block them from your browser settings.",
+          },
+        ],
+      },
+      {
+        title: "European, United States and Latin American framework",
+        items: [
+          {
+            q: "If you are in the European Union, what should you know?",
+            a: "We process your data in accordance with <strong>Regulation (EU) 2016/679 (GDPR)</strong>. This means we inform you of the controller's identity, the purposes and legal bases, the recipients, the international transfers and their safeguards, the retention period and all your rights, including the right to complain to a supervisory authority. Transfers outside the European Economic Area rely on an adequacy decision or standard contractual clauses.",
+          },
+          {
+            q: "If you are in the United States, what should you know?",
+            a: "We apply the privacy law that corresponds, including <strong>California's (CCPA/CPRA)</strong> where applicable: we disclose the categories of data we collect, the purposes, the categories of third parties and the retention periods. <strong>We do not sell or share your personal data</strong> for advertising, so there is no opt-out to exercise. On request we will honour your rights to know, delete and correct within the legal deadlines (generally 45 days, extendable once).",
+          },
+          {
+            q: "If you are in Latin America, what should you know?",
+            a: 'We also recognise the rights granted by your country\'s law: in <strong>Brazil</strong>, the <strong>LGPD</strong> (confirmation, access, correction, anonymisation, portability and deletion); in <strong>Mexico</strong>, the <strong>LFPDPPP</strong> and your <strong>ARCO</strong> rights (access, rectification, cancellation and objection); in <strong>Colombia</strong>, <strong>Law 1581 of 2012</strong> (know, update, rectify, delete and revoke authorisation); in <strong>Argentina</strong>, <strong>Law 25.326</strong> (access, rectification and deletion); and in <strong>Cuba</strong>, <strong>Law 149 of 2022</strong> (access, rectification, cancellation and objection). In every case you can exercise them by writing to <a href="mailto:{email}">{email}</a>.',
+          },
+          {
+            q: "What happens if we change this policy?",
+            a: "We may update it to reflect legal or service changes. We will always publish the current version on this same page with its <strong>last-updated date</strong> and, if the change is substantial, we will tell you by a reasonable means.",
+          },
+        ],
+      },
+    ],
+    contact: {
+      title: "Shall we talk about your data?",
+      text: "If you have any question about this policy or want to exercise your rights, write to us and we will reply.",
+      button: "Write to us",
+    },
   },
   notFound: {
     title: "Page not found",

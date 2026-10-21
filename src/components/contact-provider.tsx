@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  Fragment,
   useCallback,
   useContext,
   useEffect,
@@ -9,6 +10,7 @@ import {
   useRef,
   useState,
 } from "react";
+import Link from "next/link";
 import type { Dict, Locale } from "@/i18n";
 import { CONTACT_SERVICES } from "@/lib/validation";
 import { SITE, whatsappHref } from "@/lib/site";
@@ -203,7 +205,18 @@ export function ContactProvider({
 
               <label className="check">
                 <input type="checkbox" name="consent" required />
-                <span>{dict.consent}</span>
+                <span>
+                  {dict.consent.split("{privacy}").map((part, i, parts) => (
+                    <Fragment key={i}>
+                      {part}
+                      {i < parts.length - 1 && (
+                        <Link href="/privacidad" target="_blank" rel="noopener">
+                          {dict.privacyLink}
+                        </Link>
+                      )}
+                    </Fragment>
+                  ))}
+                </span>
               </label>
 
               <div className="hp" aria-hidden="true">

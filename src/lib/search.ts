@@ -52,6 +52,14 @@ export function buildSearchIndex(
   });
 
   entries.push({
+    type: "page",
+    title: dict.nav.privacy,
+    subtitle: strip(dict.privacy.lead).slice(0, 90),
+    href: "/privacidad",
+    keywords: `${dict.privacy.title} ${dict.privacy.groups.map((g) => g.title).join(" ")} privacidad datos personales protección privacy policy`,
+  });
+
+  entries.push({
     type: "section",
     title: dict.nav.services,
     subtitle: strip(dict.services.title),

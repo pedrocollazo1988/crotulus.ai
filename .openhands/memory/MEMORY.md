@@ -14,23 +14,28 @@ El detalle largo de cada sesion esta en los ficheros `2026-*.md` de esta carpeta
 - **Antes de tocar codigo de Next, leer `node_modules/next/dist/docs/`** (lo pide
   el propio `AGENTS.md`): esta version difiere de lo habitual.
 
-## Estado actual (2026-10-20, noche)
-- **`main` y `dev_plca_ai` estan al dia** y desplegados: `main` = `1e51394`
-  (merge `--no-ff` de `dev_plca_ai`), `dev_plca_ai` = `0f66995`. Produccion
-  (`crotulusai.vercel.app`) sirve el build nuevo: verificado `svg` arreglado,
-  boton 494x50, texto del formulario nuevo y telefono obligatorio.
+## Estado actual (2026-10-21)
+- **NO HAY NADA PENDIENTE DE SUBIR.** `main` = `028f131` (merge `--no-ff` de
+  `dev_plca_ai`), `dev_plca_ai` = `e8cd677`, y **el arbol de `main` y el de
+  `dev_plca_ai` son identicos** (`git diff --stat dev_plca_ai origin/main` vacio).
+  Comprobado tambien contra `git ls-remote`: `origin/main` = `028f131`.
+- **Produccion ya sirve el build nuevo.** `GET /commits/028f131/status` ->
+  `Vercel -> success` (22:31:45Z, ~50 s despues del commit). El episodio "Vercel
+  no desplego `main`" (ver la trampa del webhook) **se resolvio con el reintento**.
+- Verificado en `crotulusai.vercel.app` con Chromium headless (2026-10-21):
+  nucleo del hero = **IA**, `.service__channels` con **4 canales**, `/equipo` con
+  los **4 miembros reales** y sus cargos (sin `member__bio`), `svg{width:1em}`
+  presente, `dialog.modal` con `max-height:calc(100dvh - 32px)` y boton de enviar
+  **visible** (900px de alto), buscador abriendo y filtrando, boton de tema
+  alternando y guardando en `localStorage`, `scrollWidth == clientWidth` a 1280 y
+  360px, `sitemap.xml` 200, `robots.txt` con `Sitemap:`.
+- **Los 4 `svg` de 0x0 que quedan son normales**: el boton movil (oculto en
+  escritorio), el aspa del dialogo y el icono del boton de enviar (ambos dentro
+  del `<dialog>` cerrado) y el del buscador. No confundir con el fallo historico.
 - **El propietario dio permiso explicito para llevar todo a `main`** (2026-10-20).
-  Para empujar hizo falta un PAT fine-grained con **Contents: Read and write**:
-  los tres tokens del entorno eran de solo lectura.
+  Para empujar hizo falta un PAT fine-grained con **Contents: Read and write**.
 - Produccion despliega sola al empujar a `main`. Alias del preview:
   `crotulusai-git-devplcaai-pedrocollazo1988.vercel.app`.
-- **`$allhands` NO sirve para escribir** (403 en `POST /git/refs`); para
-  empujar hace falta el PAT fine-grained del propietario, que **no se guarda**.
-- **Comprobar si Vercel desplego**: `GET /repos/{o}/{r}/commits/{sha}/status`;
-  debe salir `Vercel -> success`. `pending` con **0 estados** = el webhook no
-  llego (paso con `32ca3f8`: el preview de `dev_plca_ai` si desplego, `main`
-  no). No hay credenciales de Vercel en el entorno, asi que no se puede forzar
-  el despliegue; hay que reintentar con otro push o desde el panel de Vercel.
 
 ## Requisitos del propietario (los 4 que pidio)
 1. Pagina de **Equipo**.
@@ -81,8 +86,9 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   Otros 15 iconos sin contenedor que los midiera colapsaban a **0x0**
   (invisibles: flechas de los botones del hero, iconos de las pestanas, etc.).
   **Arreglado de raiz** en `globals.css`: `svg { width: 1em; height: 1em }`
-  (commit en `dev_plca_ai`). Las reglas mas especificas (`.brand-logo--header`,
-  `.icon-btn svg`, `.service__icon svg`...) siguen ganando, asi que no rompe
+  (commit en `dev_plca_ai`; ya en `main` y en produccion). Las reglas mas
+  especificas (`.brand-logo--header`, `.icon-btn svg`, `.service__icon svg`...)
+  siguen ganando, asi que no rompe
   nada. **Antes de tocar un icono, medir su `getBoundingClientRect`**: 0x0 o un
   valor igual al del contenedor = falta de tamano explicito.
 - **`.bubble` y `.event` son `<p>`**: sin `margin: 0` el margen por defecto
@@ -98,6 +104,15 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
 - **Push**: pasar el token explicito en la URL
   (`git push https://x-access-token:$TOKEN@github.com/OWNER/REPO.git rama:rama`);
   asi no queda guardado en `.git/config`. **Recordar al propietario revocarlo**.
+- **Ningun token del entorno sirve para escribir** (comprobado 2026-10-21): tanto
+  `$GITHUB_TOKEN` como `$allhands` dan **403** en `git push --dry-run` y en
+  `POST /git/refs`; el token guardado en la URL de `origin` tambien. Para empujar
+  hace falta que el propietario pegue un PAT fine-grained con **Contents: Read
+  and write**. `git push --dry-run` es la prueba mas rapida y no cambia nada.
+- **Comprobar si Vercel desplego**: `GET /repos/{o}/{r}/commits/{sha}/status`;
+  debe salir `Vercel -> success` (tarda ~50 s). `pending` con **0 estados** = el
+  webhook no llego. No hay credenciales de Vercel en el entorno, asi que no se
+  puede forzar el despliegue; hay que reintentar con otro push.
 - **El clon es SUPERFICIAL** y su `remote.origin.fetch` es no estandar (solo mapea
   `dev_plca_ai`): `git fetch origin` **no refresca `origin/main`**. Refrescar a
   mano: `git fetch origin main:refs/remotes/origin/main --force`.
@@ -119,6 +134,19 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   `origen_del_mensaje`, `idioma_preferido`, `detalle_del_reto`); si no existen, la
   API da 400 y el contacto NO se crea.
 - **`ADMIN_PASSWORD` vacia = panel desactivado** (muestra "Panel deshabilitado").
+- **BUG ABIERTO: la trampa anti-bot del formulario esta muerta** (detectado
+  2026-10-21). `contactSchema` valida `website: z.string().max(0)...` **antes** de
+  llegar al `if (data.website) return 200 skipped` de `route.ts`, asi que un bot
+  que rellene el campo recibe **422** con el mensaje
+  `"String must contain at most 0 character(s)"` en vez del 200 silencioso; la
+  rama `skipped` es codigo inalcanzable y ademas **revela que es una trampa**.
+  El spam no se guarda (sigue rechazado), asi que el impacto es bajo. Arreglo
+  correcto: quitar el `max(0)` del esquema (dejarlo como string libre) y decidir
+  el descarte solo en `route.ts`. Sin tocar todavia: hace falta permiso para
+  escribir (ver la trampa de los tokens).
+- **El formulario SI envia `website`** (`contact-provider.tsx`, dentro de
+  `<div className="hp" aria-hidden>`), asi que el envio legitimo lleva
+  `website: ""` y pasa el `max(0)`. Comprobado en vivo.
 - **Pruebas de integracion sin servicios reales**: `.agent_tmp/fake-hubspot.mjs`
   levanta SMTP (2525) y HubSpot (4599) falsos. El SMTP **exige `onAuth`**. Borrar
   los leads de prueba (`delete from "Contact";`) al terminar.
@@ -139,15 +167,29 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   `crotulus.ai` NO esta registrado (RDAP `.ai` -> 404). Los pasos de Namecheap
   (Vercel: `A @ -> 76.76.21.21`, `CNAME www -> cname.vercel-dns.com`) estan en el
   README, sin ejecutar.
-- **En Vercel falta configurar** (unico bloqueante real): Neon (`DATABASE_URL` con
-  `-pooler`, `DIRECT_URL` sin pooling), `NEXT_PUBLIC_SITE_URL`, SMTP de Gmail
-  (`MAIL_SMTP_PASS`), `HUBSPOT_TOKEN` y `ADMIN_PASSWORD`. Despues, una vez:
-  `npx prisma db push` + `npm run db:seed`.
+- **En Vercel YA ESTA CONFIGURADO** (comprobado en vivo, 2026-10-21): Neon
+  (`DATABASE_URL`; un `POST /api/contact` valido responde `{"ok":true,...}` =
+  el lead se guarda), `NEXT_PUBLIC_SITE_URL` (canonical = `https://crotulus.ai`),
+  `ADMIN_PASSWORD` (el panel NO dice "deshabilitado") y el widget de chat.
+  **Falta solo**: `MAIL_SMTP_PASS` (`mail:false`) y `HUBSPOT_TOKEN`
+  (`hubspot:false`) — el formulario guarda el lead, pero no avisa por correo ni
+  crea el contacto en el CRM.
 - **HubSpot**: crear antes las 4 propiedades personalizadas (ver arriba).
-- **Ramas**: `main` y `dev_plca_ai` estan al dia (2026-10-20). Ya estan en `main`
-  `36e93f5` (redes y WhatsApp), `d1b5fda` (Servicios), `0018a4a` (WhatsApp del pie
-  en texto), `c4aa47d` (equipo + fotos), `6a4a061` (contraste), `48a6eed` (widget)
-  y `a6f2e27` (formulario + arreglo del `svg`).
+- **`og:image` sigue sin existir** (hueco conocido): `openGraph` en
+  `src/app/layout.tsx` no declara `images` y no hay ninguna imagen social en
+  `public/`. Al compartir el enlace no sale tarjeta. Pendiente de proponer al
+  propietario (una imagen 1200x630, sin negro, con la marca).
+- **`/privacidad` ya existe** (commit `b9d82fd`): pagina INFORMATIVA en formato
+  de acordeon (`<details>`, mismo `.faq` que "Preguntas"), 7 bloques y 18
+  preguntas, en es/en/pt. Enlazada desde el pie, el consentimiento del
+  formulario, el sitemap y el buscador. Contenido en `dict.privacy`; el correo
+  se inyecta con el hueco `{email}` (funcion `fill()` en la pagina).
+- **Ramas**: `main` y `dev_plca_ai` estan al dia (2026-10-21), con el **mismo
+  arbol**. En `main`: `028f131` (ultima fusion `--no-ff`), `32ca3f8`, `1e51394`,
+  `a6f2e27` (formulario + arreglo del `svg`), `48a6eed` (widget), `6a4a061`
+  (contraste), `c4aa47d` (equipo + fotos), `0018a4a` (WhatsApp del pie en texto),
+  `d1b5fda` (Servicios) y `36e93f5` (redes y WhatsApp). Los tres PR (`#1`, `#2`,
+  `#3`) estan **fusionados**.
 - **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
   del propietario **+5359888821** (10 digitos, Cuba) y redes
   Instagram/Facebook; se muestran en pie, banda CTA y dialogo de contacto
