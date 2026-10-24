@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { contactSchema, formatZodError } from "@/lib/validation";
 import { mailConfigured, sendContactNotification } from "@/lib/mailer";
-import { hubspotConfigured, upsertHubspotContact } from "@/lib/hubspot";
+import { hubspotConfigured, upsertHubspotLeadWithDeal } from "@/lib/hubspot";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
