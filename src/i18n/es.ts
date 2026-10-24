@@ -154,16 +154,16 @@ export const es = {
     note: "Simulación. Las funciones finales dependen de tus procesos y de las herramientas que conectemos.",
   },
   services: {
-    eyebrow: "Servicios",
-    title: "Servicios de agentes de IA y automatización para tu negocio",
-    lead: "Cinco formas concretas de quitar trabajo repetitivo a tu equipo. Elige la que más se parezca a tu día a día.",
+    eyebrow: "Nuestros servicios",
+    title: "Soluciones de inteligencia artificial para tu negocio",
+    lead: "Desde la atención al cliente hasta la automatización de procesos y el seguimiento comercial, diseñamos soluciones prácticas adaptadas a las necesidades de tu empresa.",
     numSr: "Servicio ",
     cardCta: "Consultar este servicio",
     items: [
       {
         num: "01",
         title: "Agentes de IA para atención al cliente",
-        text: "Asistentes que responden dudas y resuelven consultas de tus clientes.",
+        text: "Ofrece respuestas rápidas a las consultas habituales, informa sobre tus productos o servicios y atiende a tus clientes incluso fuera del horario comercial.",
         channels: [
           { key: "whatsapp", label: "WhatsApp" },
           { key: "instagram", label: "Instagram" },
@@ -173,23 +173,23 @@ export const es = {
       },
       {
         num: "02",
-        title: "Agentes de IA para captar clientes y solicitudes de citas",
-        text: "Atienden a los interesados, recogen sus datos y agendan citas.",
+        title: "Captación de clientes y gestión de citas con IA",
+        text: "Facilita la atención inicial de los interesados, recopila sus datos y organiza las solicitudes de citas para que puedas darles seguimiento.",
       },
       {
         num: "03",
         title: "Automatización de tareas administrativas",
-        text: "Procesos internos repetitivos que se hacen solos.",
+        text: "Reduce el trabajo manual en tareas repetitivas, organiza la información y agiliza los procesos administrativos de tu empresa.",
       },
       {
         num: "04",
         title: "Automatización del seguimiento comercial",
-        text: "Seguimiento automático de leads y clientes potenciales.",
+        text: "Organiza tus contactos, programa recordatorios y facilita el seguimiento de clientes potenciales para reducir las oportunidades olvidadas.",
       },
       {
         num: "05",
-        title: "Integración de agentes de IA con hojas de cálculo y CRM",
-        text: "Conectamos tus agentes con las herramientas donde gestionas tus datos.",
+        title: "Integración de IA con hojas de cálculo y CRM",
+        text: "Conecta tus agentes y automatizaciones con las herramientas que utilizas para gestionar contactos, clientes e información empresarial.",
       },
     ],
   },
