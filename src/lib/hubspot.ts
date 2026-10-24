@@ -97,4 +97,79 @@ export async function upsertHubspotContact(c: HubspotContact): Promise<string> {
     });
     return id;
   }
+  typescript
+/**
+ * Sincroniza el contacto y crea una oportunidad de venta en HubSpot.
+ * Busca primero una oportunidad con el mismo nombre para reducir duplicados.
+ */
+export async function upsertHubspotLeadWithDeal(
+  c: HubspotContact,
+): Promise<string> {
+  // Primero creamos o actualizamos el contacto.
+  const contactId = await upsertHubspotContact(c);
+
+  // Nombre identificable para facilitar la búsqueda y reducir duplicados.
+  const dealName = `Solicitud web - ${c.name} - ${c.email}`;
+
+  // Buscamos si ya existe una oportunidad con ese nombre.
+  const searchResult = await call("/crm/v3/objects/deals/search", {
+    method: "POST",
+    body: JSON.stringify({
+      filterGroups: [
+        {
+          filters: [
+            {
+              propertyName: "dealname",
+              operator: "EQ",
+              value: dealName,
+            },
+          ],
+        },
+      ],
+      properties: ["dealname", "pipeline", "dealstage"],
+      limit: 1,
+    }),
+  });
+
+  let dealId: string;
+
+  if (searchResult.results?.length > 0) {
+    // Si ya existe, reutilizamos la oportunidad encontrada.
+    dealId = String(searchResult.results[0].id);
+  } else {
+    // Si no existe, creamos una oportunidad nueva.
+    const deal = await call("/crm/v3/objects/deals", {
+      method: "POST",
+      body: JSON.stringify({
+        properties: {
+          dealname: dealName,
+          pipeline: "default",
+          dealstage: "appointmentscheduled",
+          description: [
+            `Contacto: ${c.name}`,
+            `Correo: ${c.email}`,
+            `Empresa: ${c.company || "No especificada"}`,
+            `Servicio: ${c.service || "Sin especificar"}`,
+            `Mensaje: ${c.message}`,
+            `Página de origen: ${c.pageUrl || "web"}`,
+          ].join("\n"),
+        },
+      }),
+    });
+
+    dealId = String(deal.id);
+  }
+
+  // Asociamos la oportunidad al contacto.
+  await call(
+    `/crm/v3/objects/deals/${dealId}/associations/contacts/${contactId}/3`,
+    {
+      method: "PUT",
+    },
+  );
+
+  // Devolvemos el ID del contacto para mantener la compatibilidad
+  // con el registro actual de la integración.
+  return contactId;
+}
 }
