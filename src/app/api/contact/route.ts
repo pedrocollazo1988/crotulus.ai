@@ -68,8 +68,8 @@ export async function POST(request: Request) {
       ? sendContactNotification(notification)
       : Promise.reject(new Error("SMTP no configurado")),
     hubspotConfigured()
-      ? upsertHubspotContact(notification)
-      : Promise.reject(new Error("HubSpot no configurado")),
+  ? upsertHubspotLeadWithDeal(notification)
+  : Promise.reject(new Error("HubSpot no configurado")),
   ]);
 
   const mailOk = mail.status === "fulfilled";
