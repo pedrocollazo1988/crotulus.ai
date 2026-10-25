@@ -290,9 +290,9 @@ export const es = {
     // Traducciones del desplegable: el VALOR enviado es el canonico de
     // `CONTACT_SERVICES` (mismo orden), para no traducir los datos guardados.
    serviceOptions: [
-  "Maketing con IA",
-  "Agentes de IA y atención al cliente",
-  "Automatización de procesos empresariales",
+  "Agentes de IA para atención al cliente",
+  "Automatización de Tareas Administrativas",
+  "Automatización del Seguimiento Comercial",
 ],
     message: "¿Qué tarea o problema quieres resolver?",
     messagePh: "Cuéntanos qué te quita tiempo o frena tu negocio.",
