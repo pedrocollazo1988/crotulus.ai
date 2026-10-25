@@ -35,16 +35,16 @@ function splitName(full: string) {
 function propertiesFor(c: HubspotContact): Record<string, string> {
   const { firstname, lastname } = splitName(c.name);
 
-  const props: Record<string, string> = {
-    email: c.email,
-    firstname,
-    hs_lead_status: "NEW",
-    lifecyclestage: "lead",
-    area_de_interes: c.service || "Sin especificar",
-    origen_del_mensaje: c.pageUrl || "web",
-    idioma_preferido: c.locale || "es",
-    detalle_del_reto: c.message.slice(0, 65000),
-  };
+ const props: Record<string, string> = {
+  email: c.email,
+  firstname,
+  hs_lead_status: "NEW",
+  lifecyclestage: "lead",
+  area_de_interes: c.service || "Sin especificar",
+  origen_del_mensaje: c.pageUrl || "web",
+  hs_language: c.locale || "es",
+  detalle_del_reto: c.message.slice(0, 65000),
+};
 
   if (lastname) props.lastname = lastname;
   if (c.phone) props.phone = c.phone;
