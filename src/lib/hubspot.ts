@@ -97,7 +97,6 @@ export async function upsertHubspotContact(c: HubspotContact): Promise<string> {
     });
     return id;
   }
-  typescript
 /**
  * Sincroniza el contacto y crea una oportunidad de venta en HubSpot.
  * Busca primero una oportunidad con el mismo nombre para reducir duplicados.
@@ -171,5 +170,4 @@ export async function upsertHubspotLeadWithDeal(
   // Devolvemos el ID del contacto para mantener la compatibilidad
   // con el registro actual de la integración.
   return contactId;
-}
 }
