@@ -8,10 +8,8 @@ import { z } from "zod";
  */
 export const CONTACT_SERVICES = [
   "Agentes de IA para atención al cliente",
-  "Agentes de IA para captar clientes y solicitudes de citas",
   "Automatización de tareas administrativas",
   "Automatización del seguimiento comercial",
-  "Integración de agentes de IA con hojas de cálculo y CRM",
 ] as const;
 
 export type ContactService = (typeof CONTACT_SERVICES)[number];

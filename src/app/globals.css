@@ -501,18 +501,16 @@ svg { width: 1em; height: 1em; }
 .cta__social a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radius: 4px; }
 
 /* ------------------------------------------------------------ servicios */
-/* Cinco tarjetas: 3 arriba y 2 abajo. La quinta ocupa el hueco de la
-   segunda fila y se queda mas ancha, asi no deja un boquete a la derecha. */
-.services { display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; margin-top: 40px; }
+/* Tres tarjetas en una sola fila, a partes iguales. */
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
 .service {
-  grid-column: span 2;
+  grid-column: span 1;
   position: relative; overflow: hidden;
   background: var(--card); border: 1px solid var(--line); border-radius: 16px;
   padding: 26px 24px 22px; display: flex; flex-direction: column;
   box-shadow: var(--shadow-sm); animation: appear .55s backwards;
   transition: transform .24s, box-shadow .24s, border-color .24s;
 }
-.service:nth-child(4), .service:nth-child(5) { grid-column: span 3; }
 /* Barra azul que se dibuja al pasar el raton o al enfocar la tarjeta. */
 .service::before {
   content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%;
@@ -717,11 +715,11 @@ dialog.modal::backdrop { background: #073b7066; backdrop-filter: blur(5px); }
   .heading p { max-width: 100%; }
   .demo, .faq-layout { grid-template-columns: 1fr; gap: 34px; }
   .team-grid, .values, .problems, .process { grid-template-columns: 1fr 1fr; }
-  /* Cinco tarjetas en dos columnas: la ultima se queda sola, asi que ocupa
+  /* Tres tarjetas en dos columnas: la ultima se queda sola, asi que ocupa
      el ancho completo en vez de dejar media fila vacia. */
   .services { grid-template-columns: 1fr 1fr; }
-  .service, .service:nth-child(4), .service:nth-child(5) { grid-column: span 1; }
-  .service:nth-child(5) { grid-column: 1 / -1; }
+  .service { grid-column: span 1; }
+  .service:nth-child(3) { grid-column: 1 / -1; }
   .problem + .problem { padding-left: 0; border-left: 0; }
   .problem { border-bottom: 1px solid var(--line); }
 }
@@ -740,7 +738,7 @@ dialog.modal::backdrop { background: #073b7066; backdrop-filter: blur(5px); }
   .menu-backdrop.open { display: block; position: fixed; inset: var(--header-h) 0 0; background: #073b7040; }
   .team-grid, .values, .problems, .process { grid-template-columns: 1fr; }
   .services { grid-template-columns: 1fr; }
-  .service, .service:nth-child(4), .service:nth-child(5) { grid-column: span 1; }
+  .service, .service:nth-child(3) { grid-column: span 1; }
   .section { padding-top: 68px; padding-bottom: 68px; }
   .workflow__track { flex-direction: column; align-items: stretch; gap: 14px; }
   .workflow__link { margin-left: 22px; width: 1px; height: 22px; }

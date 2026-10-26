@@ -9,20 +9,12 @@ import {
   IconGlobe,
   IconInstagram,
   IconServiceAdmin,
-  IconServiceAppointments,
   IconServiceAttention,
   IconServiceFollowUp,
-  IconServiceIntegration,
   IconWhatsApp,
 } from "./icons";
 
-const CARD_ICONS = [
-  IconServiceAttention,
-  IconServiceAppointments,
-  IconServiceAdmin,
-  IconServiceFollowUp,
-  IconServiceIntegration,
-];
+const CARD_ICONS = [IconServiceAttention, IconServiceAdmin, IconServiceFollowUp];
 
 const CHANNEL_ICONS: Record<string, typeof IconWhatsApp> = {
   whatsapp: IconWhatsApp,
@@ -32,7 +24,7 @@ const CHANNEL_ICONS: Record<string, typeof IconWhatsApp> = {
 };
 
 /**
- * Seccion "Servicios" de la portada: cinco tarjetas numeradas con el catalogo.
+ * Seccion "Servicios" de la portada: tres tarjetas numeradas con el catalogo.
  * Cada tarjeta abre el formulario de contacto con su servicio ya elegido; el
  * valor enviado es el canonico de `CONTACT_SERVICES` (indice a indice), de modo
  * que la base de datos y HubSpot guardan siempre el mismo texto.

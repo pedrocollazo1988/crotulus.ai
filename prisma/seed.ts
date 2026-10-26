@@ -48,12 +48,12 @@ const TEAM = [
   },
   {
     name: "Manuel Alejandro Porteiro Fernández",
-    role: "Especialista en IA",
+    role: "Especialista en Marketing",
     bio: "Pone las soluciones en marcha y ajusta los detalles para que encajen en el día a día del equipo.",
-    roleEn: "AI specialist",
+    roleEn: "Marketing specialist",
     bioEn:
       "Puts the solutions live and fine-tunes the details so they fit the team's day-to-day work.",
-    rolePt: "Especialista em IA",
+    rolePt: "Especialista em Marketing",
     bioPt:
       "Põe as soluções em funcionamento e ajusta os detalhes para que encaixem no dia a dia da equipa.",
     photo: "/team/manuel-alejandro-porteiro-fernandez.jpg",

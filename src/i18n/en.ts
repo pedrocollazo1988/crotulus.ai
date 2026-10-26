@@ -153,7 +153,7 @@ export const en: Dict = {
   services: {
     eyebrow: "Services",
     title: "AI agent and automation services for your business",
-    lead: "Five concrete ways to take repetitive work off your team. Pick the one closest to your day-to-day.",
+    lead: "Three concrete ways to take repetitive work off your team. Pick the one closest to your day-to-day.",
     numSr: "Service ",
     cardCta: "Ask about this service",
     items: [
@@ -170,23 +170,13 @@ export const en: Dict = {
       },
       {
         num: "02",
-        title: "AI agents to win clients and book appointments",
-        text: "They greet interested people, collect their details and schedule appointments.",
-      },
-      {
-        num: "03",
         title: "Automation of administrative tasks",
         text: "Repetitive internal processes that run on their own.",
       },
       {
-        num: "04",
+        num: "03",
         title: "Automation of sales follow-up",
         text: "Automatic follow-up of leads and prospective customers.",
-      },
-      {
-        num: "05",
-        title: "Connecting AI agents to spreadsheets and CRM",
-        text: "We connect your agents to the tools where you manage your data.",
       },
     ],
   },
@@ -283,10 +273,8 @@ export const en: Dict = {
     service: "Where do you need help?",
     serviceOptions: [
       "AI agents for customer support",
-      "AI agents to win clients and book appointments",
       "Automation of administrative tasks",
       "Automation of sales follow-up",
-      "Connecting AI agents to spreadsheets and CRM",
     ],
     message: "Which task or problem would you like to solve?",
     messagePh: "Tell us what takes up your time or slows your business down.",

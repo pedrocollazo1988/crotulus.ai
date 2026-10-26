@@ -67,9 +67,9 @@ const TEAM: RawMember[] = [
   {
     name: "Manuel Alejandro Porteiro Fernández",
     photo: "/team/manuel-alejandro-porteiro-fernandez.jpg",
-    role: "Especialista en IA",
-    roleEn: "AI specialist",
-    rolePt: "Especialista em IA",
+    role: "Especialista en Marketing",
+    roleEn: "Marketing specialist",
+    rolePt: "Especialista em Marketing",
     bio: "Pone las soluciones en marcha y ajusta los detalles para que encajen en el día a día del equipo.",
     bioEn:
       "Puts the solutions live and fine-tunes the details so they fit the team's day-to-day work.",

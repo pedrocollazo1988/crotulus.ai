@@ -153,7 +153,7 @@ export const pt: Dict = {
   services: {
     eyebrow: "Serviços",
     title: "Serviços de agentes de IA e automatização para o seu negócio",
-    lead: "Cinco formas concretas de tirar trabalho repetitivo à sua equipa. Escolha a que mais se parece com o seu dia a dia.",
+    lead: "Três formas concretas de tirar trabalho repetitivo à sua equipa. Escolha a que mais se parece com o seu dia a dia.",
     numSr: "Serviço ",
     cardCta: "Consultar este serviço",
     items: [
@@ -170,23 +170,13 @@ export const pt: Dict = {
       },
       {
         num: "02",
-        title: "Agentes de IA para captar clientes e pedidos de marcação",
-        text: "Atendem os interessados, recolhem os seus dados e marcam consultas.",
-      },
-      {
-        num: "03",
         title: "Automatização de tarefas administrativas",
         text: "Processos internos repetitivos que se fazem sozinhos.",
       },
       {
-        num: "04",
+        num: "03",
         title: "Automatização do acompanhamento comercial",
         text: "Acompanhamento automático de leads e clientes potenciais.",
-      },
-      {
-        num: "05",
-        title: "Integração de agentes de IA com folhas de cálculo e CRM",
-        text: "Ligamos os seus agentes às ferramentas onde gere os seus dados.",
       },
     ],
   },
@@ -283,10 +273,8 @@ export const pt: Dict = {
     service: "Onde precisa de ajuda?",
     serviceOptions: [
       "Agentes de IA para apoio ao cliente",
-      "Agentes de IA para captar clientes e pedidos de marcação",
       "Automatização de tarefas administrativas",
       "Automatização do acompanhamento comercial",
-      "Integração de agentes de IA com folhas de cálculo e CRM",
     ],
     message: "Que tarefa ou problema gostaria de resolver?",
     messagePh: "Conte-nos o que lhe consome tempo ou trava o seu negócio.",

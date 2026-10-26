@@ -173,23 +173,13 @@ export const es = {
       },
       {
         num: "02",
-        title: "Captación de clientes y gestión de citas con IA",
-        text: "Facilita la atención inicial de los interesados, recopila sus datos y organiza las solicitudes de citas para que puedas darles seguimiento.",
-      },
-      {
-        num: "03",
         title: "Automatización de tareas administrativas",
         text: "Reduce el trabajo manual en tareas repetitivas, organiza la información y agiliza los procesos administrativos de tu empresa.",
       },
       {
-        num: "04",
+        num: "03",
         title: "Automatización del seguimiento comercial",
         text: "Organiza tus contactos, programa recordatorios y facilita el seguimiento de clientes potenciales para reducir las oportunidades olvidadas.",
-      },
-      {
-        num: "05",
-        title: "Integración de IA con hojas de cálculo y CRM",
-        text: "Conecta tus agentes y automatizaciones con las herramientas que utilizas para gestionar contactos, clientes e información empresarial.",
       },
     ],
   },
@@ -289,11 +279,11 @@ export const es = {
     service: "¿Dónde necesitas ayuda?",
     // Traducciones del desplegable: el VALOR enviado es el canonico de
     // `CONTACT_SERVICES` (mismo orden), para no traducir los datos guardados.
-   serviceOptions: [
-  "Agentes de IA para atención al cliente",
-  "Automatización de Tareas Administrativas",
-  "Automatización del Seguimiento Comercial",
-],
+    serviceOptions: [
+      "Agentes de IA para atención al cliente",
+      "Automatización de tareas administrativas",
+      "Automatización del seguimiento comercial",
+    ],
     message: "¿Qué tarea o problema quieres resolver?",
     messagePh: "Cuéntanos qué te quita tiempo o frena tu negocio.",
     consent:

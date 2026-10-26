@@ -179,17 +179,57 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   `src/app/layout.tsx` no declara `images` y no hay ninguna imagen social en
   `public/`. Al compartir el enlace no sale tarjeta. Pendiente de proponer al
   propietario (una imagen 1200x630, sin negro, con la marca).
+- **Despliegue de Vercel: lento, pero no roto** (2026-10-21). Tras empujar a
+  `main`, el commit se quedo en `pending` **~14 minutos** (404 en produccion) y
+  despues paso a `Vercel is deploying your app` -> `success`. El estado se
+  consulta en `GET /repos/{o}/{r}/commits/{sha}/status`; **el commit anterior ya
+  tenia `success`**, asi que sirve para comparar. No hay `.github/workflows` ni
+  `vercel.json`: Vercel va solo por integracion. **No entrar en panico a los 5
+  minutos**: esperar al menos 15-20 antes de sospechar. Si el despliegue no
+  aparece ni como `pending`, el commit de `028f131` se titula "reintento del
+  despliegue de produccion": ya paso antes y se arreglo re-empujando.
+- **`{email}` en el HTML de produccion**: aparece **solo** dentro del payload de
+  hidratacion de Next (`<script>`), no en el HTML visible. Para comprobar el
+  texto hay que quitar los `<script>` antes de buscar (`re.sub(r'<script.*?</script>','',h,flags=re.S)`).
+  Buscar en el HTML crudo da falsos positivos.
+- **Credencial en `.git/config`**: el remoto `origin` tiene un **PAT antiguo**
+  embebido (`https://<pat>@github.com/...`), de una sesion anterior y **distinto**
+  del que se uso el 2026-10-21. No esta versionado, pero es un secreto en disco:
+  **avisar al propietario para que lo revoque**. Comprobar con
+  `git config --get remote.origin.url` y comparar huellas (`sha256sum`), no
+  imprimir el valor.
 - **`/privacidad` ya existe** (commit `b9d82fd`): pagina INFORMATIVA en formato
   de acordeon (`<details>`, mismo `.faq` que "Preguntas"), 7 bloques y 18
   preguntas, en es/en/pt. Enlazada desde el pie, el consentimiento del
   formulario, el sitemap y el buscador. Contenido en `dict.privacy`; el correo
   se inyecta con el hueco `{email}` (funcion `fill()` en la pagina).
-- **Ramas**: `main` y `dev_plca_ai` estan al dia (2026-10-21), con el **mismo
-  arbol**. En `main`: `028f131` (ultima fusion `--no-ff`), `32ca3f8`, `1e51394`,
-  `a6f2e27` (formulario + arreglo del `svg`), `48a6eed` (widget), `6a4a061`
-  (contraste), `c4aa47d` (equipo + fotos), `0018a4a` (WhatsApp del pie en texto),
-  `d1b5fda` (Servicios) y `36e93f5` (redes y WhatsApp). Los tres PR (`#1`, `#2`,
-  `#3`) estan **fusionados**.
+- **`next lint` ya no existe en Next 16** y **`next build` ya no ejecuta ESLint**
+  (`node_modules/next/dist/docs/01-app/02-guides/upgrading/version-16.md`, seccion
+  "next lint Command"). Por eso `eslint.config.mjs` era un **huerfano real**
+  (importaba `eslint-config-next`, nunca instalado): se borro el 2026-10-21. Si
+  algun dia se quiere lint, hay que instalar `eslint` + `eslint-config-next` y
+  anadir un script propio.
+- **Trampa de limpieza: los imports sin usar no dan error** con el `tsconfig.json`
+  del proyecto (no tiene `noUnusedLocals`). Para encontrarlos:
+  `npx tsc --noEmit --noUnusedLocals --noUnusedParameters`. Asi aparecieron
+  `redirect`, `SITE` y 5 iconos (todos del commit inicial, no de sesiones
+  recientes). Ejecutarlo tambien como red de seguridad tras cada limpieza.
+- **Las clases CSS muertas se detectan comparando** las definidas en
+  `globals.css` contra las que aparecen en `className`. Ojo: `button--ghost`,
+  `form-status--ok` y `search__foot` no se usaban (borradas 2026-10-21). Hay que
+  confirmar que no se construyan por plantilla antes de borrar.
+- **`/equipo` sale vacio en local sin `.env.local`** (no hay BD): es normal, la
+  pagina devuelve 200 y 96 KB. El texto "error" que aparece en el HTML es el
+  payload de hidratacion de Next, **no un fallo**. No confundirlo.
+- **CDP: `/json/new` exige `PUT`** (`fetch(url,{method:"PUT"})`); con `GET`
+  responde "Using unsafe HTTP verb".
+- **Ramas**: `main` y `dev_plca_ai` al dia (2026-10-21), con el **mismo arbol**.
+  Ultima fusion en `main`: `00944a2` (pagina `/privacidad`, 2026-10-21); antes
+  `028f131`, `32ca3f8`, `1e51394`, `a6f2e27` (formulario + arreglo del `svg`),
+  `48a6eed` (widget), `6a4a061` (contraste), `c4aa47d` (equipo + fotos),
+  `0018a4a` (WhatsApp del pie en texto), `d1b5fda` (Servicios) y `36e93f5`
+  (redes y WhatsApp). Los tres PR (`#1`, `#2`, `#3`) estan **fusionados**.
+  Desplegado en produccion y verificado (2026-10-21).
 - **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
   del propietario **+5359888821** (10 digitos, Cuba) y redes
   Instagram/Facebook; se muestran en pie, banda CTA y dialogo de contacto
