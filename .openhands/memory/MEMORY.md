@@ -192,12 +192,16 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   hidratacion de Next (`<script>`), no en el HTML visible. Para comprobar el
   texto hay que quitar los `<script>` antes de buscar (`re.sub(r'<script.*?</script>','',h,flags=re.S)`).
   Buscar en el HTML crudo da falsos positivos.
-- **Credencial en `.git/config`**: el remoto `origin` tiene un **PAT antiguo**
-  embebido (`https://<pat>@github.com/...`), de una sesion anterior y **distinto**
-  del que se uso el 2026-10-21. No esta versionado, pero es un secreto en disco:
-  **avisar al propietario para que lo revoque**. Comprobar con
+- **Credencial en `.git/config`**: el remoto `origin` lleva embebido un
+  **token de SOLO LECTURA** (huella identica a `GITHUB_TOKEN`; ya no es "otro
+  PAT"). `git push origin main` con el **falla con 403**. Para empujar hay que
+  pasar en la URL un token con **Contents: R/W** (el propietario creo uno el
+  2026-10-26 y el push funciono asi). Es un secreto en disco: **avisar al
+  propietario para que lo revoque**. Comprobar con
   `git config --get remote.origin.url` y comparar huellas (`sha256sum`), no
   imprimir el valor.
+- **Empujar a `main`**: `git push "https://<TOKEN_RW>@github.com/pedrocollazo1988/crotulus.ai.git" main`.
+  `GITHUB_TOKEN` y `allhands` son de SOLO LECTURA -> 403.
 - **`/privacidad` ya existe** (commit `b9d82fd`): pagina INFORMATIVA en formato
   de acordeon (`<details>`, mismo `.faq` que "Preguntas"), 7 bloques y 18
   preguntas, en es/en/pt. Enlazada desde el pie, el consentimiento del
