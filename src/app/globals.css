@@ -28,24 +28,26 @@
   color-scheme: light;
 }
 
+/* Noche: base casi negra y los colores de marca (azul/electrico) como acento,
+   en vez del azul marino plano anterior. */
 .theme-dark {
   --blue: #4aa8e8;
   --blue-dark: #2f8fd6;
-  --ink: #eaf3fb;
-  --muted: #9fb6c9;
-  --pale: #163a56;
-  --line: #28536f;
-  --electric: #62b8f5;
-  --navy: #0e2a40;
-  --white: #1a4262;
+  --ink: #e8f1f9;
+  --muted: #93a9bd;
+  --pale: #10161d;
+  --line: #223040;
+  --electric: #5cb3f2;
+  --navy: #0a1017;
+  --white: #121922;
 
-  --bg: #12314a;
-  --bg-soft: #163a56;
-  --header-bg: #12314af2;
-  --card: #1a4262;
-  --shadow-sm: 0 12px 25px #06192b40;
-  --shadow-md: 0 14px 40px #06192b55;
-  --shadow-lg: 0 28px 70px #06192b60;
+  --bg: #05080b;
+  --bg-soft: #0b1015;
+  --header-bg: #05080bf2;
+  --card: #0f151c;
+  --shadow-sm: 0 12px 25px #00000066;
+  --shadow-md: 0 14px 40px #00000080;
+  --shadow-lg: 0 28px 70px #0000008c;
   color-scheme: dark;
 }
 
@@ -253,6 +255,12 @@ svg { width: 1em; height: 1em; }
   display: flex; align-items: center; justify-content: center;
 }
 .theme-dark .visual { background: radial-gradient(ellipse, #16405c 0, #123449 46%, transparent 72%); }
+/* Recorta solo la orbita giratoria (cuyo rectangulo exterior crece al girar)
+   sin cortar las tarjetas flotantes, que deben sobresalir del circulo. */
+.visual__clip {
+  position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
+  pointer-events: none;
+}
 .visual__grid {
   position: absolute; inset: 18px;
   background-image: radial-gradient(#80bae655 1px, transparent 1px);
@@ -288,7 +296,10 @@ svg { width: 1em; height: 1em; }
 .floating b { font-size: 12px; display: block; }
 .floating small { display: block; font-size: 10px; color: var(--muted); }
 .f1 { top: 56px; left: 8px; }
-.f2 { right: -6px; top: 172px; animation-delay: -2s; }
+/* Las tres tarjetas montan sobre el borde del circulo: f1 y f3 sobresalen por
+   la izquierda dentro del propio recuadro del visual, asi que f2 se ancla a la
+   derecha con un saliente equivalente. -28px cabe en el margen del `.wrap`. */
+.f2 { right: -28px; top: 172px; animation-delay: -2s; }
 .f3 { bottom: 58px; left: 12px; animation-delay: -3s; }
 .badgeicon {
   width: 33px; height: 33px; background: var(--pale); border-radius: 8px;
@@ -317,7 +328,9 @@ svg { width: 1em; height: 1em; }
 
 /* ------------------------------------------------------------ secciones */
 .section { padding-top: 96px; padding-bottom: 96px; }
-.section--pale { background: var(--pale); }
+/* Las secciones con fondo propio llevan esquinas redondeadas para no verse
+   como franjas a sangre. */
+.section--pale { background: var(--pale); border-radius: 20px; }
 .section h2 {
   font-size: clamp(30px, 3.3vw, 45px); line-height: 1.15; letter-spacing: -1.6px;
   font-weight: 550; margin: 16px 0 20px;
@@ -393,7 +406,11 @@ svg { width: 1em; height: 1em; }
 .theme-dark .bubble.agent { background: #1b4562; border-color: #2e6b8e; }
 .event { font-size: 11px; display: flex; gap: 8px; align-items: center; color: #28866b; }
 .theme-dark .event { color: #6fd3b2; }
-.demo-note { padding: 12px 22px; border-top: 1px solid var(--line); font-size: 10px; color: var(--muted); background: var(--bg-soft); }
+.demo-note {
+  padding: 12px 22px; border-top: 1px solid var(--line); font-size: 10px;
+  color: var(--muted); background: var(--bg-soft);
+  border-radius: 0 0 15px 15px;
+}
 
 /* ----------------------------------------------------------- proceso */
 .process { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 42px; }
@@ -756,10 +773,10 @@ dialog.modal::backdrop { background: #073b7066; backdrop-filter: blur(5px); }
 }
 
 @media (max-width: 620px) {
-  /* El visual del hero es circular: hay que encogerlo o desborda el ancho.
-     `overflow: hidden` recorta la orbita giratoria, cuyo rectangulo exterior
-     crece al rotar y provocaba scroll horizontal. */
-  .visual { height: 370px; overflow: hidden; }
+  /* El visual del hero es circular y la orbita giratoria crece al rotar. El
+     recorte vive en `.visual__clip` (solo anillos); `.visual` queda visible
+     para que las tarjetas flotantes sobresalgan del circulo sin cortarse. */
+  .visual { height: 370px; }
   .orbit { width: 288px; height: 288px; }
   .orbit--outer { width: 336px; height: 336px; }
   .core { width: 130px; height: 130px; border-radius: 30px; }

@@ -57,11 +57,16 @@ export function Hero({ dict }: { dict: Dict }) {
       </div>
 
       <div className="visual" role="img" aria-label={dict.a11y.heroVisual}>
-        <span className="visual__grid" aria-hidden="true" />
-        <span className="orbit" aria-hidden="true" />
-        <span className="orbit orbit--outer" aria-hidden="true" />
-        <span className="data-particle particle-a" aria-hidden="true" />
-        <span className="data-particle particle-b" aria-hidden="true" />
+        {/* El recorte va en este envoltorio, no en `.visual`: asi la orbita
+            giratoria queda contenida sin cortar las tarjetas flotantes, que
+            deben sobresalir del circulo. */}
+        <span className="visual__clip" aria-hidden="true">
+          <span className="visual__grid" />
+          <span className="orbit" />
+          <span className="orbit orbit--outer" />
+          <span className="data-particle particle-a" />
+          <span className="data-particle particle-b" />
+        </span>
 
         <div className="core">
           <strong>{h.coreValue}</strong>
