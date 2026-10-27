@@ -27,8 +27,8 @@ export async function checkDemoSession(
       ? requestedSessionId
       : randomUUID();
 
-  const sessionKey = ${SESSION_PREFIX}${sessionId};
-  const rateKey = ${sessionKey}:rate;
+  const sessionKey = `${SESSION_PREFIX}${sessionId}`;
+  const rateKey = `${sessionKey}:rate`;
 
   const currentMessages = Number(
     (await redis.get<number>(sessionKey)) ?? 0
