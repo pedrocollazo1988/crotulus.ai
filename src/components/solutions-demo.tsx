@@ -119,8 +119,8 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
                   role="tab"
                   id={tab-${item.id}}
                   aria-selected={selected}
-                  aria-controls={panel-${item.id}}
-                  className={tab${selected ? " active" : ""}}
+                  aria-controls={`panel-${item.id}`}
+                  className={`tab${selected ? " active" : ""}`}
                   onClick={() => changeScenario(index)}
                   disabled={loading}
                 >
@@ -145,7 +145,7 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
         <div
           className="demo-panel"
           role="tabpanel"
-          id={panel-${tab.id}}
+          id={`panel-${tab.id}`}
           aria-labelledby={tab-${tab.id}}
         >
           <div className="panel-head">
