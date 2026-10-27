@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { redis } from "@/lib/redis";
+import { getRedis } from "@/lib/redis";
 
 const SESSION_PREFIX = "crotulus:demo:session:";
 const SESSION_TTL_SECONDS = 24 * 60 * 60;
@@ -21,6 +21,7 @@ export type DemoSessionResult =
 export async function checkDemoSession(
   requestedSessionId: unknown
 ): Promise<DemoSessionResult> {
+  const redis = getRedis();
   const sessionId =
     typeof requestedSessionId === "string" &&
     /^[0-9a-f-]{36}$/i.test(requestedSessionId)
