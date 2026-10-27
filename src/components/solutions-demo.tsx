@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { Dict } from "@/i18n";
 import {
-  IconArrowUpRight
+  IconArrowUpRight,
   IconChat,
   IconFlow,
   IconGrowth,
@@ -72,7 +72,6 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
       if (!response.ok || typeof data.answer !== "string") {
         throw new Error(data.error || "No se pudo obtener una respuesta.");
       }
-
       setMessages((current) => [
         ...current,
         { role: "model", text: data.answer },
@@ -140,12 +139,12 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
     );
   })}
 </div>
-
+</div>
         <div
           className="demo-panel"
           role="tabpanel"
           id={"panel-" + tab.id}
-          aria-labelledby={"tab-"+tab.id}
+          aria-labelledby={"tab-" + tab.id}
         >
           <div className="panel-head">
             <span className="badgeicon">
@@ -175,7 +174,7 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
 
             {messages.map((message, index) => (
               <p
-                key={${index}-${message.role}}
+               key={index + "-" + message.role}
                 className={`bubble ${
                   message.role === "user" ? "user" : "agent"
                 }`}
