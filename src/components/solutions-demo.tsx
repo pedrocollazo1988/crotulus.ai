@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { Dict } from "@/i18n";
 import {
-  IconArrowUpRight,
+  IconArrowUpRight
   IconChat,
   IconFlow,
   IconGrowth,
@@ -113,30 +113,30 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
               const selected = index === active;
 
               return (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  id={tab-${item.id}}
-                  aria-selected={selected}
-                  aria-controls={`panel-${item.id}`}
-                  className={`tab${selected ? " active" : ""}`}
-                  onClick={() => changeScenario(index)}
-                  disabled={loading}
-                >
-                  <span>
-                    <Icon />
-                  </span>
+              <button
+  key={item.id}
+  type="button"
+  role="tab"
+  id={"tab-" + item.id}
+  aria-selected={selected}
+  aria-controls={"panel-" + item.id}
+  className={"tab" + (selected ? " active" : "")}
+  onClick={() => changeScenario(index)}
+  disabled={loading}
+>
+  <span>
+    <Icon />
+  </span>
 
-                  <span>
-                    <b>{item.title}</b>
-                    <small>{item.sub}</small>
-                  </span>
+  <span>
+    <b>{item.title}</b>
+    <small>{item.sub}</small>
+  </span>
 
-                  <span className="arrow">
-                    <IconArrowUpRight />
-                  </span>
-                </button>
+  <span className="arrow">
+    <IconArrowUpRight />
+  </span>
+</button>
               );
             })}
           </div>
@@ -145,8 +145,8 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
         <div
           className="demo-panel"
           role="tabpanel"
-          id={`panel-${tab.id}`}
-          aria-labelledby={tab-${tab.id}}
+          id={"panel-" + tab.id}
+          aria-labelledby={"tab-"+tab.id}
         >
           <div className="panel-head">
             <span className="badgeicon">
