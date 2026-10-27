@@ -99,7 +99,7 @@ export async function POST(request: Request) {
     ];
 
     const response = await fetch(
-  https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent,
+  `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
   {
     method: "POST",
     headers: {
