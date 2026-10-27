@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { checkDemoSession } from "@/lib/demo-session";
+
+export const runtime = "nodejs";
 
 const MODEL = "gemini-3.5-flash-lite";
 
@@ -11,7 +14,6 @@ const SCENARIOS: Record<string, string> = {
     Puedes simular la solicitud de una cita, pero no confirmes
     reservas reales porque esta demostración no tiene una agenda conectada.
   `,
-
   restaurant: `
     Eres un asistente virtual de un restaurante.
     Responde en español de forma amable y clara.
@@ -21,7 +23,6 @@ const SCENARIOS: Record<string, string> = {
     Puedes simular una solicitud de reserva, pero no confirmes
     reservas reales porque no hay un sistema de reservas conectado.
   `,
-
   realestate: `
     Eres un asistente virtual de una inmobiliaria.
     Responde en español de forma profesional y cercana.
@@ -31,7 +32,6 @@ const SCENARIOS: Record<string, string> = {
     cuando sea pertinente.
     No inventes propiedades disponibles ni confirmes operaciones reales.
   `,
-
   administration: `
     Eres un asistente especializado en automatización administrativa.
     Responde en español de forma clara y profesional.
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     const message =
       typeof body.message === "string" ? body.message.trim() : "";
 
-    const history = Array.isArray(body.history) ? body.history : [];
+    const requestedSessionId = body.sessionId;
 
     if (!SCENARIOS[scenario]) {
       return NextResponse.json(
@@ -77,6 +77,29 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    const session = await checkDemoSession(requestedSessionId);
+
+    if (!session.allowed) {
+      const limitReached = session.reason === "limit";
+
+      return NextResponse.json(
+        {
+          error: limitReached
+            ? "Has alcanzado el límite de 15 mensajes de esta demostración. Si deseas conocer cómo aplicar una solución similar en tu negocio, contacta con C-ROTULUS IA."
+            : "Has enviado varios mensajes en poco tiempo. Espera un minuto antes de continuar.",
+          code: limitReached ? "SESSION_LIMIT" : "RATE_LIMIT",
+          sessionId:
+            typeof requestedSessionId === "string"
+              ? requestedSessionId
+              : null,
+          messagesRemaining: session.messagesRemaining,
+        },
+        { status: 429 }
+      );
+    }
+
+    const history = Array.isArray(body.history) ? body.history : [];
 
     const contents = [
       ...history
@@ -99,13 +122,13 @@ export async function POST(request: Request) {
     ];
 
     const response = await fetch(
-  `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-goog-api-key": apiKey,
-    },
+      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": apiKey,
+        },
         body: JSON.stringify({
           systemInstruction: {
             parts: [{ text: SCENARIOS[scenario] }],
@@ -117,6 +140,7 @@ export async function POST(request: Request) {
           },
         }),
         cache: "no-store",
+        signal: AbortSignal.timeout(20000),
       }
     );
 
@@ -143,7 +167,11 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ answer });
+    return NextResponse.json({
+      answer,
+      sessionId: session.sessionId,
+      messagesRemaining: session.messagesRemaining,
+    });
   } catch (error) {
     console.error("Error en la demostración de IA:", error);
 
