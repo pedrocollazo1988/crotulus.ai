@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Dict } from "@/i18n";
 import {
   IconArrowUpRight,
@@ -23,6 +23,20 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const [sessionId, setSessionId] = useState("");
+
+  useEffect(() => {
+  const storageKey = "crotulus-demo-session";
+  let savedSessionId = window.localStorage.getItem(storageKey);
+
+  if (!savedSessionId) {
+    savedSessionId = window.crypto.randomUUID();
+    window.localStorage.setItem(storageKey, savedSessionId);
+  }
+
+  setSessionId(savedSessionId);
+}, []);
 
   const s = dict.solutions;
   const tab = s.tabs[active] ?? s.tabs[0];
