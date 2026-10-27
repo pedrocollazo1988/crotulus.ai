@@ -107,40 +107,39 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
 
           <p className="section__lead">{s.lead}</p>
 
-          <div className="tabs" role="tablist" aria-label={s.eyebrow}>
-            {s.tabs.map((item, index) => {
-              const Icon = TAB_ICONS[index] ?? IconChat;
-              const selected = index === active;
+         <div className="tabs" role="tablist" aria-label={s.eyebrow}>
+  {s.tabs.map((item, index) => {
+    const Icon = TAB_ICONS[index] ?? IconChat;
+    const selected = index === active;
 
-              return (
-              <button
-  key={item.id}
-  type="button"
-  role="tab"
-  id={"tab-" + item.id}
-  aria-selected={selected}
-  aria-controls={"panel-" + item.id}
-  className={"tab" + (selected ? " active" : "")}
-  onClick={() => changeScenario(index)}
-  disabled={loading}
->
-  <span>
-    <Icon />
-  </span>
+    return (
+      <button
+        key={item.id}
+        type="button"
+        role="tab"
+        id={"tab-" + item.id}
+        aria-selected={selected}
+        aria-controls={"panel-" + item.id}
+        className={"tab" + (selected ? " active" : "")}
+        onClick={() => changeScenario(index)}
+        disabled={loading}
+      >
+        <span>
+          <Icon />
+        </span>
 
-  <span>
-    <b>{item.title}</b>
-    <small>{item.sub}</small>
-  </span>
+        <span>
+          <b>{item.title}</b>
+          <small>{item.sub}</small>
+        </span>
 
-  <span className="arrow">
-    <IconArrowUpRight />
-  </span>
-</button>
-              );
-            })}
-          </div>
-        </div>
+        <span className="arrow">
+          <IconArrowUpRight />
+        </span>
+      </button>
+    );
+  })}
+</div>
 
         <div
           className="demo-panel"
