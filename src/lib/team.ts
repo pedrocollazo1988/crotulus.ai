@@ -31,50 +31,50 @@ const TEAM: RawMember[] = [
   {
     name: "Pedro Luis Collazo Abreu",
     photo: "/team/pedro-luis-collazo-abreu.jpg",
-    role: "CEO",
-    roleEn: "CEO",
-    rolePt: "CEO",
-    bio: "Dirige la estrategia de cada proyecto y mantiene la conversación con el negocio: qué problema resolvemos, para qué y cómo lo mediremos.",
+    role: "CEO · Estrategia y dirección de proyectos de IA",
+    roleEn: "CEO · AI Strategy and Project Leadership",
+    rolePt: "CEO · Estratégia e direção de projetos de IA",
+    bio: "Combina estrategia comercial, dirección tecnológica y coordinación de proyectos para conectar las necesidades de cada cliente con soluciones prácticas de inteligencia artificial y automatización.",
     bioEn:
-      "Sets the strategy for every project and keeps the conversation with the business: which problem we solve, what for and how we will measure it.",
+      "Combines business strategy, technology leadership and project coordination to connect each client's needs with practical AI and automation solutions.",
     bioPt:
-      "Define a estratégia de cada projeto e mantém a conversa com o negócio: que problema resolvemos, para quê e como o vamos medir.",
+      "Combina estratégia comercial, direção tecnológica e coordenação de projetos para ligar as necessidades de cada cliente a soluções práticas de inteligência artificial e automação.",
   },
   {
     name: "Olga Lidia Romero Fernández",
     photo: "/team/olga-lidia-romero-fernandez.jpg",
-    role: "Especialista en IA",
-    roleEn: "AI specialist",
-    rolePt: "Especialista em IA",
-    bio: "Diseña y prueba los agentes de IA: qué hacen, con qué datos trabajan y cuándo deben pedir ayuda a una persona.",
+    role: "Especialista en Soluciones de IA y Automatización",
+    roleEn: "AI Solutions and Automation Specialist",
+    rolePt: "Especialista em Soluções de IA e Automação",
+    bio: "Desarrolla agentes de inteligencia artificial, asistentes conversacionales y automatizaciones que conectan herramientas digitales para reducir tareas manuales, agilizar procesos y mejorar la atención al cliente.",
     bioEn:
-      "Designs and tests the AI agents: what they do, which data they work with and when they must ask a person for help.",
+      "Develops AI agents, conversational assistants and automations that connect digital tools to reduce manual work, streamline processes and improve customer service.",
     bioPt:
-      "Desenha e testa os agentes de IA: o que fazem, com que dados trabalham e quando devem pedir ajuda a uma pessoa.",
+      "Desenvolve agentes de inteligência artificial, assistentes conversacionais e automações que ligam ferramentas digitais para reduzir tarefas manuais, agilizar processos e melhorar o atendimento ao cliente.",
   },
   {
     name: "Rogelio Alejandro Crespo Romero",
     photo: "/team/rogelio-alejandro-crespo-romero.jpg",
-    role: "Especialista en IA",
-    roleEn: "AI specialist",
-    rolePt: "Especialista em IA",
-    bio: "Conecta los agentes con las herramientas del negocio y cuida de que la información circule de forma segura.",
+    role: "Especialista en Desarrollo e Implementación de Soluciones de IA",
+    roleEn: "AI Solutions Development and Implementation Specialist",
+    rolePt: "Especialista em Desenvolvimento e Implementação de Soluções de IA",
+    bio: "Participa en el desarrollo, la integración y la implementación de soluciones tecnológicas, incluyendo su configuración, pruebas y optimización para adaptarlas a los requisitos de cada proyecto.",
     bioEn:
-      "Connects the agents to the business tools and makes sure information flows safely.",
+      "Contributes to the development, integration and implementation of technology solutions, including configuration, testing and optimization to meet each project's requirements.",
     bioPt:
-      "Liga os agentes às ferramentas do negócio e garante que a informação circula de forma segura.",
+      "Participa no desenvolvimento, integração e implementação de soluções tecnológicas, incluindo a sua configuração, testes e otimização para responder aos requisitos de cada projeto.",
   },
   {
     name: "Manuel Alejandro Porteiro Fernández",
     photo: "/team/manuel-alejandro-porteiro-fernandez.jpg",
-    role: "Especialista en Marketing",
-    roleEn: "Marketing specialist",
-    rolePt: "Especialista em Marketing",
-    bio: "Pone las soluciones en marcha y ajusta los detalles para que encajen en el día a día del equipo.",
+    role: "Especialista en Marketing Digital y Estrategias de Crecimiento",
+    roleEn: "Digital Marketing and Growth Strategy Specialist",
+    rolePt: "Especialista em Marketing Digital e Estratégias de Crescimento",
+    bio: "Desarrolla estrategias de marketing digital, posicionamiento de marca, contenidos y campañas para atraer clientes, incorporando herramientas de inteligencia artificial y automatización para agilizar las actividades comerciales.",
     bioEn:
-      "Puts the solutions live and fine-tunes the details so they fit the team's day-to-day work.",
+      "Develops digital marketing, brand positioning, content and campaign strategies to attract customers, incorporating AI and automation tools to streamline marketing activities.",
     bioPt:
-      "Põe as soluções em funcionamento e ajusta os detalhes para que encaixem no dia a dia da equipa.",
+      "Desenvolve estratégias de marketing digital, posicionamento de marca, conteúdos e campanhas para atrair clientes, incorporando ferramentas de inteligência artificial e automação para agilizar as atividades comerciais.",
   },
 ];
 
