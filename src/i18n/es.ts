@@ -191,7 +191,7 @@ export const es = {
       {
         num: "02",
         title: "Automatización de tareas administrativas",
-        text: "Reduce el trabajo manual en tareas repetitivas, organiza la información y agiliza los procesos administrativos de tu empresa.",
+        text: "Automatiza las tareas repetitivas, organiza la información y agiliza los procesos administrativos de tu empresa para ahorrar tiempo, reducir el trabajo manual y dedicar más recursos a lo que realmente importa.",
       },
       {
         num: "03",
