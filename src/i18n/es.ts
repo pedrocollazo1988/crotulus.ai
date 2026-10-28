@@ -196,7 +196,7 @@ export const es = {
       {
         num: "03",
         title: "Automatización del seguimiento comercial",
-        text: "Organiza tus contactos, programa recordatorios y facilita el seguimiento de clientes potenciales para reducir las oportunidades olvidadas.",
+        text: "Organiza tus contactos, automatiza los recordatorios y mantén un seguimiento constante de tus clientes potenciales para aprovechar más oportunidades de venta y evitar que posibles clientes queden en el olvido.",
       },
     ],
   },
