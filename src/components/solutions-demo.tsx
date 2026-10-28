@@ -97,11 +97,21 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
         { role: "model", text: data.answer },
       ]);
     } catch (err) {
-      console.error("Error en el chat de demostración:", err);
-      setError(s.errorMessage);
-    } finally {
-      setLoading(false);
-    }
+  console.error("Error en el chat de demostración:", err);
+
+  const errorMessage = err instanceof Error ? err.message : "";
+
+  if (
+    errorMessage.includes("Has alcanzado el límite de 15 mensajes") ||
+    errorMessage.includes("Has enviado varios mensajes en poco tiempo")
+  ) {
+    setError(errorMessage);
+  } else {
+    setError(s.errorMessage);
+  }
+} finally {
+  setLoading(false);
+}
   }
 
   function changeScenario(index: number) {
