@@ -226,13 +226,13 @@ export const es = {
     workflowAria:
       "De una solicitud a una acción, con revisión de tu equipo",
     workflow: [
-      { title: "Llega una solicitud", sub: "Un mensaje, una consulta, una tarea." },
-      { title: "Tu agente la organiza", sub: "Entiende el contexto y prepara la acción." },
-      { title: "Tu negocio avanza", sub: "Con los controles de tu equipo." },
+      { title: "Llega una solicitud", sub: "Un mensaje, una consulta o una tarea que necesita atención." },
+      { title: "Tu agente la organiza", sub: "Comprende la solicitud, identifica qué necesita y prepara el siguiente paso." },
+      { title: "Tu negocio avanza", sub: "La tarea sigue su curso con los controles y la supervisión de tu equipo." },
     ],
     fitTitle:
       "Tu sector cambia. Nuestro punto de partida es el mismo: tu problema.",
-    fitSub: "Comercio, servicios, hostelería, equipos comerciales y más.",
+    fitSub: "Clínicas dentales, estéticas, restaurantes, inmobiliarias, empresas de proyectos, comercio, servicios, hostelería, equipos comerciales y más. Adaptamos cada solución a tus necesidades.",
     fitCta: "Exploremos tu caso",
   },
   faq: {
