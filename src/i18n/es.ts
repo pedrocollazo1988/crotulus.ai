@@ -180,7 +180,7 @@ export const es = {
       {
         num: "01",
         title: "Agentes de IA para atención al cliente",
-        text: "Ofrece respuestas rápidas a las consultas habituales, informa sobre tus productos o servicios y atiende a tus clientes incluso fuera del horario comercial.",
+        text: "Atiende a tus clientes las 24 horas con agentes de inteligencia artificial que responden preguntas, ofrecen información sobre tus productos o servicios y ayudan a resolver consultas habituales, incluso fuera del horario comercial.",
         channels: [
           { key: "whatsapp", label: "WhatsApp" },
           { key: "instagram", label: "Instagram" },
