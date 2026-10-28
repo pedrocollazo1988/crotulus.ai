@@ -208,17 +208,17 @@ export const es = {
       {
         num: "01 — ESCUCHAMOS",
         title: "Cuéntanos qué te frena.",
-        text: "Revisamos tus tareas, tus herramientas y los puntos donde se pierde tiempo. Elegimos un problema que valga la pena resolver.",
+        text: "Analizamos tus tareas, las herramientas que utilizas y los procesos que te hacen perder tiempo. Identificamos las oportunidades de mejora para encontrar dónde la inteligencia artificial puede aportar más valor a tu negocio.",
       },
       {
         num: "02 — DISEÑAMOS",
         title: "Un agente con propósito.",
-        text: "Definimos qué hará, qué información necesita y cuándo debe pedir ayuda a una persona. Lo probamos con situaciones de tu negocio.",
+        text: "Definimos qué hará la solución de inteligencia artificial, qué información necesita y cuándo debe intervenir una persona. Después, la probamos con situaciones reales de tu negocio para comprobar que responde a tus necesidades.",
       },
       {
         num: "03 — ACOMPAÑAMOS",
         title: "Lo ponemos en marcha.",
-        text: "Integramos, ajustamos y revisamos los resultados contigo. Tu equipo aprende a usarlo y mantiene el control.",
+        text: "Integramos la solución en tu negocio, ajustamos su funcionamiento y revisamos los resultados contigo. Acompañamos a tu equipo para que aprenda a utilizarla con confianza y mantenga siempre el control.",
       },
     ],
     workflowHeading: "De pendiente a resuelto",
