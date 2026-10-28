@@ -78,7 +78,8 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
           scenario,
           message,
           history: previousMessages,
-        }),
+          sessionId,
+      }),
       });
 
       const data = await response.json();
