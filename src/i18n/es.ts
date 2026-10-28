@@ -65,7 +65,7 @@ export const es = {
     titleLine1: "Menos tareas",
     titleLine2: "repetitivas.",
     titleAccent: "Más tiempo para crecer.",
-    lead: "En C-ROTULUS IA ayudamos a las empresas a mejorar la atención al cliente, automatizar procesos y optimizar sus actividades comerciales mediante soluciones de inteligencia artificial adaptadas a sus necesidades.",
+    lead: "Haz que tu negocio trabaje de forma más inteligente. Combinamos inteligencia artificial, automatización y marketing digital para reducir tareas repetitivas, optimizar tus operaciones y convertir más oportunidades en resultados.",
     ctaPrimary: "Quiero mejorar mi negocio",
     ctaSecondary: "Descubrir nuestros servicios",
     micro: "Soluciones a medida · Atención personalizada · Sin compromiso",
