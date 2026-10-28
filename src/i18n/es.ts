@@ -173,7 +173,7 @@ export const es = {
   services: {
     eyebrow: "Nuestros servicios",
     title: "Soluciones de inteligencia artificial para tu negocio",
-    lead: "Desde la atención al cliente hasta la automatización de procesos y el seguimiento comercial, diseñamos soluciones prácticas adaptadas a las necesidades de tu empresa.",
+    lead: "Te ayudamos a ahorrar tiempo, mejorar la atención a tus clientes y organizar tus procesos comerciales y administrativos mediante soluciones de inteligencia artificial y automatización adaptadas a tu negocio.",
     numSr: "Servicio ",
     cardCta: "Consultar este servicio",
     items: [
