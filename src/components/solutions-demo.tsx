@@ -84,8 +84,13 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
 
       const data = await response.json();
 
+      if (typeof data.sessionId === "string") {
+        setSessionId(data.sessionId);
+        window.localStorage.setItem("crotulus-demo-session", data.sessionId);
+      }
+
       if (!response.ok || typeof data.answer !== "string") {
-        throw new Error(data.error || "No se pudo obtener una respuesta.");
+          throw new Error(data.error || "No se pudo obtener una respuesta.");
       }
       setMessages((current) => [
         ...current,
