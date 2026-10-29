@@ -1,9 +1,10 @@
 # Memoria del proyecto C-ROTULUS IA
 
 Sitio corporativo de C-ROTULUS S.U.R.L. **reescrito desde cero** en
-`/workspace/project` (repo `pedrocollazo1988/crotulus.ai`). En esta maquina se
-clono la rama **`main`**, que es la que lleva el trabajo reciente (la regla
-antigua de "trabajar en `dev_plca_ai`" quedo desfasada: ver "Estado actual").
+`/workspace/project` (repo `pedrocollazo1988/crotulus.ai`). **Rama de trabajo:
+`dev_plca_ai`** (decidido 2026-10-29 por el propietario: "tener en `dev_plca_ai`
+lo mismo que en `main` y luego cambiarte a esa rama como antes"). **Las dos
+ramas estan sincronizadas e identicas** (`5754eca`); se trabaja en `dev_plca_ai`.
 El proyecto PHP anterior + `legacy/` esta en
 `legacy-crotulus-php.md`: **no aplica** a este codigo (solo contexto historico).
 El detalle largo de cada sesion esta en los ficheros `2026-*.md` de esta carpeta.
@@ -18,15 +19,13 @@ El detalle largo de cada sesion esta en los ficheros `2026-*.md` de esta carpeta
   el propio `AGENTS.md`): esta version difiere de lo habitual.
 
 ## Estado actual (2026-10-29)
-- **En esta maquina se clono `main`** (rama unica de trabajo hoy; ver abajo la
-  nota de `dev_plca_ai`). Ultimo commit: **`d62cb40`** ("changes subsection
-  under como trabajamos texts", 2026-10-28).
+- **Rama de trabajo: `dev_plca_ai`** (por peticion del propietario). **`main` y
+  `dev_plca_ai` estan SINCRONIZADAS al mismo commit `5754eca`** y con el mismo
+  arbol. Antes de eso, `dev_plca_ai` iba 60 commits atras; se igualo con un
+  **fast-forward** limpio (`git checkout -b dev_plca_ai origin/dev_plca_ai` +
+  `git merge --ff-only main` + push sin `--force`), sin perder nada.
 - **PRODUCCION AL DIA**: `GET /commits/d62cb40/status` -> `Vercel -> success`
   (2026-10-28T20:48:10Z); `https://crotulusai.vercel.app/` responde **200**.
-- **`main` va 56 commits POR DELANTE de `dev_plca_ai`** (y `dev_plca_ai` no tiene
-  nada que `main` no tenga). La regla antigua de "commitear en `dev_plca_ai` y
-  luego llevar a `main`" **ya no aplica**: el trabajo reciente se hizo directo
-  sobre `main`. `origin/dev_plca_ai` = `9443e9c`.
 - **El propietario dio permiso explicito para llevar todo a `main`** (2026-10-20).
   Para empujar hace falta un PAT fine-grained con **Contents: Read and write**.
 - Produccion despliega sola al empujar a `main`. Alias del preview:
@@ -199,11 +198,10 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
 - **Escribir y explicar SIEMPRE en espanol** (peticion expresa del propietario).
 - **No borrar NADA ni fusionar NINGUNA PR sin pedirle permiso antes.** Fusionar no
   implica limpiar ramas. Ante la duda, preguntar. (Se incumplio una vez y molesto.)
-- **Rama de trabajo (actualizado 2026-10-29): `main`.** El trabajo reciente se
-  hizo directo sobre `main` y es la rama viva; `dev_plca_ai` quedo **56 commits
-  atras**. La regla antigua ("commitear en `dev_plca_ai`") **ya no aplica**. Ante
-  la duda, confirmar con el propietario; mirar `git branch --show-current` antes
-  de empujar.
+- **Rama de trabajo (actualizado 2026-10-29): `dev_plca_ai`.** El propietario
+  pidio volver a trabajar en `dev_plca_ai` "como antes", con las dos ramas
+  iguales. `main` y `dev_plca_ai` estan en el mismo commit (`5754eca`). Mirar
+  `git branch --show-current` antes de empujar y empujar a `dev_plca_ai`.
 - `.env.local` no se versiona; `.env.example` si (plantilla sin secretos).
 - `AGENTS.md` lo regenera `next dev`: commitearlo con el trabajo.
 
@@ -283,14 +281,15 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   payload de hidratacion de Next, **no un fallo**. No confundirlo.
 - **CDP: `/json/new` exige `PUT`** (`fetch(url,{method:"PUT"})`); con `GET`
   responde "Using unsafe HTTP verb".
-- **Ramas (actualizado 2026-10-29)**: **`main` = `d62cb40`** es la rama viva;
-  `dev_plca_ai` (`9443e9c`) quedo **56 commits atras** y no aporta nada. El
-  trabajo reciente (chat de demo, Redis, biografias, textos) fue directo a
-  `main`. Hitos anteriores en `main`: `00944a2` (pagina `/privacidad`,
-  2026-10-21), `028f131`, `32ca3f8`, `1e51394`, `a6f2e27` (formulario + arreglo
-  del `svg`), `48a6eed` (widget), `6a4a061` (contraste), `c4aa47d` (equipo +
-  fotos), `0018a4a` (WhatsApp del pie en texto), `d1b5fda` (Servicios) y
-  `36e93f5` (redes y WhatsApp). Los tres PR (`#1`, `#2`, `#3`) estan
+- **Ramas (actualizado 2026-10-29)**: **`main` = `dev_plca_ai` = `5754eca`**
+  (sincronizadas; rama de trabajo `dev_plca_ai`). Antes, `dev_plca_ai` iba 60
+  commits atras; se igualo con fast-forward. El trabajo reciente (chat de demo,
+  Redis, biografias, textos) fue directo a `main`. Hitos anteriores en `main`:
+  `00944a2` (pagina `/privacidad`, 2026-10-21), `028f131`, `32ca3f8`, `1e51394`,
+  `a6f2e27` (formulario + arreglo del `svg`), `48a6eed` (widget), `6a4a061`
+  (contraste), `c4aa47d` (equipo + fotos), `0018a4a` (WhatsApp del pie en texto),
+  `d1b5fda` (Servicios) y `36e93f5` (redes y WhatsApp). Los tres PR (`#1`, `#2`,
+  `#3`) estan
   **fusionados**. Desplegado en produccion y verificado.
 - **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
   del propietario **+5359888821** (10 digitos, Cuba) y redes Instagram/Facebook.
