@@ -251,8 +251,11 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   `GITHUB_TOKEN`). Comprobar siempre con `git config --get remote.origin.url` y
   comparar huellas (`sha256sum`), **sin imprimir el valor**.
 - **Empujar a `main`**: `git push "https://<TOKEN_RW>@github.com/pedrocollazo1988/crotulus.ai.git" main`.
-  `GITHUB_TOKEN` y `allhands` son de SOLO LECTURA -> 403. El propietario creo un
-  token fine-grained con **Contents: R/W** el 2026-10-26 que si empuja.
+  `GITHUB_TOKEN` y `allhands` son de SOLO LECTURA -> 403. **2026-10-29**: el
+  propietario aporto un **PAT fine-grained con Contents: R/W** y el push
+  funciono (`d62cb40..cf6f256`). Ese token **NO incluye `Pull requests`**, asi
+  que el agente **no puede abrir ni fusionar PRs** (403): la politica es push
+  si, PR/merge no. Empujar solo cuando el propietario lo pida.
 - **`/privacidad` ya existe** (commit `b9d82fd`): pagina INFORMATIVA en formato
   de acordeon (`<details>`, mismo `.faq` que "Preguntas"), 7 bloques y 18
   preguntas, en es/en/pt. Enlazada desde el pie, el consentimiento del
