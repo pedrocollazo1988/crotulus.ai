@@ -1,41 +1,41 @@
 # Memoria del proyecto C-ROTULUS IA
 
 Sitio corporativo de C-ROTULUS S.U.R.L. **reescrito desde cero** en
-`/workspace/project/crotulus.ai` (repo `pedrocollazo1988/crotulus.ai`, rama de
-trabajo `dev_plca_ai`). El proyecto PHP anterior + `legacy/` esta en
+`/workspace/project` (repo `pedrocollazo1988/crotulus.ai`). En esta maquina se
+clono la rama **`main`**, que es la que lleva el trabajo reciente (la regla
+antigua de "trabajar en `dev_plca_ai`" quedo desfasada: ver "Estado actual").
+El proyecto PHP anterior + `legacy/` esta en
 `legacy-crotulus-php.md`: **no aplica** a este codigo (solo contexto historico).
 El detalle largo de cada sesion esta en los ficheros `2026-*.md` de esta carpeta.
 
 ## Stack y rutas
 - **Next.js 16.4.2 (Turbopack) + Prisma 6.19.3 + PostgreSQL 17**. Todo el sitio
   son Server Components.
-- Rutas: `/`, `/equipo`, `/admin/contactos`, `/api/contact`, `/api/admin/login`,
-  `/api/admin/logout`, `/sitemap.xml`, `not-found.tsx`.
+- Rutas: `/`, `/equipo`, `/privacidad`, `/admin/contactos`, `/api/contact`,
+  `/api/demo-chat`, `/api/admin/login`, `/api/admin/logout`, `/sitemap.xml`,
+  `not-found.tsx`.
 - **Antes de tocar codigo de Next, leer `node_modules/next/dist/docs/`** (lo pide
   el propio `AGENTS.md`): esta version difiere de lo habitual.
 
-## Estado actual (2026-10-21)
-- **NO HAY NADA PENDIENTE DE SUBIR.** `main` = `028f131` (merge `--no-ff` de
-  `dev_plca_ai`), `dev_plca_ai` = `e8cd677`, y **el arbol de `main` y el de
-  `dev_plca_ai` son identicos** (`git diff --stat dev_plca_ai origin/main` vacio).
-  Comprobado tambien contra `git ls-remote`: `origin/main` = `028f131`.
-- **Produccion ya sirve el build nuevo.** `GET /commits/028f131/status` ->
-  `Vercel -> success` (22:31:45Z, ~50 s despues del commit). El episodio "Vercel
-  no desplego `main`" (ver la trampa del webhook) **se resolvio con el reintento**.
-- Verificado en `crotulusai.vercel.app` con Chromium headless (2026-10-21):
-  nucleo del hero = **IA**, `.service__channels` con **4 canales**, `/equipo` con
-  los **4 miembros reales** y sus cargos (sin `member__bio`), `svg{width:1em}`
-  presente, `dialog.modal` con `max-height:calc(100dvh - 32px)` y boton de enviar
-  **visible** (900px de alto), buscador abriendo y filtrando, boton de tema
-  alternando y guardando en `localStorage`, `scrollWidth == clientWidth` a 1280 y
-  360px, `sitemap.xml` 200, `robots.txt` con `Sitemap:`.
-- **Los 4 `svg` de 0x0 que quedan son normales**: el boton movil (oculto en
-  escritorio), el aspa del dialogo y el icono del boton de enviar (ambos dentro
-  del `<dialog>` cerrado) y el del buscador. No confundir con el fallo historico.
+## Estado actual (2026-10-29)
+- **En esta maquina se clono `main`** (rama unica de trabajo hoy; ver abajo la
+  nota de `dev_plca_ai`). Ultimo commit: **`d62cb40`** ("changes subsection
+  under como trabajamos texts", 2026-10-28).
+- **PRODUCCION AL DIA**: `GET /commits/d62cb40/status` -> `Vercel -> success`
+  (2026-10-28T20:48:10Z); `https://crotulusai.vercel.app/` responde **200**.
+- **`main` va 56 commits POR DELANTE de `dev_plca_ai`** (y `dev_plca_ai` no tiene
+  nada que `main` no tenga). La regla antigua de "commitear en `dev_plca_ai` y
+  luego llevar a `main`" **ya no aplica**: el trabajo reciente se hizo directo
+  sobre `main`. `origin/dev_plca_ai` = `9443e9c`.
 - **El propietario dio permiso explicito para llevar todo a `main`** (2026-10-20).
-  Para empujar hizo falta un PAT fine-grained con **Contents: Read and write**.
+  Para empujar hace falta un PAT fine-grained con **Contents: Read and write**.
 - Produccion despliega sola al empujar a `main`. Alias del preview:
   `crotulusai-git-devplcaai-pedrocollazo1988.vercel.app`.
+- **Nuevo desde la sesion del 2026-10-21** (todo ya en `main` y en produccion):
+  chat de demostracion con IA real (`/api/demo-chat` + Gemini), limite por
+  sesion con **Redis/Upstash**, biografias en las tarjetas del equipo, y
+  reescritura de textos (hero/lead, 3 servicios, "Como trabajamos"). Detalle en
+  `2026-10-26.md` y en el codigo; lo esencial, en las secciones de abajo.
 
 ## Requisitos del propietario (los 4 que pidio)
 1. Pagina de **Equipo**.
@@ -51,9 +51,17 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   (`Pedro Collazo`, `Equipo de agentes`, `Acompanamiento`) y no hay acceso a esa
   BD. `prisma/seed.ts` si quedo actualizado al equipo real, por si se ejecuta.
   **Editar el equipo = editar `src/lib/team.ts`.**
-- **Roles**: Pedro = CEO; Olga, Rogelio y Manuel = Especialista en IA. Nombres
-  completos en `public/team/*.jpg` (retrato 4:5, 800x1000, recortado con **YuNet**
-  y brillo normalizado; la de Pedro venia mucho mas oscura).
+- **Roles (actualizado 2026-10-26/28)**: los puestos ya **no** son "Especialista
+  en IA" para todos; son titulos largos y cada uno el suyo. Pedro = CEO
+  (estrategia y direccion de proyectos de IA); Olga = Especialista en Soluciones
+  de IA y Automatizacion; Rogelio = Especialista en Desarrollo e Implementacion
+  de Soluciones de IA; **Manuel = Especialista en Marketing Digital y Estrategias
+  de Crecimiento** (antes "en IA"; cambio del 2026-10-26). Cada miembro lleva
+  ahora **`bio` en los 3 idiomas** (`role`/`roleEn`/`rolePt`, `bio`/`bioEn`/`bioPt`)
+  y la **biografia se muestra en la tarjeta** (commit "Mostrar biografías en las
+  tarjetas del equipo"). Nombres completos en `public/team/*.jpg` (retrato 4:5,
+  800x1000, recortado con **YuNet** y brillo normalizado; la de Pedro venia mucho
+  mas oscura).
 - **Seccion `#equipo`** en la portada (`src/components/team-section.tsx`),
   rejilla 4 columnas con foto 4:5. Menu, pie y buscador apuntan a `/#equipo`.
 - **Contraste**: en noche el puesto sobre la tarjeta daba 4.03:1 (bajo AA); ahora
@@ -76,6 +84,40 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   puede sobreescribir). Ya en `main` (`48a6eed`) y en produccion.
 - `.to-top` (`src/components/to-top.tsx`): aparece >600px, `bottom: 96px`,
   `z-index: 45`, 12px por encima del boton del chat. Contraste AA.
+
+## Chat de demostracion con IA real (nuevo, 2026-10-26/28)
+- **`src/app/api/demo-chat/route.ts`** (`runtime = "nodejs"`): llama a la API de
+  **Gemini** (`generativelanguage.googleapis.com`, modelo `gemini-3.5-flash-lite`)
+  con `x-goog-api-key: GEMINI_API_KEY`. Sin la clave -> **503**; error de Gemini
+  -> 502; fallo interno -> 500. Escenarios (`SCENARIOS`): `dental`, `restaurant`,
+  `realestate`, `administration`; el `scenario` debe existir o **400**. Mensaje
+  vacio o **>1500** caracteres -> 400. El historial se recorta a los **ultimos 10**
+  turnos. `maxOutputTokens: 500`, `temperature: 0.7`, timeout 20 s.
+- **Limite por sesion en Redis** (`src/lib/demo-session.ts` + `src/lib/redis.ts`,
+  **Upstash**, dep `@upstash/redis`): **15 mensajes** por sesion (TTL 24 h) y
+  **5 peticiones/minuto**. Al pasarse -> **429** con `code: "SESSION_LIMIT"` o
+  `"RATE_LIMIT"` y `messagesRemaining`. El `sessionId` se valida con regex UUID
+  (`/^[0-9a-f-]{36}$/i`); si no cuadra, se genera uno nuevo. Claves:
+  `crotulus:demo:session:<id>` y `...:rate`.
+- **`src/components/solutions-demo.tsx`** es cliente: guarda el `sessionId` en
+  `localStorage["crotulus-demo-session"]` (`crypto.randomUUID()`) y lo manda en
+  cada peticion. **4 pestanas** de demo (una por escenario), con `dict.solutions.tabs`.
+- **Sin `UPSTASH_REDIS_REST_URL/TOKEN`, `getRedis()` LANZA**: la ruta cae en 500.
+  Es la trampa principal de este chat (no hay degradacion elegante).
+
+## Textos y servicios (reescritos, 2026-10-26/28)
+- **Servicios: de 5 tarjetas a 3** (2026-10-26), renumeradas 01/02/03: 01 Agentes
+  de IA para atencion al cliente; 02 Automatizacion de tareas administrativas
+  (antes 03); 03 Automatizacion del seguimiento comercial (antes 04). Borradas
+  "Captacion de clientes y gestion de citas" y "Integracion de IA con hojas de
+  calculo y CRM". Tocado en los 3 idiomas (`src/i18n/{es,en,pt}.ts`),
+  `contact.serviceOptions`, `src/lib/validation.ts` (`CONTACT_SERVICES`),
+  `services.tsx` (3 iconos) y `globals.css` (rejilla de 3 columnas).
+- **Textos afinados 2026-10-28** (commits `b6f080f`..`d62cb40`): descripciones de
+  las tarjetas 01/02/03, `lead` de servicios, **hero/lead** y el bloque
+  **"Como trabajamos"** (`dict.process`; encabezado `valuesEyebrow` "Cómo
+  trabajamos", pasos ESCUCHAMOS/DISEÑAMOS/ACOMPAÑAMOS, `fitSub` con los sectores).
+  Son cambios de copy en `es.ts` (+ en/pt); no tocan estructura.
 
 ## Trampas costosas (repetirlas cuesta tiempo)
 - **Los iconos son SVG inline SIN `width`/`height`** y **faltaba la regla CSS
@@ -115,7 +157,9 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   puede forzar el despliegue; hay que reintentar con otro push.
 - **El clon es SUPERFICIAL** y su `remote.origin.fetch` es no estandar (solo mapea
   `dev_plca_ai`): `git fetch origin` **no refresca `origin/main`**. Refrescar a
-  mano: `git fetch origin main:refs/remotes/origin/main --force`.
+  mano: `git fetch origin main:refs/remotes/origin/main --force`. (El clon de esta
+  maquina, 2026-10-29, se hizo completo con `git fetch --unshallow`, asi que ya no
+  aplica aqui, pero si se re-clona con `--depth` vuelve el problema.)
 - **Codificacion**: escribir SIEMPRE en UTF-8. Un `MEMORY.md` en latin-1 provoco
   un conflicto en todo el fichero al fusionar.
 - **`next start` viejo se queda en el puerto** y `curl` sigue sirviendo el build
@@ -155,8 +199,10 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
 - **Escribir y explicar SIEMPRE en espanol** (peticion expresa del propietario).
 - **No borrar NADA ni fusionar NINGUNA PR sin pedirle permiso antes.** Fusionar no
   implica limpiar ramas. Ante la duda, preguntar. (Se incumplio una vez y molesto.)
-- **La rama de trabajo es `dev_plca_ai`, NO `main`**: commitear alli, empujar, y
-  solo despues llevar el trabajo a `main`. Mirar `git branch --show-current` antes
+- **Rama de trabajo (actualizado 2026-10-29): `main`.** El trabajo reciente se
+  hizo directo sobre `main` y es la rama viva; `dev_plca_ai` quedo **56 commits
+  atras**. La regla antigua ("commitear en `dev_plca_ai`") **ya no aplica**. Ante
+  la duda, confirmar con el propietario; mirar `git branch --show-current` antes
   de empujar.
 - `.env.local` no se versiona; `.env.example` si (plantilla sin secretos).
 - `AGENTS.md` lo regenera `next dev`: commitearlo con el trabajo.
@@ -174,6 +220,12 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   **Falta solo**: `MAIL_SMTP_PASS` (`mail:false`) y `HUBSPOT_TOKEN`
   (`hubspot:false`) — el formulario guarda el lead, pero no avisa por correo ni
   crea el contacto en el CRM.
+- **El chat de demo (nuevo) exige DOS variables mas**: `GEMINI_API_KEY`
+  (si falta, `/api/demo-chat` responde **503** "El servicio de demostración no
+  está configurado") y **Upstash Redis** (`UPSTASH_REDIS_REST_URL` +
+  `UPSTASH_REDIS_REST_TOKEN`; sin ellas `getRedis()` lanza y la ruta da 500).
+  **Estado en Vercel sin comprobar en esta sesion** (2026-10-29): si el chat de
+  demo funciona en produccion, estan puestas; si no, hay que anadirlas.
 - **HubSpot**: crear antes las 4 propiedades personalizadas (ver arriba).
 - **`og:image` sigue sin existir** (hueco conocido): `openGraph` en
   `src/app/layout.tsx` no declara `images` y no hay ninguna imagen social en
@@ -192,21 +244,22 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   hidratacion de Next (`<script>`), no en el HTML visible. Para comprobar el
   texto hay que quitar los `<script>` antes de buscar (`re.sub(r'<script.*?</script>','',h,flags=re.S)`).
   Buscar en el HTML crudo da falsos positivos.
-- **Credencial en `.git/config`**: el remoto `origin` lleva embebido un
-  **token de SOLO LECTURA** (huella identica a `GITHUB_TOKEN`; ya no es "otro
-  PAT"). `git push origin main` con el **falla con 403**. Para empujar hay que
-  pasar en la URL un token con **Contents: R/W** (el propietario creo uno el
-  2026-10-26 y el push funciono asi). Es un secreto en disco: **avisar al
-  propietario para que lo revoque**. Comprobar con
-  `git config --get remote.origin.url` y comparar huellas (`sha256sum`), no
-  imprimir el valor.
+- **Credencial en `.git/config` (actualizado 2026-10-29)**: en ESTE clon el
+  remoto `origin` es **limpio**, `https://github.com/pedrocollazo1988/crotulus.ai.git`
+  (sin token embebido); el `fetch` funciona con `GITHUB_TOKEN`. En clones
+  anteriores si habia un **token de SOLO LECTURA** embebido (huella identica a
+  `GITHUB_TOKEN`). Comprobar siempre con `git config --get remote.origin.url` y
+  comparar huellas (`sha256sum`), **sin imprimir el valor**.
 - **Empujar a `main`**: `git push "https://<TOKEN_RW>@github.com/pedrocollazo1988/crotulus.ai.git" main`.
-  `GITHUB_TOKEN` y `allhands` son de SOLO LECTURA -> 403.
+  `GITHUB_TOKEN` y `allhands` son de SOLO LECTURA -> 403. El propietario creo un
+  token fine-grained con **Contents: R/W** el 2026-10-26 que si empuja.
 - **`/privacidad` ya existe** (commit `b9d82fd`): pagina INFORMATIVA en formato
   de acordeon (`<details>`, mismo `.faq` que "Preguntas"), 7 bloques y 18
   preguntas, en es/en/pt. Enlazada desde el pie, el consentimiento del
   formulario, el sitemap y el buscador. Contenido en `dict.privacy`; el correo
   se inyecta con el hueco `{email}` (funcion `fill()` en la pagina).
+  **2026-10-29: se quito el CTA final** que llevaba al formulario de contacto
+  (`section.cta` + `ContactButton`); la pagina quedo solo informativa.
 - **`next lint` ya no existe en Next 16** y **`next build` ya no ejecuta ESLint**
   (`node_modules/next/dist/docs/01-app/02-guides/upgrading/version-16.md`, seccion
   "next lint Command"). Por eso `eslint.config.mjs` era un **huerfano real**
@@ -227,17 +280,23 @@ Ademas: contactos -> BD + HubSpot + correo; despliegue en Vercel.
   payload de hidratacion de Next, **no un fallo**. No confundirlo.
 - **CDP: `/json/new` exige `PUT`** (`fetch(url,{method:"PUT"})`); con `GET`
   responde "Using unsafe HTTP verb".
-- **Ramas**: `main` y `dev_plca_ai` al dia (2026-10-21), con el **mismo arbol**.
-  Ultima fusion en `main`: `00944a2` (pagina `/privacidad`, 2026-10-21); antes
-  `028f131`, `32ca3f8`, `1e51394`, `a6f2e27` (formulario + arreglo del `svg`),
-  `48a6eed` (widget), `6a4a061` (contraste), `c4aa47d` (equipo + fotos),
-  `0018a4a` (WhatsApp del pie en texto), `d1b5fda` (Servicios) y `36e93f5`
-  (redes y WhatsApp). Los tres PR (`#1`, `#2`, `#3`) estan **fusionados**.
-  Desplegado en produccion y verificado (2026-10-21).
+- **Ramas (actualizado 2026-10-29)**: **`main` = `d62cb40`** es la rama viva;
+  `dev_plca_ai` (`9443e9c`) quedo **56 commits atras** y no aporta nada. El
+  trabajo reciente (chat de demo, Redis, biografias, textos) fue directo a
+  `main`. Hitos anteriores en `main`: `00944a2` (pagina `/privacidad`,
+  2026-10-21), `028f131`, `32ca3f8`, `1e51394`, `a6f2e27` (formulario + arreglo
+  del `svg`), `48a6eed` (widget), `6a4a061` (contraste), `c4aa47d` (equipo +
+  fotos), `0018a4a` (WhatsApp del pie en texto), `d1b5fda` (Servicios) y
+  `36e93f5` (redes y WhatsApp). Los tres PR (`#1`, `#2`, `#3`) estan
+  **fusionados**. Desplegado en produccion y verificado.
 - **Contacto/redes**: `SITE` (`src/lib/site.ts`) es la fuente unica. WhatsApp
-  del propietario **+5359888821** (10 digitos, Cuba) y redes
-  Instagram/Facebook; se muestran en pie, banda CTA y dialogo de contacto
-  (componente `social-links.tsx`). En el pie el numero va como **texto**
-  (`<p>`), no como enlace; solo el icono enlaza. Detalle en `2026-10-20.md`.
+  del propietario **+5359888821** (10 digitos, Cuba) y redes Instagram/Facebook.
+  **Decidido 2026-10-29: el numero NO se muestra en texto en ninguna parte**;
+  solo el icono/boton de WhatsApp (pie y banda CTA, componente
+  `social-links.tsx`). El formulario de contacto (`contact-provider.tsx`) ya no
+  lleva correo ni WhatsApp al pie. Detalle en `2026-10-20.md` y `2026-10-29.md`.
+- **Modo noche/dia = automatico por el sistema operativo** (`prefers-color-scheme`),
+  **no** por hora ni uso horario. Lo gestiona `src/components/theme-toggle.tsx`;
+  con el toggle manual manda `localStorage.crotulus_theme` ("light"/"dark").
 - El dominio de la maqueta que dio el propietario
   (`c-rotulus-ia.qvafunded.chatgpt.site`) es solo referencia de diseno.

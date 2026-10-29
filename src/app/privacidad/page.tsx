@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { getDict } from "@/i18n";
 import { readLocale } from "@/lib/locale";
 import { SITE } from "@/lib/site";
-import { ContactButton } from "@/components/contact-provider";
-import { IconArrowUpRight, IconShield } from "@/components/icons";
+import { IconShield } from "@/components/icons";
 
 /** Fecha de la version vigente del texto. Se muestra tal cual en la pagina. */
 const LAST_UPDATED = "2026-10-21";
@@ -98,24 +97,6 @@ export default async function PrivacyPage() {
             </div>
           </section>
         ))}
-      </section>
-
-      <section className="wrap" style={{ paddingBottom: 96 }}>
-        <div className="cta">
-          <div>
-            <p className="eyebrow">
-              <span className="dot" />
-              {p.eyebrow}
-            </p>
-            <h2>{p.contact.title}</h2>
-            <p>
-              {p.contact.text} <strong>{SITE.email}</strong>
-            </p>
-          </div>
-          <ContactButton>
-            {p.contact.button} <IconArrowUpRight />
-          </ContactButton>
-        </div>
       </section>
     </>
   );

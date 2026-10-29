@@ -13,7 +13,6 @@ import {
 import Link from "next/link";
 import type { Dict, Locale } from "@/i18n";
 import { CONTACT_SERVICES } from "@/lib/validation";
-import { SITE, whatsappHref } from "@/lib/site";
 import { IconArrowUpRight, IconCheck, IconClose, IconMail } from "./icons";
 
 type ContactContextValue = {
@@ -35,12 +34,10 @@ export function ContactProvider({
   children,
   dict,
   locale,
-  email,
 }: {
   children: React.ReactNode;
   dict: Dict["contact"];
   locale: Locale;
-  email: string;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [status, setStatus] = useState<Status>("idle");
@@ -49,7 +46,6 @@ export function ContactProvider({
   // Servicio elegido: se controla desde React para poder preseleccionarlo al
   // abrir el dialogo desde una tarjeta de "Servicios".
   const [service, setService] = useState<string>(CONTACT_SERVICES[0]);
-  const wa = whatsappHref();
 
   const open = useCallback((preset?: string) => {
     setStatus("idle");
@@ -197,7 +193,7 @@ export function ContactProvider({
                   id="c-message"
                   name="message"
                   required
-                  rows={4}
+                  rows={3}
                   maxLength={4000}
                   placeholder={dict.messagePh}
                 />
@@ -229,7 +225,6 @@ export function ContactProvider({
               <button
                 type="submit"
                 className="button button--block"
-                style={{ marginTop: 20 }}
                 disabled={status === "sending"}
               >
                 {status === "sending" ? dict.sending : dict.submit}
@@ -241,26 +236,6 @@ export function ContactProvider({
                   <strong>{dict.errorTitle}</strong> — {message}
                 </div>
               )}
-
-              <p className="modal__lead" style={{ marginTop: 16, textAlign: "center" }}>
-                {dict.orWrite}{" "}
-                <a href={`mailto:${email}`} style={{ color: "var(--blue)", fontWeight: 600 }}>
-                  {email}
-                </a>
-                {wa && (
-                  <>
-                    {" · "}
-                    <a
-                      href={wa}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: "var(--blue)", fontWeight: 600 }}
-                    >
-                      WhatsApp
-                    </a>
-                  </>
-                )}
-              </p>
             </form>
           </>
         )}

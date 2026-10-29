@@ -59,7 +59,7 @@ export default async function RootLayout({
         <a className="skip-link" href="#main">
           {dict.a11y.skip}
         </a>
-        <ContactProvider dict={dict.contact} locale={locale} email={SITE.email}>
+        <ContactProvider dict={dict.contact} locale={locale}>
           <SiteHeader dict={dict} locale={locale} entries={entries} />
           <main id="main">{children}</main>
           <SiteFooter dict={dict} />

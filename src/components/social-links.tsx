@@ -1,4 +1,4 @@
-import { SITE, whatsappHref, whatsappLabel } from "@/lib/site";
+import { SITE, whatsappHref } from "@/lib/site";
 import { IconFacebook, IconInstagram, IconWhatsApp } from "./icons";
 
 export type SocialLabels = {
@@ -18,7 +18,6 @@ export function SocialLinks({
   labels: SocialLabels;
 }) {
   const wa = whatsappHref(labels.whatsappMessage);
-  const number = whatsappLabel();
 
   const items = [
     wa && { key: "whatsapp", href: wa, label: labels.whatsapp, Icon: IconWhatsApp },
@@ -44,7 +43,7 @@ export function SocialLinks({
         {items.map(({ key, href, label, Icon }) => (
           <a key={key} href={href} target="_blank" rel="noopener noreferrer">
             <Icon />
-            <span>{key === "whatsapp" && number ? number : label}</span>
+            <span>{label}</span>
           </a>
         ))}
       </p>
@@ -52,28 +51,20 @@ export function SocialLinks({
   }
 
   return (
-    <>
-      <div className="social">
-        {items.map(({ key, href, label, Icon }) => (
-          <a
-            key={key}
-            className="social__btn"
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={label}
-            title={label}
-          >
-            <Icon />
-          </a>
-        ))}
-      </div>
-      {wa && number && (
-        <p className="footer__wa">
-          <IconWhatsApp />
-          {number}
-        </p>
-      )}
-    </>
+    <div className="social">
+      {items.map(({ key, href, label, Icon }) => (
+        <a
+          key={key}
+          className="social__btn"
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={label}
+          title={label}
+        >
+          <Icon />
+        </a>
+      ))}
+    </div>
   );
 }
