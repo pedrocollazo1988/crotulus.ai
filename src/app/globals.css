@@ -404,6 +404,22 @@ svg { width: 1em; height: 1em; }
 .bubble.user { background: var(--pale); align-self: flex-end; border-bottom-right-radius: 3px; }
 .bubble.agent { background: #edf7ff; border: 1px solid #d9edfc; border-bottom-left-radius: 3px; }
 .theme-dark .bubble.agent { background: #1b4562; border-color: #2e6b8e; }
+/* El formulario comparte el relleno lateral de `.chat` para que el boton de
+   enviar no toque el borde del panel. El campo usa los colores del tema: antes
+   tenia `background:#fff` en linea y en modo noche quedaba blanco con el texto
+   claro encima (ilegible). */
+.chat-form { padding: 0 22px 22px; display: flex; flex-direction: column; gap: 10px; }
+.chat-input {
+  width: 100%; box-sizing: border-box; resize: vertical;
+  padding: 12px; border-radius: 10px; border: 1px solid var(--line);
+  font: inherit; background: var(--bg); color: var(--ink);
+}
+.chat-input::placeholder { color: var(--muted); }
+.chat-input:focus { outline: none; border-color: var(--electric); box-shadow: 0 0 0 3px #1689ed22; }
+.chat-input:disabled { opacity: .7; cursor: progress; }
+.chat-form .button { align-self: flex-end; }
+.chat-error { color: #c0392b; font-size: 12px; }
+.theme-dark .chat-error { color: #ff9b8a; }
 .event { font-size: 11px; display: flex; gap: 8px; align-items: center; color: #28866b; }
 .theme-dark .event { color: #6fd3b2; }
 .demo-note {

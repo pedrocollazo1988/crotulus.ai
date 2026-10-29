@@ -221,15 +221,7 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
             )}
           </div>
 
-          <form
-            onSubmit={sendMessage}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              marginTop: "16px",
-            }}
-          >
+          <form onSubmit={sendMessage} className="chat-form">
             <textarea
               className="chat-input"
               value={input}
@@ -239,16 +231,6 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
               maxLength={1500}
               rows={2}
               disabled={loading}
-              style={{
-                width: "100%",
-                boxSizing: "border-box",
-                resize: "vertical",
-                padding: "12px",
-                borderRadius: "10px",
-                border: "1px solid #d8dce5",
-                font: "inherit",
-                background: "#fff",
-              }}
             />
 
             {error && (
@@ -263,13 +245,8 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
 
             <button
               type="submit"
-              className="button button--primary"
+              className="button"
               disabled={loading}
-              style={{
-                alignSelf: "flex-end",
-                cursor: loading ? "wait" : "pointer",
-                opacity: loading ? 0.7 : 1,
-              }}
             >
               {loading ? s.sendingLabel : s.sendButton}
             </button>
