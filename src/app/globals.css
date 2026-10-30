@@ -377,12 +377,10 @@ svg { width: 1em; height: 1em; }
 .art-2 .line-a { width: 62px; }
 .art-2 .line-b { width: 90px; }
 .art-3 .icon-tile { transform: rotate(-4deg); }
-[12:31, 30/10/2026] olga uic: /* -------------------------------------------------------------- demo */
 
-Selecciona desde ese comentario hasta el final de .demo-note, incluyendo las reglas de .demo, .tabs, .tab, .demo-panel, .panel-head, .chat, .bubble, .chat-form, .chat-input, .event y .demo-note.
+/* -------------------------------------------------------------- demo */
 
-Sustituye todo ese bloque por este:
-[12:31, 30/10/2026] olga uic: /* --------------------------------------------------------------
+ /* --------------------------------------------------------------
    DEMOSTRACIONES — DISEÑO MODERNO CON TELÉFONO FLOTANTE
 -------------------------------------------------------------- */
 
