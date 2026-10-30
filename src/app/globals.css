@@ -377,55 +377,337 @@ svg { width: 1em; height: 1em; }
 .art-2 .line-a { width: 62px; }
 .art-2 .line-b { width: 90px; }
 .art-3 .icon-tile { transform: rotate(-4deg); }
+[12:31, 30/10/2026] olga uic: /* -------------------------------------------------------------- demo */
 
-/* -------------------------------------------------------------- demo */
-.demo { display: grid; grid-template-columns: .92fr 1.08fr; gap: 60px; align-items: center; }
-.tabs { display: flex; flex-direction: column; gap: 8px; margin-top: 26px; }
+Selecciona desde ese comentario hasta el final de .demo-note, incluyendo las reglas de .demo, .tabs, .tab, .demo-panel, .panel-head, .chat, .bubble, .chat-form, .chat-input, .event y .demo-note.
+
+Sustituye todo ese bloque por este:
+[12:31, 30/10/2026] olga uic: /* --------------------------------------------------------------
+   DEMOSTRACIONES — DISEÑO MODERNO CON TELÉFONO FLOTANTE
+-------------------------------------------------------------- */
+
+.demo {
+  display: grid;
+  grid-template-columns: .92fr 1.08fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* ÁREAS DE DEMOSTRACIÓN */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+}
+
 .tab {
-  text-align: left; border: 1px solid transparent; background: transparent;
-  padding: 16px 18px; border-radius: 9px; display: flex; gap: 15px; align-items: center;
+  position: relative;
+  text-align: left;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 19px 20px;
+  border-radius: 14px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  cursor: pointer;
+  transition: all .25s ease;
 }
-.tab.active { background: var(--card); border-color: var(--line); box-shadow: var(--shadow-sm); }
-.tab b { font-weight: 600; font-size: 14px; display: block; }
-.tab small { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; }
-.tab > span:first-child { font-size: 19px; color: var(--blue); }
-.tab .arrow { margin-left: auto; color: var(--muted); }
+
+.tab:hover {
+  background: var(--card);
+  border-color: var(--line);
+  transform: translateX(4px);
+}
+
+.tab.active {
+  background: var(--card);
+  border-color: var(--electric);
+  box-shadow: 0 8px 28px rgba(0, 104, 186, .10);
+}
+
+.tab b {
+  font-weight: 650;
+  font-size: 14px;
+  display: block;
+  color: var(--ink);
+}
+
+.tab small {
+  font-size: 12px;
+  color: var(--muted);
+  display: block;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.tab > span:first-child {
+  font-size: 21px;
+  color: var(--blue);
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pale);
+  border-radius: 12px;
+}
+
+.tab .arrow {
+  margin-left: auto;
+  color: var(--blue);
+  font-size: 18px;
+  transition: transform .25s ease;
+}
+
+.tab.active .arrow {
+  transform: translateX(4px);
+}
+
+/* TELÉFONO */
+
 .demo-panel {
-  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-  box-shadow: var(--shadow-lg); overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  margin-inline: auto;
+  background: var(--card);
+  border: 9px solid #102d49;
+  border-radius: 38px;
+  box-shadow:
+    0 30px 70px rgba(5, 39, 70, .20),
+    0 10px 25px rgba(5, 39, 70, .10);
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
-.panel-head { padding: 18px 22px; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: center; }
-.panel-head strong { font-size: 13px; display: block; }
-.panel-head small { font-size: 10px; color: var(--muted); }
-.online { margin-left: auto; font-size: 10px; color: #228568; background: #eef9f4; padding: 3px 8px; border-radius: 20px; }
-.theme-dark .online { color: #7fe0c0; background: #123a30; }
-.chat { padding: 26px 22px; min-height: 280px; display: flex; flex-direction: column; gap: 16px; }
-.bubble { padding: 12px 15px; border-radius: 12px; font-size: 13px; max-width: 88%; line-height: 1.7; }
-.bubble.user { background: var(--pale); align-self: flex-end; border-bottom-right-radius: 3px; }
-.bubble.agent { background: #edf7ff; border: 1px solid #d9edfc; border-bottom-left-radius: 3px; }
-.theme-dark .bubble.agent { background: #1b4562; border-color: #2e6b8e; }
-/* El formulario comparte el relleno lateral de `.chat` para que el boton de
-   enviar no toque el borde del panel. El campo usa los colores del tema: antes
-   tenia `background:#fff` en linea y en modo noche quedaba blanco con el texto
-   claro encima (ilegible). */
-.chat-form { padding: 0 22px 22px; display: flex; flex-direction: column; gap: 10px; }
+
+/* Auricular del teléfono */
+
+.demo-panel::before {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 58px;
+  height: 5px;
+  border-radius: 10px;
+  background: #102d49;
+  opacity: .9;
+}
+
+/* Cabecera de la conversación */
+
+.panel-head {
+  padding: 29px 20px 16px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--card);
+}
+
+.panel-head strong {
+  font-size: 13px;
+  display: block;
+  color: var(--ink);
+}
+
+.panel-head small {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.online {
+  margin-left: auto;
+  font-size: 10px;
+  color: #228568;
+  background: #eef9f4;
+  padding: 5px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.theme-dark .online {
+  color: #7fe0c0;
+  background: #123a30;
+}
+
+/* CONVERSACIÓN */
+
+.chat {
+  padding: 25px 19px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--card);
+}
+
+.bubble {
+  padding: 13px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+  max-width: 88%;
+  line-height: 1.7;
+  box-shadow: 0 2px 8px rgba(0, 40, 80, .04);
+  overflow-wrap: anywhere;
+}
+
+.bubble.user {
+  background: var(--blue);
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.bubble.agent {
+  background: #edf7ff;
+  color: #173e5d;
+  border: 1px solid #d9edfc;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.theme-dark .bubble.agent {
+  background: #1b4562;
+  border-color: #2e6b8e;
+  color: #e8f5ff;
+}
+
+/* CAMPO DE MENSAJE */
+
+.chat-form {
+  padding: 0 19px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card);
+}
+
 .chat-input {
-  width: 100%; box-sizing: border-box; resize: vertical;
-  padding: 12px; border-radius: 10px; border: 1px solid var(--line);
-  font: inherit; background: var(--bg); color: var(--ink);
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  padding: 13px 14px;
+  border-radius: 13px;
+  border: 1px solid var(--line);
+  font: inherit;
+  font-size: 13px;
+  background: var(--bg);
+  color: var(--ink);
+  transition: border-color .2s ease, box-shadow .2s ease;
 }
-.chat-input::placeholder { color: var(--muted); }
-.chat-input:focus { outline: none; border-color: var(--electric); box-shadow: 0 0 0 3px #1689ed22; }
-.chat-input:disabled { opacity: .7; cursor: progress; }
-.chat-form .button { align-self: flex-end; }
-.chat-error { color: #c0392b; font-size: 12px; }
-.theme-dark .chat-error { color: #ff9b8a; }
-.event { font-size: 11px; display: flex; gap: 8px; align-items: center; color: #28866b; }
-.theme-dark .event { color: #6fd3b2; }
+
+.chat-input::placeholder {
+  color: var(--muted);
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--electric);
+  box-shadow: 0 0 0 3px #1689ed22;
+}
+
+.chat-input:disabled {
+  opacity: .7;
+  cursor: progress;
+}
+
+.chat-form .button {
+  align-self: flex-end;
+}
+
+.chat-error {
+  color: #c0392b;
+  font-size: 12px;
+}
+
+.theme-dark .chat-error {
+  color: #ff9b8a;
+}
+
+/* INDICADORES Y AVISOS */
+
+.event {
+  font-size: 11px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #28866b;
+}
+
+.theme-dark .event {
+  color: #6fd3b2;
+}
+
 .demo-note {
-  padding: 12px 22px; border-top: 1px solid var(--line); font-size: 10px;
-  color: var(--muted); background: var(--bg-soft);
-  border-radius: 0 0 15px 15px;
+  padding: 13px 19px;
+  border-top: 1px solid var(--line);
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted);
+  background: var(--bg-soft);
+  border-radius: 0 0 25px 25px;
+}
+
+/* ADAPTACIÓN A PANTALLAS PEQUEÑAS */
+
+@media (max-width: 1080px) {
+  .demo {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .demo-panel {
+    max-width: 430px;
+  }
+}
+
+@media (max-width: 560px) {
+  .demo {
+    gap: 28px;
+  }
+
+  .tabs {
+    gap: 9px;
+  }
+
+  .tab {
+    padding: 15px 13px;
+    gap: 12px;
+  }
+
+  .tab small {
+    font-size: 11px;
+  }
+
+  .demo-panel {
+    max-width: 100%;
+    border-width: 7px;
+    border-radius: 30px;
+  }
+
+  .panel-head {
+    padding: 26px 14px 14px;
+  }
+
+  .chat {
+    padding: 20px 13px;
+    min-height: 260px;
+  }
+
+  .chat-form {
+    padding: 0 13px 15px;
+  }
+
+  .demo-note {
+    padding: 11px 13px;
+  }
 }
 
 /* ----------------------------------------------------------- proceso */
