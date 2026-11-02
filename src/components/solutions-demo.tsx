@@ -189,15 +189,7 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
             <span className="online">{s.demoBadge}</span>
           </div>
 
-          <div
-            className="chat"
-            aria-live="polite"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-            }}
-          >
+          <div className="chat" aria-live="polite">
             {messages.length === 0 && (
               <p className="bubble agent">{s.chatWelcome}</p>
             )}
