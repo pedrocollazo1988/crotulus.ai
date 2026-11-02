@@ -484,18 +484,19 @@ svg { width: 1em; height: 1em; }
 
 /* Auricular del teléfono */
 
-.demo-panel::before {
-  content: "";
-  position: absolute;
-  z-index: 5;
-  top: 9px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 58px;
-  height: 5px;
-  border-radius: 10px;
-  background: #102d49;
-  opacity: .9;
+.demo-panel {
+  position: relative;
+  width: 100%;
+  max-width: 410px;
+  margin-inline: auto;
+  background: var(--card);
+  border: 8px solid #102d49;
+  border-radius: 36px;
+  box-shadow:
+    0 24px 55px rgba(5, 39, 70, .18),
+    0 8px 20px rgba(5, 39, 70, .09);
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
 /* Cabecera de la conversación */
