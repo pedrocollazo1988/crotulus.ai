@@ -378,52 +378,62 @@ svg { width: 1em; height: 1em; }
 .art-2 .line-b { width: 90px; }
 .art-3 .icon-tile { transform: rotate(-4deg); }
 
-/* -------------------------------------------------------------- demo */
+/* -------------------------------------------------------------- demo-chat */
 
- /* --------------------------------------------------------------
-   DEMOSTRACIONES — DISEÑO MODERNO CON TELÉFONO FLOTANTE
--------------------------------------------------------------- */
+/* ==========================================================
+   C-ROTULUS IA — DEMOSTRACIONES
+   Teléfono flotante + tarjetas interactivas
+========================================================== */
 
 .demo {
   display: grid;
-  grid-template-columns: .92fr 1.08fr;
-  gap: 60px;
+  grid-template-columns: .95fr 1.05fr;
+  gap: 48px;
   align-items: center;
 }
 
-/* ÁREAS DE DEMOSTRACIÓN */
+/* TARJETAS DE DEMOSTRACIÓN */
 
 .tabs {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 30px;
+  gap: 14px;
+  margin-top: 26px;
 }
 
 .tab {
   position: relative;
+  width: 100%;
   text-align: left;
-  border: 1px solid transparent;
-  background: transparent;
-  padding: 19px 20px;
-  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  padding: 17px 18px;
+  border-radius: 15px;
   display: flex;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
   cursor: pointer;
-  transition: all .25s ease;
+  transition:
+    background .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    transform .25s ease;
 }
 
 .tab:hover {
   background: var(--card);
-  border-color: var(--line);
-  transform: translateX(4px);
+  border-color: var(--electric);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 104, 186, .08);
 }
 
 .tab.active {
   background: var(--card);
   border-color: var(--electric);
-  box-shadow: 0 8px 28px rgba(0, 104, 186, .10);
+  box-shadow:
+    0 8px 24px rgba(0, 104, 186, .12),
+    0 0 0 3px rgba(0, 104, 186, .05);
+  transform: translateY(-2px);
 }
 
 .tab b {
@@ -444,13 +454,14 @@ svg { width: 1em; height: 1em; }
 .tab > span:first-child {
   font-size: 21px;
   color: var(--blue);
-  width: 40px;
-  height: 40px;
+  width: 43px;
+  height: 43px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--pale);
+  border: 1px solid var(--line);
   border-radius: 12px;
 }
 
@@ -465,24 +476,17 @@ svg { width: 1em; height: 1em; }
   transform: translateX(4px);
 }
 
-/* TELÉFONO */
-
-.demo-panel {
-  position: relative;
-  width: 100%;
-  max-width: 430px;
-  margin-inline: auto;
-  background: var(--card);
-  border: 9px solid #102d49;
-  border-radius: 38px;
-  box-shadow:
-    0 30px 70px rgba(5, 39, 70, .20),
-    0 10px 25px rgba(5, 39, 70, .10);
-  overflow: hidden;
-  transition: transform .3s ease, box-shadow .3s ease;
+.tab:disabled {
+  cursor: wait;
+  opacity: .75;
 }
 
-/* Auricular del teléfono */
+.theme-dark .tab.active {
+  border-color: var(--electric);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .25);
+}
+
+/* TELÉFONO */
 
 .demo-panel {
   position: relative;
@@ -499,10 +503,15 @@ svg { width: 1em; height: 1em; }
   transition: transform .3s ease, box-shadow .3s ease;
 }
 
-/* Cabecera de la conversación */
+.theme-dark .demo-panel {
+  border-color: #183d5b;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, .45);
+}
+
+/* CABECERA */
 
 .panel-head {
-  padding: 29px 20px 16px;
+  padding: 22px 18px 14px;
   border-bottom: 1px solid var(--line);
   display: flex;
   gap: 12px;
@@ -538,13 +547,14 @@ svg { width: 1em; height: 1em; }
 
 /* CONVERSACIÓN */
 
-.chat {
-  padding: 25px 19px;
-  min-height: 300px;
+.demo-panel .chat {
+  padding: 18px 16px;
+  min-height: 170px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   background: var(--card);
+  box-sizing: border-box;
 }
 
 .bubble {
@@ -555,7 +565,6 @@ svg { width: 1em; height: 1em; }
   line-height: 1.6;
   box-shadow: 0 3px 10px rgba(0, 40, 80, .05);
   overflow-wrap: anywhere;
-  transition: box-shadow .2s ease;
 }
 
 .bubble.user {
@@ -579,7 +588,7 @@ svg { width: 1em; height: 1em; }
   color: #e8f5ff;
 }
 
-/* CAMPO DE MENSAJE */
+/* FORMULARIO */
 
 .chat-form {
   padding: 0 18px 16px;
@@ -610,7 +619,7 @@ svg { width: 1em; height: 1em; }
 
 .chat-input:focus {
   outline: none;
-  border-color: #0878d1;
+  border-color: var(--electric);
   box-shadow: 0 0 0 3px rgba(8, 120, 209, .10);
 }
 
@@ -632,31 +641,26 @@ svg { width: 1em; height: 1em; }
   color: #ff9b8a;
 }
 
-/* INDICADORES Y AVISOS */
-
-.event {
-  font-size: 11px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  color: #28866b;
-}
-
-.theme-dark .event {
-  color: #6fd3b2;
-}
+/* AVISOS INFERIORES */
 
 .demo-note {
-  padding: 13px 19px;
+  margin: 0;
+  padding: 10px 16px;
   border-top: 1px solid var(--line);
   font-size: 10px;
-  line-height: 1.5;
+  line-height: 1.45;
   color: var(--muted);
   background: var(--bg-soft);
+}
+
+.demo-note + .demo-note {
+  border-top: 0;
+  padding-top: 3px;
+  padding-bottom: 12px;
   border-radius: 0 0 25px 25px;
 }
 
-/* ADAPTACIÓN A PANTALLAS PEQUEÑAS */
+/* TABLETS */
 
 @media (max-width: 1080px) {
   .demo {
@@ -665,9 +669,11 @@ svg { width: 1em; height: 1em; }
   }
 
   .demo-panel {
-    max-width: 430px;
+    max-width: 410px;
   }
 }
+
+/* MÓVILES */
 
 @media (max-width: 560px) {
   .demo {
@@ -675,7 +681,8 @@ svg { width: 1em; height: 1em; }
   }
 
   .tabs {
-    gap: 9px;
+    gap: 10px;
+    margin-top: 22px;
   }
 
   .tab {
@@ -694,12 +701,12 @@ svg { width: 1em; height: 1em; }
   }
 
   .panel-head {
-    padding: 26px 14px 14px;
+    padding: 20px 14px 13px;
   }
 
-  .chat {
-    padding: 20px 13px;
-    min-height: 260px;
+  .demo-panel .chat {
+    padding: 16px 13px;
+    min-height: 150px;
   }
 
   .chat-form {
@@ -707,7 +714,7 @@ svg { width: 1em; height: 1em; }
   }
 
   .demo-note {
-    padding: 11px 13px;
+    padding: 10px 13px;
   }
 }
 
