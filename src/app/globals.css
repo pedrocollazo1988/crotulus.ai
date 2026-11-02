@@ -548,13 +548,14 @@ svg { width: 1em; height: 1em; }
 }
 
 .bubble {
-  padding: 13px 16px;
+  padding: 12px 15px;
   border-radius: 16px;
   font-size: 13px;
   max-width: 88%;
-  line-height: 1.7;
-  box-shadow: 0 2px 8px rgba(0, 40, 80, .04);
+  line-height: 1.6;
+  box-shadow: 0 3px 10px rgba(0, 40, 80, .05);
   overflow-wrap: anywhere;
+  transition: box-shadow .2s ease;
 }
 
 .bubble.user {
@@ -581,10 +582,10 @@ svg { width: 1em; height: 1em; }
 /* CAMPO DE MENSAJE */
 
 .chat-form {
-  padding: 0 19px 20px;
+  padding: 0 18px 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
   background: var(--card);
 }
 
@@ -592,8 +593,9 @@ svg { width: 1em; height: 1em; }
   width: 100%;
   box-sizing: border-box;
   resize: vertical;
+  min-height: 66px;
   padding: 13px 14px;
-  border-radius: 13px;
+  border-radius: 12px;
   border: 1px solid var(--line);
   font: inherit;
   font-size: 13px;
@@ -608,8 +610,8 @@ svg { width: 1em; height: 1em; }
 
 .chat-input:focus {
   outline: none;
-  border-color: var(--electric);
-  box-shadow: 0 0 0 3px #1689ed22;
+  border-color: #0878d1;
+  box-shadow: 0 0 0 3px rgba(8, 120, 209, .10);
 }
 
 .chat-input:disabled {
