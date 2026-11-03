@@ -497,8 +497,9 @@ svg { width: 1em; height: 1em; }
   border: 8px solid #102d49;
   border-radius: 36px;
   box-shadow:
-    0 24px 55px rgba(5, 39, 70, .18),
-    0 8px 20px rgba(5, 39, 70, .09);
+  0 30px 65px rgba(5, 39, 70, .20),
+  0 12px 28px rgba(5, 39, 70, .10),
+  0 0 0 1px rgba(255, 255, 255, .5);
   overflow: hidden;
   transition: transform .3s ease, box-shadow .3s ease;
 }
@@ -549,7 +550,7 @@ svg { width: 1em; height: 1em; }
 
 .demo-panel .chat {
   padding: 18px 16px;
-  min-height: 170px;
+  min-height: 130px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -560,11 +561,12 @@ svg { width: 1em; height: 1em; }
 .bubble {
   padding: 12px 15px;
   border-radius: 16px;
-  font-size: 13px;
+  font-size: 130px
   max-width: 88%;
   line-height: 1.6;
   box-shadow: 0 3px 10px rgba(0, 40, 80, .05);
   overflow-wrap: anywhere;
+  margin: 0;
 }
 
 .bubble.user {
@@ -716,6 +718,32 @@ svg { width: 1em; height: 1em; }
   .demo-note {
     padding: 10px 13px;
   }
+
+  /* ANIMACIÓN AL CAMBIAR DE DEMOSTRACIÓN */
+
+.demo-panel {
+  animation: demoPanelEnter .4s ease-out both;
+}
+
+@keyframes demoPanelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* RESPETAR PREFERENCIAS DE MOVIMIENTO */
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-panel {
+    animation: none;
+  }
+
 }
 
 /* ----------------------------------------------------------- proceso */
