@@ -171,11 +171,12 @@ export function SolutionsDemo({ dict }: { dict: Dict }) {
 </div>
 </div>
         <div
-          className="demo-panel"
-          role="tabpanel"
-          id={"panel-" + tab.id}
-          aria-labelledby={"tab-" + tab.id}
-        >
+  key={tab.id}
+  className="demo-panel"
+  role="tabpanel"
+  id={"panel-" + tab.id}
+  aria-labelledby={"tab-" + tab.id}
+>
           <div className="panel-head">
             <span className="badgeicon">
               <IconSpark />
